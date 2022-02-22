@@ -1,4 +1,4 @@
-import { ConveyerMethods, ConveyerReactiveState } from 'conveyer';
+import { ConveyerMethods, ConveyerReactiveState } from '@egjs/conveyer';
 
 
 export class NgxConveyerInterface {}

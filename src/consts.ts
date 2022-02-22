@@ -1,3 +1,8 @@
+/**
+ * egjs-conveyer
+ * Copyright (c) 2022-present NAVER Corp.
+ * MIT license
+ */
 export const CONVEYER_METHODS = [
   "update",
   "scrollBy",

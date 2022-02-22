@@ -1,0 +1,440 @@
+---
+custom_edit_url: null
+---
+
+```ts
+class Conveyer extends Component
+```
+<p>Conveyer adds Drag gestures to your Native Scroll.</p>
+
+<div className="container">
+  <div className="row mb-2"><div className="col col--4"><strong>Properties</strong></div><div className="col col--4"><strong>Methods</strong></div><div className="col col--4"><strong>Events</strong></div></div>
+  <div className="row"><div className="col col--4"><a href="#isReachStart">isReachStart</a><br/><a href="#isReachEnd">isReachEnd</a></div><div className="col col--4"><a href="#findElement">findElement</a><br/><a href="#findItem">findItem</a><br/><a href="#scrollIntoView">scrollIntoView</a><br/><a href="#scrollBy">scrollBy</a><br/><a href="#scrollTo">scrollTo</a><br/><a href="#setItems">setItems</a><br/><a href="#updateItems">updateItems</a><br/><a href="#updateContainer">updateContainer</a><br/><a href="#update">update</a><br/><a href="#init">init</a><br/><a href="#destroy">destroy</a><br/><a href="#trigger">trigger</a><br/><a href="#once">once</a><br/><a href="#hasOn">hasOn</a><br/><a href="#on">on</a><br/><a href="#off">off</a></div><div className="col col--4"><a href="#event-reachStart">reachStart</a><br/><a href="#event-leaveStart">leaveStart</a><br/><a href="#event-reachEnd">reachEnd</a><br/><a href="#event-leaveEnd">leaveEnd</a><br/><a href="#event-beginScroll">beginScroll</a><br/><a href="#event-finishScroll">finishScroll</a></div></div>
+</div>
+
+## Constructor
+```ts
+new Conveyer(scrollArea, options)
+```
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|scrollArea|string \| HTMLElement \| Ref&lt;HTMLElement&gt;|||<p>A base element for a module </p>|
+|options|[ConveyerOptions](ConveyerOptions)|✔️|{}|<p>The option object of the InfiniteGrid module </p>|
+
+## Properties
+
+### isReachStart {#isReachStart}
+
+<div>
+  <span className="badge badge--warning">readonly</span>
+</div>
+
+<p>Whether the scroll has reached the start.</p>
+
+**Type**: boolean
+
+**Default**: false
+
+```js
+import { Conveyer } from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".container");
+
+conveyer.isReachStart
+```
+
+### isReachEnd {#isReachEnd}
+
+<div>
+  <span className="badge badge--warning">readonly</span>
+</div>
+
+<p>Whether the scroll has reached the end.</p>
+
+**Type**: boolean
+
+**Default**: false
+
+```js
+import { Conveyer } from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".container");
+
+conveyer.isReachEnd
+```
+
+## Methods
+
+### findElement {#findElement}
+
+<div>
+
+</div>
+
+<p>Finds an element for that direction.</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|direction|"start" \| "end" \| "prev" \| "next"|||<p>direction of the element. &quot;start&quot; and &quot;end&quot; find inside. &quot;prev&quot; and &quot;next&quot; find outside. </p>|
+|options|[FindItemOptions](FindItemOptions)|✔️|{}|<p>Options for the <code>findElement</code> method. </p>|
+
+<h4>target</h4>
+<p align="center">
+ <img src="/img/scrollIntoView1.png" height="200" />
+</p>
+<p align="center">
+  <img src="/img/scrollIntoView2.png" height="210" />
+</p>
+
+### findItem {#findItem}
+
+<div>
+
+</div>
+
+<p>Finds an item for an element or its direction.</p>
+
+**Returns**: [ConveyerItem](ConveyerItem) \| null
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|target|HTMLElement \| "start" \| "end" \| "prev" \| "next"|||<p>direction of the element. &quot;start&quot; and &quot;end&quot; find inside. &quot;prev&quot; and &quot;next&quot; find outside. </p>|
+|options|[FindItemOptions](FindItemOptions)|✔️|{}|<p>Options for the <code>findItem</code> method. </p>|
+
+<h4>target</h4>
+<p align="center">
+ <img src="/img/scrollIntoView1.png" height="200" />
+</p>
+<p align="center">
+  <img src="/img/scrollIntoView2.png" height="210" />
+</p>
+
+### scrollIntoView {#scrollIntoView}
+
+<div>
+
+</div>
+
+<p>Scrolls an element or an item in that direction into the view.</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|target|HTMLElement \| "start" \| "end" \| "prev" \| "next"|||<p>direction of the element. &quot;start&quot; and &quot;end&quot; find inside. &quot;prev&quot; and &quot;next&quot; find outside. </p>|
+|options|[ScrollIntoViewOptions](ScrollIntoViewOptions)|✔️|{}|<p>Options for the <code>scrollIntoView</code> method. </p>|
+
+<h4>target</h4>
+<p align="center">
+ <img src="/img/scrollIntoView1.png" height="200" />
+</p>
+<p align="center">
+  <img src="/img/scrollIntoView2.png" height="210" />
+</p>
+
+### scrollBy {#scrollBy}
+
+<div>
+
+</div>
+
+<p>Scrolls by the given position amount.</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|pos|number|||<p>Amount of position to scroll by. </p>|
+|duration||✔️|0|<p>Duration to scroll by that position. </p>|
+
+### scrollTo {#scrollTo}
+
+<div>
+
+</div>
+
+<p>Scroll to the given position.</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|pos|number|||<p>Amount of position to scroll to. </p>|
+|duration||✔️|0|<p>Duration to scroll to that position. </p>|
+
+### setItems {#setItems}
+
+<div>
+
+</div>
+
+<p>Set the items directly to the Conveyer.</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|items|[ConveyerItem](ConveyerItem)[]|||<p>Items to set on Conveyer </p>|
+
+### updateItems {#updateItems}
+
+<div>
+
+</div>
+
+<p>Update the position and size information of items.</p>
+
+### updateContainer {#updateContainer}
+
+<div>
+
+</div>
+
+<p>Update container size and scroll size.</p>
+
+### update {#update}
+
+<div>
+
+</div>
+
+<p>Updating containers and items.</p>
+
+### init {#init}
+
+<div>
+
+</div>
+
+<p>If you use the autoInit option as false, you can initialize it directly through the init method.</p>
+
+### destroy {#destroy}
+
+<div>
+
+</div>
+
+<p>Releases the instnace and events.</p>
+
+### trigger {#trigger}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+<p>Trigger a custom event.</p>
+
+**Returns**: this
+- <p>An instance of the component itself</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|event|string \| ComponentEvent|||<p>The name of the custom event to be triggered or an instance of the ComponentEvent</p>|
+|params|Array&lt;any&gt; \| $ts:...|||<p>Event data to be sent when triggering a custom event </p>|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  beforeHi: ComponentEvent<{ foo: number; bar: string }>;
+  hi: { foo: { a: number; b: boolean } };
+  someEvent: (foo: number, bar: string) => void;
+  someOtherEvent: void; // When there's no event argument
+}> {
+  some(){
+    if(this.trigger("beforeHi")){ // When event call to stop return false.
+      this.trigger("hi");// fire hi event.
+    }
+  }
+}
+
+const some = new Some();
+some.on("beforeHi", e => {
+  if(condition){
+    e.stop(); // When event call to stop, `hi` event not call.
+  }
+  // `currentTarget` is component instance.
+  console.log(some === e.currentTarget); // true
+
+  typeof e.foo; // number
+  typeof e.bar; // string
+});
+some.on("hi", e => {
+  typeof e.foo.b; // boolean
+});
+// If you want to more know event design. You can see article.
+// https://github.com/naver/egjs-component/wiki/How-to-make-Component-event-design%3F
+```
+
+### once {#once}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+<p>Executed event just one time.</p>
+
+**Returns**: this
+- <p>An instance of the component itself</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string \| $ts:...|||<p>The name of the event to be attached or an event name - event handler mapped object.</p>|
+|handlerToAttach|function \| $ts:...|✔️||<p>The handler function of the event to be attached </p>|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  hi: ComponentEvent;
+}> {
+  hi() {
+    alert("hi");
+  }
+  thing() {
+    this.once("hi", this.hi);
+  }
+}
+
+var some = new Some();
+some.thing();
+some.trigger(new ComponentEvent("hi"));
+// fire alert("hi");
+some.trigger(new ComponentEvent("hi"));
+// Nothing happens
+```
+
+### hasOn {#hasOn}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+<p>Checks whether an event has been attached to a component.</p>
+
+**Returns**: boolean
+- <p>Indicates whether the event is attached. </p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string|||<p>The name of the event to be attached </p>|
+
+```ts
+import Component from "@egjs/component";
+
+class Some extends Component<{
+  hi: void;
+}> {
+  some() {
+    this.hasOn("hi");// check hi event.
+  }
+}
+```
+
+### on {#on}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+<p>Attaches an event to a component.</p>
+
+**Returns**: this
+- <p>An instance of a component itself</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string \| $ts:...|||<p>The name of the event to be attached or an event name - event handler mapped object.</p>|
+|handlerToAttach|function \| $ts:...|✔️||<p>The handler function of the event to be attached </p>|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  hi: void;
+}> {
+  hi() {
+    console.log("hi");
+  }
+  some() {
+    this.on("hi",this.hi); //attach event
+  }
+}
+```
+
+### off {#off}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+<p>Detaches an event from the component.<br/>If the <code>eventName</code> is not given this will detach all event handlers attached.<br/>If the <code>handlerToDetach</code> is not given, this will detach all event handlers for <code>eventName</code>.</p>
+
+**Returns**: this
+- <p>An instance of a component itself </p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string \| $ts:...|✔️||<p>The name of the event to be detached </p>|
+|handlerToDetach|function \| $ts:...|✔️||<p>The handler function of the event to be detached </p>|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  hi: void;
+}> {
+  hi() {
+    console.log("hi");
+  }
+  some() {
+    this.off("hi",this.hi); //detach event
+  }
+}
+```
+
+## Events
+### reachStart {#event-reachStart}
+
+<div>
+
+</div>
+
+<p>This event is fired when scroll reach start.</p>
+
+### leaveStart {#event-leaveStart}
+
+<div>
+
+</div>
+
+<p>This event is fired when scroll leave start.</p>
+
+### reachEnd {#event-reachEnd}
+
+<div>
+
+</div>
+
+<p>This event is fired when scroll reach end.</p>
+
+### leaveEnd {#event-leaveEnd}
+
+<div>
+
+</div>
+
+<p>This event is fired when scroll leave end.</p>
+
+### beginScroll {#event-beginScroll}
+
+<div>
+
+</div>
+
+<p>This event is fired when begin scroll.</p>
+
+### finishScroll {#event-finishScroll}
+
+<div>
+
+</div>
+
+<p>This event is fired when finish scroll.</p>
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|e|[OnFinishScroll](OnFinishScroll)|||<p>The object of data to be sent to an event </p>|
+

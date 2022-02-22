@@ -1,3 +1,8 @@
+/**
+ * egjs-conveyer
+ * Copyright (c) 2022-present NAVER Corp.
+ * MIT license
+ */
 import Conveyer from "./Conveyer";
 
 export default Conveyer;

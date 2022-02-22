@@ -1,3 +1,8 @@
+/**
+ * egjs-conveyer
+ * Copyright (c) 2022-present NAVER Corp.
+ * MIT license
+ */
 import Axes, { PanInput } from "@egjs/axes";
 import Component from "@egjs/component";
 import { ReactiveSubscribe, Reactive, Ref } from "./cfcs";

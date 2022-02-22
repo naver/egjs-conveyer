@@ -1,0 +1,24 @@
+import Conveyer from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".items", {
+  horizontal: false,
+});
+
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+// scrollIntoView
+prev.addEventListener("click", () => {
+  // start to end
+  conveyer.scrollIntoView("prev", {
+    align: "end",
+    duration: 500,
+  });
+});
+next.addEventListener("click", () => {
+  // end to start
+  conveyer.scrollIntoView("next", {
+    align: "start",
+    duration: 500,
+  });
+});

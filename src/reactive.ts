@@ -1,3 +1,8 @@
+/**
+ * egjs-conveyer
+ * Copyright (c) 2022-present NAVER Corp.
+ * MIT license
+ */
 import Conveyer from "./Conveyer";
 import { CONVEYER_EVENTS, CONVEYER_METHODS, CONVEYER_REACTIVE_STATE } from "./consts";
 import { ReactiveAdapter, Ref } from "./cfcs";

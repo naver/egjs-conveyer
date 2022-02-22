@@ -1,0 +1,17 @@
+---
+title: Use Reactive properties
+custom_edit_url: null
+---
+
+You can change the state using properties without having to use events.
+
+|Property|Type|Description|
+|:---:|:---:|---|
+|[isReachStart](/docs/api/Conveyer#isReachStart)|boolean|Whether the scroll has reached the start.|
+|[isReachEnd](/docs/api/Conveyer#isReachEnd)|boolean|Whether the scroll has reached the end.|
+
+import ReactiveProperties from "@site/src/examples/ReactiveProperties";
+import ConveyerCodeTabs from "@site/docs/codes/ConveyerCodeTabs";
+
+<ReactiveProperties />
+<ConveyerCodeTabs folder="ReactiveProperties" reactCode={require("!!raw-loader!@site/src/examples/ReactiveProperties.tsx").default} />

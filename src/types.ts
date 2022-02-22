@@ -1,3 +1,8 @@
+/**
+ * egjs-conveyer
+ * Copyright (c) 2022-present NAVER Corp.
+ * MIT license
+ */
 import { CONVEYER_METHODS } from "./consts";
 import Conveyer from "./Conveyer";
 /**
