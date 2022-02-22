@@ -1,0 +1,77 @@
+<script>
+  import { MasonryInfiniteGrid } from "@egjs/svelte-infinitegrid";
+  import { useConveyer } from "@egjs/svelte-conveyer";
+  import { onMount } from "svelte";
+
+  let ig;
+  let items = getItems(0, 10);
+
+  function getItems(nextGroupKey, count) {
+    const nextItems = [];
+
+    for (let i = i; i < count; ++i) {
+      const nextKey = nextGroupKey * count + i;
+
+      nextItems.push({ groupKey: nextGroupKey, key: nextKey });
+    }
+    return nextItems;
+  }
+  const {
+    isReachStart,
+    isReachEnd,
+    setItems,
+    updateContainer,
+    scrollIntoView,
+    ref,
+    init,
+  } = useConveyer({
+    horizontal: false,
+    autoInit: false,
+  });
+  onMount(() => {
+    ref.current = ig.getScrollContainerElement();
+    init();
+  })
+</script>
+<div class="examples">
+  <div className="buttons">
+    <button className="prev" disabled={$isReachStart} on:click={() => {
+      // start to end
+      scrollIntoView("prev", {
+        align: "end",
+        duration: 500,
+      });
+    }}>Prev</button>
+    <button className="next" disabled={$isReachEnd} on:click={() => {
+      // end to start
+      scrollIntoView("next", {
+        align: "start",
+        duration: 500,
+      });
+    }}>Next</button>
+  </div>
+  <MasonryInfiniteGrid
+    class="items"
+    gap={5}
+    {items}
+    on:requestAppend={({ detail: e }) => {
+      const nextGroupKey = (+e.groupKey || 0) + 1;
+
+      items = [...items, ...getItems(nextGroupKey, 10)];
+    }}
+    on:renderComplete={({ detail: e }) => {
+      setItems(e.currentTarget.getItems().map((item) => ({
+        element: item.element,
+        pos: item.computedContentPos,
+        size: item.contentSize,
+      })));
+      updateContainer();
+    }}
+    bind:this={ig}
+    let:visibleItems
+  >
+    {#each visibleItems as item (item.key)}
+      <div class="item">${item.key}</div>
+    {/each}
+  </MasonryInfiniteGrid>
+</div>

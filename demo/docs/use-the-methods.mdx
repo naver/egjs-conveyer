@@ -1,0 +1,265 @@
+---
+title: Use the Methods
+id: use-the-methods
+slug: /use-the-methods
+custom_edit_url: null
+---
+
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+You can see Conveyer's [methods](/docs/api/Conveyer#methods).
+
+<Tabs
+  groupId="cfc"
+  defaultValue="js"
+  values={[
+    { label: "JavaScript", value: "js" },
+    { label: "React", value: "react" },
+    { label: "Vue@3", value: "vue" },
+    { label: "Vue@2", value: "vue2" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" }
+  ]}>
+  <TabItem value="js">
+
+You can call methods directly from the Conveyer instance.
+
+```js
+const conveyer = new Conveyer("#el", options);
+
+conveyer.scrollIntoView("next", { align: "start "});
+```
+
+  </TabItem>
+  <TabItem value="react">
+
+You can call methods of Conveyer by getting a result of `useConveyer`.
+
+```jsx
+import * as React from "react";
+import { useConveyer } from "@egjs/react-conveyer";
+
+export default () => {
+  const ref = useRef();
+  const { scrollIntoView } = useConveyer(ref);
+
+  return <div className="container">
+    <div className="buttons">
+      <button className="prev" onClick={() => {
+        // start to end
+        scrollIntoView("prev", {
+          align: "end",
+          duration: 500,
+        });
+      }}>Prev</button>
+      <button className="next" onClick={() => {
+        // end to start
+        scrollIntoView("next", {
+          align: "start",
+          duration: 500,
+        });
+      }}>Next</button>
+    </div>
+    <div className="items" ref={ref}>
+      <div className="item">1</div>
+      <div className="item">2</div>
+      <div className="item">3</div>
+    </div>
+  </div>;
+};
+```
+
+See [React Refs and the DOM](https://reactjs.org/docs/refs-and-the-dom.html) for more info.
+
+  </TabItem>
+  <TabItem value="vue">
+
+You can call methods of Conveyer by getting a result of `useConveyer`.
+
+```html title="<template>"
+<div class="items" ref="ref">
+  <button id="prev" @click="prev">prev</button>
+  <button id="next" @click="next">next</button>
+  <div class="items" ref="ref">
+    <div class="item"><a href="#1">1</a></div>
+    <div class="item"><a href="#2">2</a></div>
+    <div class="item"><a href="#3">3</a></div>
+  </div>
+</div>
+```
+
+```js title="<script>"
+import { useConveyer } from "@egjs/vue-conveyer";
+
+export default {
+  setup() {
+    const { ref, scrollIntoView } = useConveyer({
+      horizontal: false,
+    });
+
+    return {
+      ref,
+      scrollIntoView,
+    };
+  },
+  methods: {
+    prev() {
+      this.scrollIntoView("prev", {
+        align: "end",
+        duration: 500,
+      });
+    },
+    next() {
+      this.scrollIntoView("next", {
+        align: "start",
+        duration: 500,
+      });
+    },
+  },
+};
+```
+  </TabItem>
+  <TabItem value="vue2">
+
+You can call methods of Conveyer by getting a result of `useConveyer`.
+
+```html title="<template>"
+<div class="items" ref="ref">
+  <button id="prev" @click="prev">prev</button>
+  <button id="next" @click="next">next</button>
+  <div class="items" ref="ref">
+    <div class="item"><a href="#1">1</a></div>
+    <div class="item"><a href="#2">2</a></div>
+    <div class="item"><a href="#3">3</a></div>
+  </div>
+</div>
+```
+
+```js title="<script>"
+import { useConveyer } from "@egjs/vue2-conveyer";
+
+export default {
+  setup() {
+    const { ref, scrollIntoView } = useConveyer({
+      horizontal: false,
+    });
+
+    return {
+      ref,
+      scrollIntoView,
+    };
+  },
+  methods: {
+    prev() {
+      this.scrollIntoView("prev", {
+        align: "end",
+        duration: 500,
+      });
+    },
+    next() {
+      this.scrollIntoView("next", {
+        align: "start",
+        duration: 500,
+      });
+    },
+  },
+};
+```
+  </TabItem>
+  <TabItem value="angular">
+
+There're few ways to interact with child component in Angular.
+See [Component Interaction](https://angular.io/guide/component-interaction#parent-interacts-with-child-via-local-variable) page from Angular official document, and use that to interact with Conveyer.
+
+```html title="app.component.html"
+<div class="container">
+  <button id="prev" (click)="prev()">prev</button>
+  <button id="next" (click)="next()">next</button>
+  <div
+    class="items"
+    NgxConveyer
+    #conveyer="ngxConveyer"
+    >
+    <div class="item"><a href="#1">1</a></div>
+    <div class="item"><a href="#2">2</a></div>
+    <div class="item"><a href="#3">3</a></div>
+    <div class="item"><a href="#4">4</a></div>
+    <div class="item"><a href="#5">5</a></div>
+    <div class="item"><a href="#6">6</a></div>
+    <div class="item"><a href="#7">7</a></div>
+    <div class="item"><a href="#8">8</a></div>
+    <div class="item"><a href="#9">9</a></div>
+    <div class="item"><a href="#10">10</a></div>
+    <div class="item"><a href="#11">11</a></div>
+    <div class="item"><a href="#12">12</a></div>
+  </div>
+</div>
+```
+
+```js title="app.component.ts"
+import { Component, Input, AfterViewInit } from '@angular/core';
+
+import { NgxConveyerComponent } from 'ngx-conveyer';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+})
+export class AppComponent implements AfterViewInit {
+  @ViewChild("conveyer") conveyer!: NgxConveyerComponent;
+  prev() {
+    this.conveyer.scrollIntoView("prev", {
+      align: "end",
+      duration: 500,
+    });
+  }
+  next() {
+    this.conveyer.scrollIntoView("next", {
+      align: "start",
+      duration: 500,
+    });
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="svelte">
+
+```jsx
+<script lang="ts">
+  import { useConveyer } from "@egjs/svelte-conveyer";
+
+  const { ref, scrollIntoView } = useConveyer();
+</script>
+<div class="container">
+  <div class="buttons">
+    <button class="prev" on:click={() => {
+      // start to end
+      scrollIntoView("prev", {
+        align: "end",
+        duration: 500,
+      });
+    }}>Prev</button>
+    <button class="next" on:click={() => {
+      // end to start
+      scrollIntoView("next", {
+        align: "start",
+        duration: 500,
+      });
+    }}>Next</button>
+  </div>
+  <div class="items" use:ref>
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+</div>
+```
+
+  </TabItem>
+</Tabs>
+
+See all available methods at our <Link to={useBaseUrl("docs/api/Conveyer#methods")}>API</Link> page.

@@ -1,0 +1,63 @@
+{
+  "name": "@egjs/vue2-conveyer",
+  "version": "0.2.0",
+  "description": "Vue Conveyer adds Drag gestures to your Native Scroll.",
+  "main": "dist/conveyer.cjs.js",
+  "module": "dist/conveyer.esm.js",
+  "types": "declaration/index.d.ts",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naver/egjs-conveyer"
+  },
+  "author": {
+    "name": "NAVER Corp."
+  },
+  "license": "MIT",
+  "scripts": {
+    "serve": "vue-cli-service serve demo",
+    "lint": "vue-cli-service lint --no-fix",
+    "build": "rollup -c && npm run declaration && print-sizes ./dist ",
+    "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json"
+  },
+  "keywords": [
+    "scroll",
+    "reactive",
+    "hooks",
+    "conveyer",
+    "image",
+    "video",
+    "list",
+    "drag",
+    "vue",
+    "vue2",
+    "use"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@egjs/build-helper": "^0.1.2",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/composition-api": "^1.2.4",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "@vue/test-utils": "^1.0.3",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "print-sizes": "^0.1.0",
+    "rollup-plugin-vue": "^5.1.9",
+    "tslib": "^2.3.1",
+    "typescript": "~3.9.3",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "peerDependencies": {
+    "vue": "^2.0.0",
+    "@vue/composition-api": "^1.0.0"
+  },
+  "dependencies": {
+    "@egjs/conveyer": "^0.1.0"
+  }
+}

@@ -1,0 +1,136 @@
+<style>
+  .examples .items {
+    position: relative;
+    overflow: scroll;
+    width: 100%;
+    white-space: nowrap;
+    overscroll-behavior: none;
+    user-select: none;
+    height: 400px;
+    border: 1px solid black;
+  }
+  .examples .container {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+  .examples .item {
+    overflow: hidden;
+    /* margin: 18px 12px 30px 0; */
+    width: 271px;
+    height: 244px;
+    line-height: 244px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+  }
+
+  .examples .prev, .examples .next {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+  }
+
+  .examples .prev {
+    left: 100px;
+  }
+
+  .examples .next {
+    right: 100px;
+  }
+</style>
+
+<body>
+  <button id="prev">PREV</button>
+  <button id="next">NEXT</button>
+  <div class="items">
+    <!-- <div class="container"> -->
+      <div class="item"><a href="#1">1</a></div>
+      <div class="item"><a href="#2">2</a></div>
+      <div class="item"><a href="#3">3</a></div>
+      <div class="item"><a href="#4">4</a></div>
+      <div class="item"><a href="#5">5</a></div>
+      <div class="item"><a href="#6">6</a></div>
+      <div class="item"><a href="#7">7</a></div>
+      <div class="item"><a href="#8">8</a></div>
+      <div class="item"><a href="#9">9</a></div>
+      <div class="item"><a href="#10">10</a></div>
+      <div class="item"><a href="#11">11</a></div>
+      <div class="item"><a href="#12">12</a></div>
+    <!-- </div> -->
+  </div>
+</body>
+<script src="../../dist/conveyer.js"></script>
+<!-- <script src="../egjs-infinitegrid/dist/infinitegrid.js"></script> -->
+<script src="https://naver.github.io/egjs-infinitegrid/release/latest/dist/infinitegrid.js"></script>
+
+<script>
+const grid = new InfiniteGrid.MasonryInfiniteGrid(".items", {
+  container: true,
+});
+
+grid.renderItems();
+
+grid.on("renderComplete", () => {
+  // conveyer.updateItems();
+  conveyer.setItems(grid.getItems().map((item) => ({
+    element: item.element,
+    pos: item.cssContentPos || item.contentPos,
+    size: item.contentSize,
+  })));
+  conveyer.resizeContainer();
+});
+let i = 12;
+grid.on("requestAppend", () => {
+  ++i;
+  grid.append(`<div class="item"><a href="#${i}">${i}</a></div>`)
+});
+
+const conveyer = new Conveyer(".items", {
+    preventClickOnDrag: true,
+    horizontal: false,
+    itemSelector: ".item",
+  });
+
+  conveyer.on("reachStart", () => {
+    prev.disabled = true;
+  });
+  conveyer.on("leaveStart", () => {
+    prev.disabled = false;
+  });
+  conveyer.on("reachEnd", () => {
+    next.disabled = true;
+  });
+  conveyer.on("leaveEnd", () => {
+    next.disabled = false;
+  });
+
+  next.addEventListener("click", () => {
+    // end to start
+    conveyer.scrollIntoView("next", {
+      align: "start",
+      duration: 500,
+    });
+  });
+  prev.addEventListener("click", () => {
+    // start to end
+    conveyer.scrollIntoView("prev", {
+      align: "end",
+      duration: 500,
+    });
+  });
+  conveyer.init();
+
+  document.querySelectorAll(".item").forEach(el => {
+    el.addEventListener("click", () => {
+      conveyer.scrollIntoView(el, {
+        align: "center",
+        duration: 500,
+      });
+    });
+  });
+</script>

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "outDir": "./outjs/",
+    "sourceMap": true,
+    "module": "es2015",
+    "target": "es5",
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "conveyer/cfcs": [
+        "./cfcs"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./test/unit/**/*.ts",
+    "./stories/**/*.ts",
+    "./global.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

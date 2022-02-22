@@ -1,0 +1,13 @@
+export function isString(val: any): val is string {
+  return typeof val === "string";
+}
+export function findIndex<T>(arr: T[], callback: (element: T, index: number) => boolean) {
+  const length = arr.length;
+
+  for (let i = 0; i < length; ++i) {
+    if (callback(arr[i], i)) {
+      return i;
+    }
+  }
+  return -1;
+}

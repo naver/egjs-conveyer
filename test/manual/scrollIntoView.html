@@ -1,0 +1,96 @@
+<style>
+  .items {
+    position: relative;
+    white-space: nowrap;
+    overscroll-behavior: none;
+    user-select: none;
+    border: 2px solid #999;
+    width: 680px;
+    top: 100px;
+    transform: translate(400px);
+  }
+
+  .container {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+  .item {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    border: 1px solid #ccc;
+    margin: 20px 10px;
+    transform: translate(-500px);
+  }
+  .prev {
+    background: #faa;
+  }
+  .start {
+    background: #afa;
+  }
+  .end {
+    background: #ffa;
+  }
+  .next {
+    background: #aaf;
+  }
+  .item:before {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, -30px);
+    color: #333;
+    font-size: 20px;
+    line-height: 1;
+  }
+  .prev:before {
+    content: "prev";
+  }
+  .next:before {
+    content: "next";
+  }
+  .start:before {
+    content: "start";
+  }
+  .end:before {
+    content: "end";
+  }
+</style>
+<div class="items">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+  <div class="item">5</div>
+  <div class="item">6</div>
+  <div class="item">7</div>
+  <div class="item">8</div>
+  <div class="item">9</div>
+  <div class="item">10</div>
+</div>
+<script src="../../dist/conveyer.js"></script>
+<script>
+  const conveyer = new Conveyer(".items");
+
+  let pos = 675;
+  conveyer.pos = pos;
+  document.querySelectorAll(".item").forEach(item => {
+    item.style.transform = `translate(-${pos}px)`;
+  });
+
+  const prev = conveyer.findElement("prev");
+  const start = conveyer.findElement("start");
+  const end = conveyer.findElement("end");
+  const next = conveyer.findElement("next");
+
+  prev?.classList.add("prev");
+  start?.classList.add("start");
+  end?.classList.add("end");
+  next?.classList.add("next");
+</script>

@@ -1,0 +1,33 @@
+{
+  "name": "@egjs/ngx-conveyer",
+  "version": "0.1.0",
+  "description": "Angular Conveyer adds Drag gestures to your Native Scroll.",
+
+  "author": {
+    "name": "NAVER Corp."
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/naver/egjs-conveyer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naver/egjs-conveyer"
+  },
+  "keywords": [
+    "scroll",
+    "reactive",
+    "hooks",
+    "conveyer",
+    "image",
+    "video",
+    "list",
+    "drag"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0"
+  },
+  "dependencies": {
+    "@egjs/conveyer": "~0.1.0",
+    "tslib": "^2.3.0"
+  }
+}

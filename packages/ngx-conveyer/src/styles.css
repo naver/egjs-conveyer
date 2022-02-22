@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  font-family: sans-serif;
+}
+.examples .items {
+  position: relative;
+  overflow: scroll;
+  width: 100%;
+  white-space: nowrap;
+  overscroll-behavior: none;
+  user-select: none;
+  height: 400px;
+}
+.examples .container {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+.examples .item {
+  overflow: hidden;
+  /* margin: 18px 12px 30px 0; */
+  width: 180px;
+  height: 180px;
+  line-height: 180px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+.items.horizontal {
+  height: auto;
+}
+.items.horizontal .item {
+  display: inline-block;
+  margin: 5px;
+}
+.items.vertical .item {
+  margin: 5px;
+  width: auto;
+}
+.examples .buttons {
+  position: relative;
+  height: 40px;
+}
+.examples .prev,
+.examples .next {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  border: 1px solid #ccc;
+  padding: 5px 20px;
+  font-weight: bold;
+}
+
+.examples .prev {
+  left: 0px;
+}
+
+.examples .next {
+  right: 0px;
+}

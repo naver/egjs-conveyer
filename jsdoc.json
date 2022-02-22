@@ -1,0 +1,57 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": [
+      "jsdoc",
+      "closure"
+    ]
+  },
+  "source": {
+    "include": [
+      "src",
+      "README.md",
+      "node_modules/@egjs/component/src/Component.ts",
+      "node_modules/@egjs/component/src/ComponentEvent.ts"
+    ],
+    "includePattern": ".+\\.(j|t)s(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "template": "node_modules/egjs-jsdoc-template",
+    "destination": "./doc/",
+    "expendsItemMembers": true,
+    "recurse": true
+  },
+  "plugins": [
+    "plugins/markdown",
+    "node_modules/egjs-jsdoc-template/jsdoc-plugin/ko",
+    "node_modules/egjs-jsdoc-template/jsdoc-plugin/group",
+    "node_modules/egjs-jsdoc-template/jsdoc-plugin/support"
+  ],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles": true
+    },
+    "applicationName": "eg.Conveyer",
+    "disqus": "egjs",
+    "googleAnalytics": "G-3VG8ZPB0QT",
+    "openGraph": {
+      "title": "",
+      "type": "website",
+      "image": "",
+      "site_name": "",
+      "url": ""
+    },
+    "meta": {
+      "title": "egjs::Conveyer - API",
+      "description": "..",
+      "keyword": "Conveyer"
+    },
+    "linenums": true,
+    "link": {
+      "canonical": "https://naver.github.io/egjs-conveyer/release/latest/doc/"
+    }
+  }
+}

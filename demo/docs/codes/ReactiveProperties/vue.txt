@@ -1,0 +1,39 @@
+<template>
+<div class="examples">
+  <div class="buttons">
+    <button class="prev" :disabled="isReachStart">Start</button>
+    <button class="next" :disabled="isReachEnd">End</button>
+  </div>
+  <div class="items horizontal" ref="ref">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item">10</div>
+  </div>
+</div>
+</template>
+<script lang="ts">
+import { useConveyer } from "@egjs/vue-conveyer";
+
+export default {
+  setup() {
+    const {
+      ref,
+      isReachStart,
+      isReachEnd,
+    } = useConveyer();
+
+    return {
+      ref,
+      isReachStart,
+      isReachEnd,
+    };
+  },
+};
+</script>
