@@ -58,8 +58,8 @@ export class AppModule { } /* Your app */
 
 ```html
 <div class="container">
-  <button id="prev" (click)="prev()">prev</button>
-  <button id="next" (click)="next()">next</button>
+  <button id="prev" [disabled]="conveyer?.isReachStart" (click)="prev()">prev</button>
+  <button id="next" [disabled]="conveyer?.isReachEnd" (click)="next()">next</button>
   <div class="items" NgxConveyer #conveyer="ngxConveyer">
     <div class="item">1</div>
     <div class="item">2</div>
