@@ -214,4 +214,4 @@ packages/*/dist/
 test/e2e/log/
 test/e2e/screenshots/diff/
 storybook/build/
-dist/
+
