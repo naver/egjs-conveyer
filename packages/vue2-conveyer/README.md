@@ -1,7 +1,7 @@
 
 <h1 align="center" style="max-width: 100%;">
   <img width="256" alt="Conveyer Logo" src="https://naver.github.io/egjs-conveyer/img/logo.png" style="max-width: 100%;" /><br/>
-  <a href="https://naver.github.io/egjs-conveyer/">Svelte Conveyer</a>
+  <a href="https://naver.github.io/egjs-conveyer/">Vue 2 Conveyer</a>
 </h1>
 
 <p align="center" style="line-height: 2;">
