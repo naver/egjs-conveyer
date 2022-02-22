@@ -10,7 +10,7 @@
   <a href="https://www.npmjs.com/package/@egjs/vue-conveyer" target="_blank"><img alt="npm bundle size (scoped)" src="https://img.shields.io/bundlephobia/minzip/@egjs/vue-conveyer.svg?style=flat-square&label=%F0%9F%92%BE%20gzipped&color=007acc" /></a>
   <a href="https://github.com/naver/egjs-conveyer/actions" target="_blank"><img alt="Github actions" src="https://img.shields.io/github/workflow/status/naver/egjs-conveyer/Run%20tests?style=flat-square" /></a>
   <a href="https://coveralls.io/github/naver/egjs-conveyer?branch=master&style=flat-square" target="_blank"><img alt="Coveralls github" src="https://img.shields.io/coveralls/github/naver/egjs-conveyer.svg?style=flat-square&label=%E2%9C%85%20coverage" /></a>
-    <a href="https://github.com/naver/egjs-conveyer/blob/main/LICENSE" target="_blank"><img alt="GitHub" src="https://img.shields.io/github/license/naver/egjs-conveyer.svg?style=flat-square&label=%F0%9F%93%9C%20license&color=08CE5D" /></a>
+    <a href="https://github.com/naver/egjs-conveyer/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/static/v1?style=flat-square&label=%F0%9F%93%9C%20license&message=MIT&color=08CE5D" /></a>
     <img src="https://img.shields.io/static/v1.svg?label=&message=TypeScript&color=294E80&style=flat-square&logo=typescript" />
 </p>
 <h3 align="center">
