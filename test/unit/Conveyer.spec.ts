@@ -161,7 +161,7 @@ describe("test Conveyer", () => {
         { left: -100, top: 0 },
         { duration: 100, interval: 50 },
       );
-      await waitEvent(conveyer, "finishScroll");
+      await waitFor(100);
 
       // Then
       expect(clickSpy.callCount).to.be.equals(0);
