@@ -25,14 +25,14 @@
   background-color: #fff;
   border: 1px solid #ccc;
 }
-.items.horizontal {
+.examples .items.horizontal {
   height: auto;
 }
-.items.horizontal .item {
+.examples .items.horizontal .item {
   display: inline-block;
   margin: 5px;
 }
-.items.vertical .item {
+.examples .items.vertical .item {
   margin: 5px;
   width: auto;
 }

@@ -40,13 +40,13 @@ export default defineComponent({
   },
   methods: {
     prev() {
-      this.scrollIntoView("prev", {
+      this.scrollIntoView("start", {
         align: "end",
         duration: 500,
       });
     },
     next() {
-      this.scrollIntoView("next", {
+      this.scrollIntoView("end", {
         align: "start",
         duration: 500,
       });

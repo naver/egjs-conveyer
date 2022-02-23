@@ -43,16 +43,18 @@ conveyer.subscribe("isReachEnd", (isReachEnd) => {
 // scrollIntoView
 prev.addEventListener("click", () => {
   // start to end
-  conveyer.scrollIntoView("prev", {
+  conveyer.scrollIntoView("start", {
     align: "end",
     duration: 500,
+    excludeStand: true,
   });
 });
 next.addEventListener("click", () => {
   // end to start
-  conveyer.scrollIntoView("next", {
+  conveyer.scrollIntoView("end", {
     align: "start",
     duration: 500,
+    excludeStand: true,
   });
 });
 

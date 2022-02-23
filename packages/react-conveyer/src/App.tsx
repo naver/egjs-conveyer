@@ -16,14 +16,14 @@ function App() {
     <div className="App">
       <button id="prev" disabled={isReachStart} onClick={() => {
         // start to end
-        scrollIntoView("prev", {
+        scrollIntoView("start", {
           align: "end",
           duration: 500,
         });
       }}>PREV</button>
       <button id="next" disabled={isReachEnd} onClick={() => {
         // end to start
-        scrollIntoView("next", {
+        scrollIntoView("end", {
           align: "start",
           duration: 500,
         });

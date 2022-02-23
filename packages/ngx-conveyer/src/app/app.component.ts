@@ -43,13 +43,13 @@ export class AppComponent {
     this.conveyer.updateContainer();
   }
   prev() {
-    this.conveyer.scrollIntoView("prev", {
+    this.conveyer.scrollIntoView("start", {
       align: "end",
       duration: 500,
     });
   }
   next() {
-    this.conveyer.scrollIntoView("next", {
+    this.conveyer.scrollIntoView("end", {
       align: "start",
       duration: 500,
     });

@@ -7,18 +7,27 @@ You can use the conveyer's methods via instance or result.
 
 You can also use scroll-related functions through methods.
 
-|Method|Description|
-|:---:|---|
-|[scrollIntoView](/docs/api/Conveyer#scrollIntoView)|Scrolls an element or an item in that direction into the view.|
+
+### scrollIntoView
+[scrollIntoView](/docs/api/Conveyer#scrollIntoView) method scrolls an element or an item in that direction into the view.
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|target|HTMLElement \| "start" \| "end" \| "prev" \| "next"|||<p>direction of the element. &quot;start&quot; and &quot;end&quot; find inside. &quot;prev&quot; and &quot;next&quot; find outside. </p>|
+|options|[ScrollIntoViewOptions](ScrollIntoViewOptions)|✔️|{}|<p>Options for the <code>scrollIntoView</code> method. </p>|
+
+
+
 import Methods from "@site/src/examples/Methods";
+import ScrollIntoViewTarget from "@site/src/examples/ScrollIntoViewTarget";
 import ConveyerCodeTabs from "@site/docs/codes/ConveyerCodeTabs";
 
-<p align="center">
-  <img src="/img/scrollIntoView1.png" height="200" />
-</p>
-<p align="center">
-  <img src="/img/scrollIntoView2.png" height="210" />
-</p>
+<ScrollIntoViewTarget />
+
+
+### Example
 
 <Methods />
+
+
 <ConveyerCodeTabs folder="Methods" reactCode={require("!!raw-loader!@site/src/examples/Methods.tsx").default} />

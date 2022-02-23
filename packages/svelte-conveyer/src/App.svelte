@@ -61,13 +61,13 @@ body {
 </style>
 <div class="App">
   <button id="prev" disabled={$isReachStart} on:click={() => {
-    scrollIntoView("prev", {
+    scrollIntoView("start", {
       align: "end",
       duration: 500,
     });
   }}>PREV</button>
   <button id="next" disabled={$isReachEnd} on:click={() => {
-    scrollIntoView("next", {
+    scrollIntoView("end", {
       align: "start",
       duration: 500,
     });

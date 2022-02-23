@@ -11,15 +11,17 @@ import { NgxConveyerDirective } from 'ngx-conveyer';
 export class AppComponent {
   @ViewChild('conveyer', { static: false }) conveyer!: NgxConveyerDirective;
   prev() {
-    this.conveyer.scrollIntoView("prev", {
+    this.conveyer.scrollIntoView("start", {
       align: "end",
       duration: 500,
+      excludeStand: true,
     });
   }
   next() {
-    this.conveyer.scrollIntoView("next", {
+    this.conveyer.scrollIntoView("end", {
       align: "start",
       duration: 500,
+      excludeStand: true,
     });
   }
 }

@@ -1,0 +1,79 @@
+.scroll-into-view-target {
+  position: relative;
+  margin: 0px 50px;
+  overflow: hidden;
+}
+.scroll-into-view-target .items, .scroll-into-view-target .background-items {
+  position: relative;
+  white-space: nowrap;
+  overscroll-behavior: none;
+  user-select: none;
+  border: 2px solid #999;
+  border-left: 4px solid #faa;
+  border-right: 4px solid #aaf;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 50px 0px;
+  background: #fff;
+}
+.scroll-into-view-target .items {
+  overflow-x: auto;
+}
+.scroll-into-view-target .background-items {
+  position: absolute;
+  opacity: 0.5;
+}
+.scroll-into-view-target .item {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  border: 1px solid #ccc;
+  margin: 10px 5px;
+  /* transform: translate(-500px); */
+}
+.scroll-into-view-target .prev {
+  background: #faa;
+}
+.scroll-into-view-target .start {
+  background: #afa;
+}
+.scroll-into-view-target .end {
+  background: #ffa;
+}
+.scroll-into-view-target .next {
+  background: #aaf;
+}
+.scroll-into-view-target .mark {
+  position: absolute;
+  left: 0;
+  width: 122px;
+  top: 0px;
+  background: none;
+}
+.scroll-into-view-target .mark:before {
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 100%;
+  color: #333;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: bold;
+}
+.scroll-into-view-target .mark.prev:before {
+  content: "prev";
+}
+.scroll-into-view-target .mark.next:before {
+  content: "next";
+}
+.scroll-into-view-target .mark.start:before {
+  content: "start";
+}
+.scroll-into-view-target .mark.end:before {
+  content: "end";
+}

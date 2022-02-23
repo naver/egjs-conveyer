@@ -31,7 +31,7 @@ You can call methods directly from the Conveyer instance.
 ```js
 const conveyer = new Conveyer("#el", options);
 
-conveyer.scrollIntoView("next", { align: "start "});
+conveyer.scrollIntoView("end", { align: "start "});
 ```
 
   </TabItem>
@@ -51,14 +51,14 @@ export default () => {
     <div className="buttons">
       <button className="prev" onClick={() => {
         // start to end
-        scrollIntoView("prev", {
+        scrollIntoView("start", {
           align: "end",
           duration: 500,
         });
       }}>Prev</button>
       <button className="next" onClick={() => {
         // end to start
-        scrollIntoView("next", {
+        scrollIntoView("end", {
           align: "start",
           duration: 500,
         });
@@ -108,13 +108,13 @@ export default {
   },
   methods: {
     prev() {
-      this.scrollIntoView("prev", {
+      this.scrollIntoView("start", {
         align: "end",
         duration: 500,
       });
     },
     next() {
-      this.scrollIntoView("next", {
+      this.scrollIntoView("end", {
         align: "start",
         duration: 500,
       });
@@ -155,13 +155,13 @@ export default {
   },
   methods: {
     prev() {
-      this.scrollIntoView("prev", {
+      this.scrollIntoView("start", {
         align: "end",
         duration: 500,
       });
     },
     next() {
-      this.scrollIntoView("next", {
+      this.scrollIntoView("end", {
         align: "start",
         duration: 500,
       });
@@ -211,13 +211,13 @@ import { NgxConveyerComponent } from 'ngx-conveyer';
 export class AppComponent implements AfterViewInit {
   @ViewChild("conveyer") conveyer!: NgxConveyerComponent;
   prev() {
-    this.conveyer.scrollIntoView("prev", {
+    this.conveyer.scrollIntoView("start", {
       align: "end",
       duration: 500,
     });
   }
   next() {
-    this.conveyer.scrollIntoView("next", {
+    this.conveyer.scrollIntoView("end", {
       align: "start",
       duration: 500,
     });
@@ -238,14 +238,14 @@ export class AppComponent implements AfterViewInit {
   <div class="buttons">
     <button class="prev" on:click={() => {
       // start to end
-      scrollIntoView("prev", {
+      scrollIntoView("start", {
         align: "end",
         duration: 500,
       });
     }}>Prev</button>
     <button class="next" on:click={() => {
       // end to start
-      scrollIntoView("next", {
+      scrollIntoView("end", {
         align: "start",
         duration: 500,
       });

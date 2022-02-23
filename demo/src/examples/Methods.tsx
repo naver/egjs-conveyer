@@ -12,16 +12,18 @@ export default function HorizontalScroll() {
     <div className="buttons">
       <button className="prev" onClick={() => {
         // start to end
-        scrollIntoView("prev", {
+        scrollIntoView("start", {
           align: "end",
           duration: 500,
+          excludeStand: true,
         });
       }}>Prev</button>
       <button className="next" onClick={() => {
         // end to start
-        scrollIntoView("next", {
+        scrollIntoView("end", {
           align: "start",
           duration: 500,
+          excludeStand: true,
         });
       }}>Next</button>
     </div>

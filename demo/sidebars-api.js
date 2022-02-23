@@ -10,6 +10,13 @@ module.exports = {
     },
     {
       "type": "category",
+      "label": "Constant",
+      "items": [
+        "api/CONVEYER_METHODS"
+      ]
+    },
+    {
+      "type": "category",
       "label": "Typedef",
       "items": [
         "api/ConveyerOptions",
@@ -17,6 +24,13 @@ module.exports = {
         "api/FindItemOptions",
         "api/ScrollIntoViewOptions",
         "api/ConveyerItem"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Global",
+      "items": [
+        "api/isString"
       ]
     }
   ]

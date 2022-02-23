@@ -38,15 +38,17 @@ export default {
   },
   methods: {
     prev() {
-      this.scrollIntoView("prev", {
+      this.scrollIntoView("start", {
         align: "end",
         duration: 500,
+        excludeStand: true,
       });
     },
     next() {
-      this.scrollIntoView("next", {
+      this.scrollIntoView("end", {
         align: "start",
         duration: 500,
+        excludeStand: true,
       });
     },
   },

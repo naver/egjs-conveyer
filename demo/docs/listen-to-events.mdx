@@ -25,12 +25,20 @@ import TabItem from '@theme/TabItem';
 
 You can listen to Conveyer's events with [Conveyer#on](api/Conveyer#on)
 
+Since events occur during initialization, set [autoInit(api/ConveyerOptions) to false if you want to register events.
+
 ```js
-// If you're using a package manager
+import Conveyer from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".items", {
+  autoInit: false,
+});
 
 conveyer.on("scrollStart", evt => {
   console.log(evt);
 });
+
+conveyer.init();
 ```
 
   </TabItem>
@@ -56,14 +64,14 @@ export default () => {
     <div className="buttons">
       <button className="prev" onClick={() => {
         // start to end
-        scrollIntoView("prev", {
+        scrollIntoView("start", {
           align: "end",
           duration: 500,
         });
       }}>Prev</button>
       <button className="next" onClick={() => {
         // end to start
-        scrollIntoView("next", {
+        scrollIntoView("end", {
           align: "start",
           duration: 500,
         });
@@ -119,13 +127,13 @@ export default {
     },
     methods: {
       prev() {
-        this.scrollIntoView("prev", {
+        this.scrollIntoView("start", {
           align: "end",
           duration: 500,
         });
       },
       next() {
-        this.scrollIntoView("next", {
+        this.scrollIntoView("end", {
           align: "start",
           duration: 500,
         });
@@ -172,13 +180,13 @@ export default {
     },
     methods: {
       prev() {
-        this.scrollIntoView("prev", {
+        this.scrollIntoView("start", {
           align: "end",
           duration: 500,
         });
       },
       next() {
-        this.scrollIntoView("next", {
+        this.scrollIntoView("end", {
           align: "start",
           duration: 500,
         });
@@ -236,13 +244,13 @@ export class AppComponent implements AfterViewInit {
     console.log("begin scroll");
   }
   prev() {
-    this.conveyer.scrollIntoView("prev", {
+    this.conveyer.scrollIntoView("start", {
       align: "end",
       duration: 500,
     });
   }
   next() {
-    this.conveyer.scrollIntoView("next", {
+    this.conveyer.scrollIntoView("end", {
       align: "start",
       duration: 500,
     });
@@ -269,14 +277,14 @@ All events are prefixed with `on-`, and `camelCase`d.
   <div class="buttons">
     <button class="prev" on:click={() => {
       // start to end
-      scrollIntoView("prev", {
+      scrollIntoView("start", {
         align: "end",
         duration: 500,
       });
     }}>Prev</button>
     <button class="next" on:click={() => {
       // end to start
-      scrollIntoView("next", {
+      scrollIntoView("end", {
         align: "start",
         duration: 500,
       });

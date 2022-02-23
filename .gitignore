@@ -207,6 +207,9 @@ report/
 temp/
 doc/
 demo/_data/version.yml
+demo/build/
+demo/i18n/ko/docusaurus-plugin-content-docs/current/
+demo/docs/api/
 demo/release
 demo/storybook
 declaration/
