@@ -1,6 +1,6 @@
 {
 	"name": "@egjs/conveyer",
-	"version": "1.0.0-snapshot",
+	"version": "1.0.1",
 	"description": "Conveyer adds Drag gestures to your Native Scroll.",
 	"main": "./dist/conveyer.cjs.js",
 	"module": "./dist/conveyer.esm.js",
@@ -15,7 +15,7 @@
 		"docs:version": "node ./config/docs-version-up",
 		"docs:release": "npm run docs:build && npm run docs:version && cd demo && npm run build && cd ..",
 		"packages:update-dist": "npm run build && pvu --distUpdate=react-conveyer,vue-conveyer,vue2-conveyer,svelte-conveyer,ngx-conveyer/projects/ngx-conveyer --distPaths=declaration,dist && npm run packages:update-demo-dist",
-    "packages:update-demo-dist": "pvu --distUpdate=demo --path=./ --distPaths=declaration,dist",
+		"packages:update-demo-dist": "pvu --distUpdate=demo --path=./ --distPaths=declaration,dist",
 		"packages": "npm run packages:update && npm run packages:build && npm run packages:publish",
 		"packages:update": "pvu --update=react-conveyer,vue-conveyer,vue2-conveyer,svelte-conveyer,ngx-conveyer/projects/ngx-conveyer",
 		"packages:build": "pvu --build=react-conveyer,vue-conveyer,vue2-conveyer,svelte-conveyer,ngx-conveyer",

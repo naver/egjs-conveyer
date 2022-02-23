@@ -1,6 +1,6 @@
 {
   "name": "@egjs/svelte-conveyer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue Conveyer adds Drag gestures to your Native Scroll.",
   "sideEffects": false,
   "types": "declaration/index.d.ts",
@@ -64,6 +64,6 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@egjs/conveyer": "~1.0.0"
+    "@egjs/conveyer": "~1.0.1"
   }
 }
