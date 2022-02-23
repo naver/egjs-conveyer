@@ -79,13 +79,13 @@ import { NgxConveyerComponent } from '@egjs/ngx-conveyer';
 export class AppComponent implements AfterViewInit {
   @ViewChild("conveyer") conveyer!: NgxConveyerComponent;
   prev() {
-    this.conveyer.scrollIntoView("prev", {
+    this.conveyer.scrollIntoView("start", {
       align: "end",
       duration: 500,
     });
   }
   next() {
-    this.conveyer.scrollIntoView("next", {
+    this.conveyer.scrollIntoView("end", {
       align: "start",
       duration: 500,
     });

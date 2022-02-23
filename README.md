@@ -50,7 +50,7 @@ $ npm install --save @egjs/conveyer
 ## 🏃 Quick Start
 #### HTML
 
-```html
+```
 <div class="items">
   <div class="item"></div>
   <div class="item"></div>
@@ -58,7 +58,6 @@ $ npm install --save @egjs/conveyer
   <div class="item"></div>
 </div>
 ```
-
 #### ES Modules
 ```ts
 import Conveyer from "@egjs/conveyer";
@@ -71,12 +70,59 @@ const conveyer = new Conveyer(".items");
 <!-- Packaged with all dependencies -->
 <!-- https://naver.github.io/egjs-conveyer/release/latest/dist/conveyer.min.js -->
 <script src="https://unpkg.com/@egjs/conveyer/dist/conveyer.min.js"></script>
-```
-
-```js
+<script>
 const conveyer = new Conveyer(".items");
+</script>
 ```
+##  How to use
+#### HTML
+```html
+<button class="prev">prev</button>
+<button class="next">next</button>
+<div class="items">
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+</div>
+```
+#### JS
+```js
+import Conveyer from "@egjs/conveyer";
 
+// Since events occur during initialization, set `autoInit` to false if you want to register events.
+const conveyer = new Conveyer(".items", {
+  autoInit: false,
+});
+
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+prev.addEventListener("click", () => {
+  // start to end
+  conveyer.scrollIntoView("start", {
+    align: "end",
+    duration: 500,
+    excludeStand: true,
+  });
+});
+next.addEventListener("click", () => {
+  // end to start
+  conveyer.scrollIntoView("end", {
+    align: "start",
+    duration: 500,
+    excludeStand: true,
+  });
+});
+conveyer.subscribe("isReachStart", value => {
+  prev.disabled = value;
+});
+conveyer.subscribe("isReachEnd", value => {
+  next.disabled = value;
+});
+
+conveyer.init();
+```
 
 ## 📦 Packages
 |Package|Version|Description|
