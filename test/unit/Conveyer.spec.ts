@@ -216,6 +216,46 @@ describe("test Conveyer", () => {
       // Then
       expect(document.querySelector<HTMLElement>(".items")!.scrollLeft).to.be.equals(100);
     });
+    it("should check if start and end are inside when scrollLeft is 0", async () => {
+      // Given
+      conveyer = new Conveyer(".items");
+      document.querySelector<HTMLElement>(".items")!.scrollLeft = 0;
+      await waitFor(100);
+
+      // When
+      const prev = conveyer.findElement("prev")!;
+      const start = conveyer.findElement("start")!;
+      const end = conveyer.findElement("end")!;
+      const next = conveyer.findElement("next")!;
+
+      // console.log(prev.innerHTML);
+      // | 1 2 3 | 4
+      expect(prev).to.be.null;
+      expect(start.innerHTML).to.be.equals("1");
+      expect(end.innerHTML).to.be.equals("3");
+      expect(next.innerHTML).to.be.equals("4");
+    });
+    it("should check if start and end are inside when scrollLeft is end", async () => {
+      // Given
+      conveyer = new Conveyer(".items");
+      const items = document.querySelector<HTMLElement>(".items")!;
+
+      items.scrollLeft = items.scrollWidth;
+      await waitFor(100);
+
+      // When
+      const prev = conveyer.findElement("prev")!;
+      const start = conveyer.findElement("start")!;
+      const end = conveyer.findElement("end")!;
+      const next = conveyer.findElement("next")!;
+
+      // console.log(prev.innerHTML);
+      // 9 | 10 11 12 |
+      expect(prev.innerHTML).to.be.equals("9");
+      expect(start.innerHTML).to.be.equals("10");
+      expect(end.innerHTML).to.be.equals("12");
+      expect(next).to.be.null;
+    });
     it("should check if start and end are inside when scrollLeft is 500", async () => {
       // Given
       conveyer = new Conveyer(".items");
@@ -230,10 +270,10 @@ describe("test Conveyer", () => {
 
       // console.log(prev.innerHTML);
       // 1 2 3-1 | 3-2 4 5 6-1 | 6-2 7
-      expect(prev.innerHTML).to.be.equals("3");
+      expect(prev.innerHTML).to.be.equals("2");
       expect(start.innerHTML).to.be.equals("4");
       expect(end.innerHTML).to.be.equals("5");
-      expect(next.innerHTML).to.be.equals("6");
+      expect(next.innerHTML).to.be.equals("7");
     });
     it("should check if start and end are inside when scrollLeft is 600", async () => {
       // Given

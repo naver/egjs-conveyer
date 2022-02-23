@@ -1,19 +1,35 @@
 <style>
-  .items {
+  html, body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  .items, .background-items {
     position: relative;
     white-space: nowrap;
     overscroll-behavior: none;
     user-select: none;
     border: 2px solid #999;
+    border-left: 4px solid #faa;
+    border-right: 4px solid #aaf;
     width: 680px;
     top: 100px;
-    transform: translate(400px);
+    left: 500px;
+    background: #fff;
   }
-
+  .items {
+    overflow-x: auto;
+  }
+  .background-items {
+    position: absolute;
+    opacity: 0.5;
+  }
   .container {
     display: block;
     position: relative;
     width: 100%;
+
   }
 
   .item {
@@ -26,7 +42,7 @@
     font-size: 40px;
     border: 1px solid #ccc;
     margin: 20px 10px;
-    transform: translate(-500px);
+    /* transform: translate(-500px); */
   }
   .prev {
     background: #faa;
@@ -40,28 +56,48 @@
   .next {
     background: #aaf;
   }
-  .item:before {
+  .mark {
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translate(-50%, -30px);
-    color: #333;
-    font-size: 20px;
-    line-height: 1;
+    left: 0;
+    width: 202px;
+    top: 50px;
+    background: none;
   }
-  .prev:before {
+  .mark:before {
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 100%;
+    color: #333;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: bold;
+  }
+  .mark.prev:before {
     content: "prev";
   }
-  .next:before {
+  .mark.next:before {
     content: "next";
   }
-  .start:before {
+  .mark.start:before {
     content: "start";
   }
-  .end:before {
+  .mark.end:before {
     content: "end";
   }
 </style>
+<div class="background-items">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+  <div class="item">5</div>
+  <div class="item">6</div>
+  <div class="item">7</div>
+  <div class="item">8</div>
+  <div class="item">9</div>
+  <div class="item">10</div>
+</div>
 <div class="items">
   <div class="item">1</div>
   <div class="item">2</div>
@@ -74,23 +110,57 @@
   <div class="item">9</div>
   <div class="item">10</div>
 </div>
+<div class="mark prev"></div>
+<div class="mark next"></div>
+<div class="mark start"></div>
+<div class="mark end"></div>
+
 <script src="../../dist/conveyer.js"></script>
 <script>
-  const conveyer = new Conveyer(".items");
+  const container = document.querySelector(".items");
+  const conveyer = new Conveyer(container);
 
-  let pos = 675;
-  conveyer.pos = pos;
-  document.querySelectorAll(".item").forEach(item => {
-    item.style.transform = `translate(-${pos}px)`;
+  const markPrev = document.querySelector(".mark.prev");
+  const markStart = document.querySelector(".mark.start");
+  const markEnd = document.querySelector(".mark.end");
+  const markNext = document.querySelector(".mark.next");
+  const items = document.querySelectorAll(".item");
+  const backgroundItems = document.querySelectorAll(".background-items .item");
+
+  function updateItem(mark, target, className) {
+    if (target) {
+      backgroundItems[parseFloat(target.innerHTML) - 1].classList.add(className);
+      mark.style.transform = `translateX(${target.getBoundingClientRect().left}px)`;
+      mark.style.display = "block";
+    } else {
+      mark.style.display = "none";
+    }
+  }
+  function update() {
+    backgroundItems.forEach(element => {
+      element.style.transform = `translateX(${-container.scrollLeft}px)`;
+    });
+    items.forEach(item => {
+      item.classList.remove("prev", "start", "end", "next")
+    });
+
+    const prev = conveyer.findElement("prev");
+    const start = conveyer.findElement("start");
+    const end = conveyer.findElement("end");
+    const next = conveyer.findElement("next");
+
+    prev?.classList.add("prev");
+    start?.classList.add("start");
+    end?.classList.add("end");
+    next?.classList.add("next");
+
+    updateItem(markPrev, prev, "prev");
+    updateItem(markStart, start, "start");
+    updateItem(markEnd, end, "end");
+    updateItem(markNext, next, "next");
+  }
+  container.addEventListener("scroll", () => {
+    update();
   });
-
-  const prev = conveyer.findElement("prev");
-  const start = conveyer.findElement("start");
-  const end = conveyer.findElement("end");
-  const next = conveyer.findElement("next");
-
-  prev?.classList.add("prev");
-  start?.classList.add("start");
-  end?.classList.add("end");
-  next?.classList.add("next");
+  update();
 </script>

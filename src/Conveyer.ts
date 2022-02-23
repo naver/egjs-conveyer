@@ -104,11 +104,11 @@ class Conveyer extends Component<ConveyerEvents> {
   }
   /**
    * Finds an element for that direction.
-   * @ko 해당 방향에 대해 엘리먼트를 찾는다.
+   * @ko 해당 방향에 대해 엘리먼트를 찾는다.]
+   * @see {@link /docs/examples/Methods direction's example} page for detailed information
    * @param - direction of the element. "start" and "end" find inside. "prev" and "next" find outside. <ko>엘리먼트의 방향. "start", "end"는 안쪽으로 찾는다. "prev", "next"는 바깥쪽으로 찾는다.</ko>
    * @param - Options for the `findElement` method. <ko>findElement 메서드의 옵션</ko>
    * @example
-   * <h4>target</h4>
    * <p align="center">
    *  <img src="/img/scrollIntoView1.png" height="200" />
    * </p>
@@ -122,10 +122,10 @@ class Conveyer extends Component<ConveyerEvents> {
   /**
    * Finds an item for an element or its direction.
    * @ko 엘리먼트 또는 해당 방향에 대해 아이템을 찾는다.
+   * @see {@link /docs/examples/Methods direction's example} page for detailed information
    * @param - direction of the element. "start" and "end" find inside. "prev" and "next" find outside. <ko>엘리먼트의 방향. "start", "end"는 안쪽으로 찾는다. "prev", "next"는 바깥쪽으로 찾는다.</ko>
    * @param - Options for the `findItem` method. <ko>`findItem` 메서드의 옵션</ko>
    * @example
-   * <h4>target</h4>
    * <p align="center">
    *  <img src="/img/scrollIntoView1.png" height="200" />
    * </p>
@@ -141,32 +141,52 @@ class Conveyer extends Component<ConveyerEvents> {
     const scrollSize = this.scrollSize;
     const size = this.size;
     const hitTest = options?.hitTest ?? 1;
-    const items = [{ pos: 0, size: 0 }, ...this.items, { pos: scrollSize, size: 0 }];
+    const items = [...this.items];
+    const length = items.length;
     const endPos = pos + size;
     const sibling = options.sibling;
+    const startVirtualItem = { pos: 0, size: 0 };
+    const endVirtualItem = { pos: scrollSize, size: 0 };
+
+    if (items[0].pos > 0) {
+      items.unshift(startVirtualItem);
+    }
+    if (length && items[length - 1].pos + items[length - 1].size < scrollSize) {
+      items.push(endVirtualItem);
+    }
     let selectedItem: ConveyerItem | undefined;
 
 
     if (target === "start") {
-      if (pos <= 0) {
+      if (pos < 0) {
         return null;
       }
-      selectedItem = [...items].reverse().filter(item => {
+      const selectedItems = [...items].reverse().filter(item => {
         const itemSize = item.size;
         const dist = item.pos - pos;
         const dist2 = dist + itemSize;
 
         return (dist >= 0) || (dist2 >= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
-      }).reverse()[0];
+      }).reverse();
 
-
+      selectedItem = (selectedItems[0] === startVirtualItem && selectedItems[1]) || selectedItems[0];
     } else if (target === "end") {
-      if (pos >= scrollSize - size) {
+      if (pos > scrollSize - size) {
         return null;
       }
-      selectedItem = items.filter(item => {
+      const selectedItems = items.filter(item => {
         const itemSize = item.size;
         const dist = item.pos + itemSize - endPos;
+        const dist2 = dist - itemSize;
+
+        return dist <= 0 || (dist2 <= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
+      }).reverse();
+
+      selectedItem = (selectedItems[0] === endVirtualItem && selectedItems[1]) || selectedItems[0];
+    } else if (target === "prev") {
+      selectedItem = items.filter(item => {
+        const itemSize = item.size;
+        const dist = item.pos + itemSize - pos;
         const dist2 = dist - itemSize;
 
         return dist <= 0 || (dist2 <= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
@@ -174,18 +194,10 @@ class Conveyer extends Component<ConveyerEvents> {
     } else if (target === "next") {
       selectedItem = items.reverse().filter(item => {
         const itemSize = item.size;
-        const startDist = item.pos - pos;
-        const endDist = item.pos + itemSize - endPos;
+        const dist = item.pos - endPos;
+        const dist2 = dist + itemSize;
 
-        return endDist > 0 && startDist > 0 && (!itemSize || Math.abs(startDist) / itemSize >= 1 - hitTest);
-      }).reverse()[0];
-    } else if (target === "prev") {
-      selectedItem = items.filter(item => {
-        const itemSize = item.size;
-        const startDist = item.pos - pos;
-        const endDist = item.pos + itemSize - endPos;
-
-        return startDist < 0 && endDist < 0 && (!itemSize || Math.abs(startDist) / itemSize >= 1 - hitTest);
+        return dist >= 0 || (dist2 >= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
       }).reverse()[0];
     } else {
       return this._getItem(target);
@@ -193,17 +205,19 @@ class Conveyer extends Component<ConveyerEvents> {
     if (sibling && selectedItem) {
       const selectedIndex = items.indexOf(selectedItem);
 
-      return items[selectedIndex + sibling] || null;
+      if (selectedIndex > -1) {
+        selectedItem = items[selectedIndex + sibling];
+      }
     }
     return selectedItem || null;
   }
   /**
    * Scrolls an element or an item in that direction into the view.
    * @ko 엘리먼트나 해당 방향에 있는 아이템을 뷰안으로 스크롤을 한다.
+   * @see {@link /docs/examples/Methods target's example} page for detailed information
    * @param - direction of the element. "start" and "end" find inside. "prev" and "next" find outside. <ko>엘리먼트의 방향. "start", "end"는 안쪽으로 찾는다. "prev", "next"는 바깥쪽으로 찾는다.</ko>
    * @param - Options for the `scrollIntoView` method. <ko>`scrollIntoView` 메서드의 옵션</ko>
    * @example
-   * <h4>target</h4>
    * <p align="center">
    *  <img src="/img/scrollIntoView1.png" height="200" />
    * </p>

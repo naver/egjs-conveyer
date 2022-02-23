@@ -5,6 +5,8 @@
  */
 export const CONVEYER_METHODS = [
   "update",
+  "findElement",
+  "findItem",
   "scrollBy",
   "scrollTo",
   "scrollIntoView",

@@ -7,7 +7,7 @@ import { CONVEYER_METHODS } from "./consts";
 import Conveyer from "./Conveyer";
 /**
  * @typedef
- * @property - scroll direction. (default: true) <ko>스크롤 방향. (default: true)</ko>
+ * @property - scroll direction. (true: Horizontal Scroll, false: Vertical Scroll)  (default: true) <ko>스크롤 방향. (true: 가로 스크롤, false: 세로 스크롤) (default: true)</ko>
  * @property - selector to find items inside. (default: "") <ko>내부의 아이템들을 찾기 위한 selector. (default: "")</ko>
  * @property - Whether to use drag (default: true) <ko> 드래그를 사용할지 여부. (default: true)</ko>
  * @property - The maximum amount of time the scroll event does not fire for the finishScroll event to be triggered. (default: 100) <ko> finishScroll 이벤트가 발생되기 위한 scroll 이벤트가 발생하지 않는 최대 시간. (default: 100)</ko>
