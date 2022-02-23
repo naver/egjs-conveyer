@@ -50,7 +50,7 @@ $ npm install --save @egjs/conveyer
 ## 🏃 Quick Start
 #### HTML
 
-```
+```html
 <div class="items">
   <div class="item"></div>
   <div class="item"></div>
