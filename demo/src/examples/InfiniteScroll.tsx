@@ -53,7 +53,7 @@ export default function InfiniteScroll() {
         });
       }}>Next</button>
     </div>
-    <MasonryInfiniteGrid className="items" container={true} gap={5}
+    <MasonryInfiniteGrid className="items infinite" container={true} gap={5}
       ref={gridRef}
       onRequestAppend={e => {
         const nextGroupKey = (+e.groupKey! || 0) + 1;
@@ -70,7 +70,7 @@ export default function InfiniteScroll() {
         })));
         updateContainer();
       }}>
-      {items.map(item => (<div className="item" data-grid-groupkey={item.groupKey} key={item.key}>{item.key}</div>))}
+      {items.map((item, i) => (<div className={`item item${i % 4}`} data-grid-groupkey={item.groupKey} key={item.key}>{item.key}</div>))}
     </MasonryInfiniteGrid>
-  </div>
+  </div>;
 }

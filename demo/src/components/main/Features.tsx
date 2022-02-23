@@ -59,7 +59,7 @@ export default () => <div className="columns">
         <span className="subtitle has-text-black">Support Reactive Properties</span>
       </div>
       <div className="block">
-        <p>Supports Reactive properties that can detect changes, such as isReachStart, isReachEnd.</p>
+        <p>Supports Reactive Properties that can change state through properties that automatically detect changes instead of events.</p>
         <p>It can be used as a detection method with subscribe method or as Hooks in Framework.</p>
         <p></p>
       </div>

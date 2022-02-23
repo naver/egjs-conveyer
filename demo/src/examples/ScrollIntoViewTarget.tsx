@@ -60,6 +60,7 @@ export default function ScrollIntoViewTarget() {
     });
   }, []);
   return <div className="scroll-into-view-target" ref={containerRef}>
+    <p className="top">target</p>
     <div className="background-items">
       <div className="item">1</div>
       <div className="item">2</div>
@@ -88,5 +89,6 @@ export default function ScrollIntoViewTarget() {
     <div className="mark next"></div>
     <div className="mark start"></div>
     <div className="mark end"></div>
+    <p className="bottom">align</p>
   </div>;
 }

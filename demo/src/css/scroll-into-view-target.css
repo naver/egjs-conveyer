@@ -3,6 +3,15 @@
   margin: 0px 50px;
   overflow: hidden;
 }
+.scroll-into-view-target p {
+  position: absolute;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: bold;
+}
+.scroll-into-view-target p.bottom {
+  bottom: 0;
+}
 .scroll-into-view-target .items, .scroll-into-view-target .background-items {
   position: relative;
   white-space: nowrap;
@@ -14,7 +23,7 @@
   width: 50%;
   left: 50%;
   transform: translate(-50%);
-  margin: 50px 0px;
+  margin: 80px 0px;
   background: #fff;
 }
 .scroll-into-view-target .items {
@@ -22,7 +31,26 @@
 }
 .scroll-into-view-target .background-items {
   position: absolute;
+}
+.scroll-into-view-target .background-items .item {
   opacity: 0.5;
+}
+
+.scroll-into-view-target .background-items:before, .scroll-into-view-target .background-items:after {
+  position: absolute;
+  top: 100%;
+  color: #333;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: bold;
+  transform: translate(-50%, 20px);
+}
+.scroll-into-view-target .background-items:before {
+  content: "start";
+}
+.scroll-into-view-target .background-items:after {
+  content: "end";
+  left: 100%;
 }
 .scroll-into-view-target .item {
   display: inline-block;
@@ -52,7 +80,7 @@
   position: absolute;
   left: 0;
   width: 122px;
-  top: 0px;
+  top: 40px;
   background: none;
 }
 .scroll-into-view-target .mark:before {

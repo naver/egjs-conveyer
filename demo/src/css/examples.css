@@ -56,3 +56,23 @@
 .examples .next {
   right: 0px;
 }
+/* infinite */
+.examples .items.infinite {
+  height: 600px;
+}
+.examples .item.item1 {
+  height: 250px;
+  line-height: 250px;
+}
+.examples .item.item2 {
+  height: 230px;
+  line-height: 230px;
+}
+.examples .item.item3 {
+  height: 270px;
+  line-height: 270px;
+}
+.examples .item.item4 {
+  height: 215px;
+  line-height: 215px;
+}
