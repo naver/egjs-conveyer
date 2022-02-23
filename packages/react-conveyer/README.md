@@ -26,7 +26,7 @@
 ## ✨ Features
 - You can use Native Scroll-like behavior through Drag.
 - By adding easing features such as bounce, elasticity, and back, you can create smooth scrolling animations like Native Scroll.
-- Supports Reactive Properties that can detect changes, such as isReachStart, isReachEnd.
+- Supports Reactive Properties that can change state through properties that automatically detect changes instead of events.
 - You can use custom scroll events like onBeginScroll, onFinishScroll, onReachStart, onLeaveStart,
 
 ## ⚙️ Installation
