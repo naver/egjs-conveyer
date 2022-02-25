@@ -23,16 +23,16 @@ describe("test Conveyer", () => {
       conveyer = new Conveyer(".items");
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("pan-y");
+      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
     });
-    it("should check if touchAction is pan-x if horizontal is false", () => {
+    it("should check if touchAction is auto if horizontal is false", () => {
       // Given, When
       conveyer = new Conveyer(".items", {
         horizontal: false,
       });
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("pan-x");
+      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
     });
     it("should check if css is not set if not init", () => {
       // Given, When
@@ -41,14 +41,14 @@ describe("test Conveyer", () => {
       });
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.not.equal("pan-y");
+      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.not.equal("auto");
     });
     it("should check if css is set if target is element", () => {
       // Given, When
       conveyer = new Conveyer(document.querySelector<HTMLElement>(".items")!);
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("pan-y");
+      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
     });
     it("should check if css is set if target is ref", () => {
       // Given, When
@@ -56,7 +56,7 @@ describe("test Conveyer", () => {
       conveyer = new Conveyer(ref);
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("pan-y");
+      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
     });
   });
   describe("Reactvie Properties", () => {
