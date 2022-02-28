@@ -388,8 +388,11 @@ class Conveyer extends Component<ConveyerEvents> {
 
     this.axes = axes;
     if (this.options.useDrag) {
-      axes.connect(this.options.horizontal ? "scroll" : ["", "scroll"], new PanInput(scrollAreaElement, {
+      axes.connect(this.options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
         inputType: ["mouse"],
+        hammerManagerOptions: {
+          touchAction: "auto",
+        },
       }));
     }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
