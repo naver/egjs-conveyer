@@ -103,7 +103,7 @@ export class AppComponent implements AfterViewInit {
 Check our [Demos](https://naver.github.io/egjs-conveyer/).
 
 ## 📖 Documentation
-See [Documentation](https://naver.github.io/egjs-conveyer/release/latest/doc/index.html) page.
+See [Documentation](https://naver.github.io/egjs-conveyer/docs/api/Conveyer) page.
 
 ## 🙌 Contributing
 See [CONTRIBUTING.md](https://github.com/naver/egjs-conveyer/blob/main/CONTRIBUTING.md).
