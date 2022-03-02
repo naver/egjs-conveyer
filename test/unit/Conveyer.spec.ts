@@ -2,6 +2,8 @@ import { cleanup, dispatchDrag, sandbox, waitEvent, waitFor } from "./utils/util
 import * as sinon from "sinon";
 import Conveyer from "src";
 import { CONVEYER_HTML } from "./utils/consts";
+import * as browserModules from "../../src/browser";
+import { ImportMock } from "ts-mock-imports";
 
 describe("test Conveyer", () => {
   let container!: HTMLElement;
@@ -57,6 +59,41 @@ describe("test Conveyer", () => {
 
       // Then
       expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
+    });
+    it(`should check whether the width is corrected when scrollWidth is rounded up for IE`, () => {
+
+      // Given
+
+      const items = document.querySelector<HTMLElement>(".items")!;
+
+      items.innerHTML = "";
+      items.style.width = "420.1px";
+
+      // When
+      // IE rounds up, not rounds.
+      Object.defineProperty(items, "scrollWidth", {
+        configurable: true,
+        get() {
+          return 421;
+        },
+      });
+
+      // test IE
+      const mockManager = ImportMock.mockOther(browserModules, "IS_IE");
+
+      mockManager.set(true);
+
+      conveyer = new Conveyer(items);
+
+      // restore
+      mockManager.restore();
+
+      // Then
+      expect(items.clientWidth).to.be.equal(420);
+      expect(items.getBoundingClientRect().width).to.be.closeTo(420.1, 0.01);
+      expect(items.scrollWidth).to.be.equal(421);
+      expect(conveyer.isReachStart).to.be.equal(true);
+      expect(conveyer.isReachEnd).to.be.equal(true);
     });
   });
   describe("Reactvie Properties", () => {
