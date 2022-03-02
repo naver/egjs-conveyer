@@ -5,6 +5,7 @@
  */
 import Axes, { PanInput } from "@egjs/axes";
 import Component from "@egjs/component";
+import { IS_IE } from "./browser";
 import { ReactiveSubscribe, Reactive, Ref } from "./cfcs";
 import {
   ConveyerEvents, ConveyerItem,
@@ -297,8 +298,22 @@ class Conveyer extends Component<ConveyerEvents> {
     const scrollAreaElement = this.scrollAreaElement;
     const horizontal = this.options.horizontal;
 
-    this.size = horizontal ? scrollAreaElement.clientWidth : scrollAreaElement.clientHeight;
-    this.scrollSize = horizontal ? scrollAreaElement.scrollWidth : scrollAreaElement.scrollHeight;
+    const size = horizontal ? scrollAreaElement.clientWidth : scrollAreaElement.clientHeight;
+    let scrollSize = horizontal ? scrollAreaElement.scrollWidth : scrollAreaElement.scrollHeight;
+
+    // check decimal point
+    if (IS_IE && scrollSize === size + 1) {
+      const offsetSize = horizontal ? scrollAreaElement.offsetWidth : scrollAreaElement.offsetHeight;
+      const rect = scrollAreaElement.getBoundingClientRect();
+      const boundingSize = horizontal ? rect.width : rect.height;
+
+      // 0 < 0.5 && 0.5 < 1
+      if (offsetSize < boundingSize && boundingSize < offsetSize + 1) {
+        scrollSize = size;
+      }
+    }
+    this.size = size;
+    this.scrollSize = scrollSize;
     this._refreshScroll();
     this._onScroll();
   }
@@ -414,7 +429,11 @@ class Conveyer extends Component<ConveyerEvents> {
   private _refreshScroll() {
     const horizontal = this.options.horizontal;
     const scrollAreaElement = this.scrollAreaElement;
-    this.pos = horizontal ? scrollAreaElement.scrollLeft : scrollAreaElement.scrollTop;
+
+    this.pos = Math.min(
+      this.scrollSize - this.size,
+      horizontal ? scrollAreaElement.scrollLeft : scrollAreaElement.scrollTop,
+    );
   }
   private _getItem(element: HTMLElement): ConveyerItem {
     const horizontal = this.options.horizontal;
