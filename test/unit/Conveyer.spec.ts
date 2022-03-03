@@ -61,9 +61,7 @@ describe("test Conveyer", () => {
       expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
     });
     it(`should check whether the width is corrected when scrollWidth is rounded up for IE`, () => {
-
       // Given
-
       const items = document.querySelector<HTMLElement>(".items")!;
 
       items.innerHTML = "";
@@ -92,6 +90,42 @@ describe("test Conveyer", () => {
       expect(items.clientWidth).to.be.equal(420);
       expect(items.getBoundingClientRect().width).to.be.closeTo(420.1, 0.01);
       expect(items.scrollWidth).to.be.equal(421);
+      expect(conveyer.isReachStart).to.be.equal(true);
+      expect(conveyer.isReachEnd).to.be.equal(true);
+    });
+    it(`should check whether the width is corrected when scrollWidth is rounded up with border for IE`, () => {
+      // Given
+      const items = document.querySelector<HTMLElement>(".items")!;
+
+      items.innerHTML = "";
+      items.style.border = "10px solid black";
+      items.style.boxSizing = "border-box";
+      items.style.width = "420.1px";
+      // 400.1
+
+      // When
+      // IE rounds up, not rounds.
+      Object.defineProperty(items, "scrollWidth", {
+        configurable: true,
+        get() {
+          return 401;
+        },
+      });
+
+      // test IE
+      const mockManager = ImportMock.mockOther(browserModules, "IS_IE");
+
+      mockManager.set(true);
+
+      conveyer = new Conveyer(items);
+
+      // restore
+      mockManager.restore();
+
+      // Then
+      expect(items.clientWidth).to.be.equal(400);
+      expect(items.getBoundingClientRect().width).to.be.closeTo(420.1, 0.01);
+      expect(items.scrollWidth).to.be.equal(401);
       expect(conveyer.isReachStart).to.be.equal(true);
       expect(conveyer.isReachEnd).to.be.equal(true);
     });

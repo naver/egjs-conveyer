@@ -303,12 +303,16 @@ class Conveyer extends Component<ConveyerEvents> {
 
     // check decimal point
     if (IS_IE && scrollSize === size + 1) {
-      const offsetSize = horizontal ? scrollAreaElement.offsetWidth : scrollAreaElement.offsetHeight;
-      const rect = scrollAreaElement.getBoundingClientRect();
-      const boundingSize = horizontal ? rect.width : rect.height;
+      const style = getComputedStyle(scrollAreaElement);
+      const boxSizing = style.boxSizing;
+      const borderSize = horizontal
+        ? (parseFloat(style.borderLeftWidth) || 0) + (parseFloat(style.borderRightWidth) || 0)
+        : (parseFloat(style.borderTopWidth) || 0) + (parseFloat(style.borderBottomWidth) || 0);
+      const cssSize = parseFloat(horizontal ? style.width : style.height) || 0;
+      const contentSize = cssSize - (boxSizing === "border-box" ? borderSize : 0);
 
       // 0 < 0.5 && 0.5 < 1
-      if (offsetSize < boundingSize && boundingSize < offsetSize + 1) {
+      if (size < contentSize && contentSize < size + 1) {
         scrollSize = size;
       }
     }
