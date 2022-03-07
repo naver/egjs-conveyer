@@ -36,14 +36,13 @@ const conveyer = new Conveyer(".items");
  */
 @ReactiveSubscribe
 class Conveyer extends Component<ConveyerEvents> {
-  protected scrollAreaElement: HTMLElement;
-
-  protected axes: Axes;
-  protected items: ConveyerItem[] = [];
-  protected pos = 0;
-  protected size = 0;
-  protected scrollSize = 0;
-  protected options: ConveyerOptions;
+  protected _scrollAreaElement: HTMLElement;
+  protected _axes: Axes;
+  protected _items: ConveyerItem[] = [];
+  protected _pos = 0;
+  protected _size = 0;
+  protected _scrollSize = 0;
+  protected _options: ConveyerOptions;
 
   private _scrollTimer = 0;
   private _isDragScroll = false;
@@ -90,7 +89,7 @@ class Conveyer extends Component<ConveyerEvents> {
    */
   constructor(scrollArea: string | HTMLElement | Ref<HTMLElement>, options: ConveyerOptions = {}) {
     super();
-    this.options = {
+    this._options = {
       horizontal: true,
       useDrag: true,
       autoInit: true,
@@ -99,7 +98,7 @@ class Conveyer extends Component<ConveyerEvents> {
     };
 
     this._scrollArea = scrollArea;
-    if (this.options.autoInit) {
+    if (this._options.autoInit) {
       this.init();
     }
   }
@@ -138,11 +137,11 @@ class Conveyer extends Component<ConveyerEvents> {
     target: HTMLElement | "start" | "end" | "prev" | "next",
     options: FindItemOptions = {},
   ): ConveyerItem | null {
-    const pos = this.pos;
-    const scrollSize = this.scrollSize;
-    const size = this.size;
+    const pos = this._pos;
+    const scrollSize = this._scrollSize;
+    const size = this._size;
     const hitTest = options?.hitTest ?? 1;
-    const items = [...this.items];
+    const items = [...this._items];
     const length = items.length;
     const endPos = pos + size;
     const sibling = options.sibling;
@@ -235,14 +234,14 @@ class Conveyer extends Component<ConveyerEvents> {
     const duration = options.duration || 0;
     let nextScrollPos = this._getNextScrollPos(item, options);
 
-    if (isString(target) && options.excludeStand && nextScrollPos === this.pos) {
-      const selectedIndex = this.items.indexOf(item);
+    if (isString(target) && options.excludeStand && nextScrollPos === this._pos) {
+      const selectedIndex = this._items.indexOf(item);
 
       if (selectedIndex === -1) {
         return;
       }
       const sibling = target === "start" || target === "prev" ? -1 : 1;
-      item = this.items[selectedIndex + sibling];
+      item = this._items[selectedIndex + sibling];
 
       if (!item) {
         return;
@@ -250,7 +249,7 @@ class Conveyer extends Component<ConveyerEvents> {
       nextScrollPos = this._getNextScrollPos(item, options);
     }
 
-    this.scrollBy(nextScrollPos - this.pos, duration);
+    this.scrollBy(nextScrollPos - this._pos, duration);
   }
   /**
    * Scrolls by the given position amount.
@@ -259,7 +258,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll by that position. <ko>해당 위치만큼 스크롤하는 시간</ko>
    */
   public scrollBy(pos: number, duration = 0) {
-    this.axes.setBy({ scroll: -pos }, duration);
+    this._axes.setBy({ scroll: -pos }, duration);
   }
   /**
    * Scroll to the given position.
@@ -268,7 +267,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
-    this.axes.setBy({ scroll: this.pos - pos }, duration);
+    this._axes.setBy({ scroll: this._pos - pos }, duration);
   }
   /**
    * Set the items directly to the Conveyer.
@@ -276,15 +275,15 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Items to set on Conveyer <ko>Conveyer에 설정할 아이템들</ko>
    */
   public setItems(items: ConveyerItem[]) {
-    this.items = items;
+    this._items = items;
   }
   /**
    * Update the position and size information of items.
    * @ko 아이템들의 포지션, 사이즈 정보를 업데이트 한다.
    */
   public updateItems() {
-    const scrollAreaElement = this.scrollAreaElement;
-    const itemSelector = this.options.itemSelector;
+    const scrollAreaElement = this._scrollAreaElement;
+    const itemSelector = this._options.itemSelector;
     const itemElements = [].slice.call(
       itemSelector ? scrollAreaElement.querySelectorAll(itemSelector) : scrollAreaElement.children,
     );
@@ -295,8 +294,8 @@ class Conveyer extends Component<ConveyerEvents> {
    * @ko 컨테이너의 크기, 스크롤 사이즈를 업데이트 한다.
    */
   public updateContainer() {
-    const scrollAreaElement = this.scrollAreaElement;
-    const horizontal = this.options.horizontal;
+    const scrollAreaElement = this._scrollAreaElement;
+    const horizontal = this._options.horizontal;
 
     const size = horizontal ? scrollAreaElement.clientWidth : scrollAreaElement.clientHeight;
     let scrollSize = horizontal ? scrollAreaElement.scrollWidth : scrollAreaElement.scrollHeight;
@@ -316,8 +315,8 @@ class Conveyer extends Component<ConveyerEvents> {
         scrollSize = size;
       }
     }
-    this.size = size;
-    this.scrollSize = scrollSize;
+    this._size = size;
+    this._scrollSize = scrollSize;
     this._refreshScroll();
     this._onScroll();
   }
@@ -335,7 +334,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @ko autoInit 옵션을 false로 사용하는 경우 직접 init 메서드를 통해 초기화 할 수 있다.
    */
   public init() {
-    if (this.axes) {
+    if (this._axes) {
       return;
     }
 
@@ -350,9 +349,9 @@ class Conveyer extends Component<ConveyerEvents> {
       el = scrollArea.value! || scrollArea.current!;
     }
 
-    this.scrollAreaElement = el;
+    this._scrollAreaElement = el;
     let isDrag = false;
-    const scrollAreaElement = this.scrollAreaElement;
+    const scrollAreaElement = this._scrollAreaElement;
     const axes = new Axes({
       scroll: {
         circular: true,
@@ -373,7 +372,7 @@ class Conveyer extends Component<ConveyerEvents> {
         if (!inputEvent) {
           return;
         }
-        const options = this.options;
+        const options = this._options;
         if (options.preventDefault) {
           inputEvent.preventDefault();
         }
@@ -390,7 +389,7 @@ class Conveyer extends Component<ConveyerEvents> {
         isDrag = true;
         const scroll = e.delta.scroll;
 
-        if (this.options.horizontal) {
+        if (this._options.horizontal) {
           scrollAreaElement.scrollLeft -= scroll;
         } else {
           scrollAreaElement.scrollTop -= scroll;
@@ -405,9 +404,9 @@ class Conveyer extends Component<ConveyerEvents> {
       },
     });
 
-    this.axes = axes;
-    if (this.options.useDrag) {
-      axes.connect(this.options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
+    this._axes = axes;
+    if (this._options.useDrag) {
+      axes.connect(this._options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
         inputType: ["mouse"],
         hammerManagerOptions: {
           touchAction: "auto",
@@ -424,23 +423,23 @@ class Conveyer extends Component<ConveyerEvents> {
    * @ko 인스턴스와 이벤트를 해제한다.
    */
   public destroy() {
-    this.axes?.destroy();
+    this._axes?.destroy();
     this.unsubscribe();
-    this.scrollAreaElement?.removeEventListener("scroll", this._onScroll);
+    this._scrollAreaElement?.removeEventListener("scroll", this._onScroll);
     window.removeEventListener("resize", this.update);
     this.off();
   }
   private _refreshScroll() {
-    const horizontal = this.options.horizontal;
-    const scrollAreaElement = this.scrollAreaElement;
+    const horizontal = this._options.horizontal;
+    const scrollAreaElement = this._scrollAreaElement;
 
-    this.pos = Math.min(
-      this.scrollSize - this.size,
+    this._pos = Math.min(
+      this._scrollSize - this._size,
       horizontal ? scrollAreaElement.scrollLeft : scrollAreaElement.scrollTop,
     );
   }
   private _getItem(element: HTMLElement): ConveyerItem {
-    const horizontal = this.options.horizontal;
+    const horizontal = this._options.horizontal;
 
     return {
       element,
@@ -449,7 +448,7 @@ class Conveyer extends Component<ConveyerEvents> {
     };
   }
   private _getNextScrollPos(item: ConveyerItem, options: ScrollIntoViewOptions) {
-    const size = this.size;
+    const size = this._size;
     const align = options.align || "start";
     const padding = options.offset || 0;
     const itemPos = item!.pos;
@@ -471,9 +470,9 @@ class Conveyer extends Component<ConveyerEvents> {
     }
     this._refreshScroll();
 
-    const size = this.size;
-    const scrollSize = this.scrollSize;
-    const pos = this.pos;
+    const size = this._size;
+    const scrollSize = this._scrollSize;
+    const pos = this._pos;
 
     // enter start
     if (pos <= 0 && this.isReachStart !== true) {
@@ -548,7 +547,7 @@ class Conveyer extends Component<ConveyerEvents> {
 
       this._isDragScroll = false;
       this._isAnimation = false;
-    }, this.options.scrollDebounce);
+    }, this._options.scrollDebounce);
   }
 }
 
