@@ -12,6 +12,7 @@ module.exports = {
       "type": "category",
       "label": "Constant",
       "items": [
+        "api/IS_IE",
         "api/CONVEYER_METHODS"
       ]
     },
