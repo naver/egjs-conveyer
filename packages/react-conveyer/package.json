@@ -1,11 +1,27 @@
 {
   "name": "@egjs/react-conveyer",
   "version": "1.0.2",
+  "description": "React Conveyer adds Drag gestures to your Native Scroll.",
   "main": "dist/conveyer.cjs.js",
   "module": "dist/conveyer.esm.js",
   "types": "declaration/index.d.ts",
   "sideEffects": false,
   "license": "MIT",
+  "keywords": [
+    "react",
+    "react-hook",
+    "react-hooks",
+    "react-use",
+    "scroll",
+    "reactive",
+    "hooks",
+    "conveyer",
+    "image",
+    "video",
+    "list",
+    "drag",
+    "use"
+  ],
   "dependencies": {
     "@egjs/conveyer": "~1.0.2"
   },

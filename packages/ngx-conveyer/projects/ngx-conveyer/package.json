@@ -12,6 +12,8 @@
     "url": "https://github.com/naver/egjs-conveyer"
   },
   "keywords": [
+    "angular",
+    "ngx",
     "scroll",
     "reactive",
     "hooks",

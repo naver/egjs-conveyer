@@ -1,14 +1,14 @@
 {
   "name": "@egjs/svelte-conveyer",
   "version": "1.0.2",
-  "description": "Vue Conveyer adds Drag gestures to your Native Scroll.",
+  "description": "Svelte Conveyer adds Drag gestures to your Native Scroll.",
   "sideEffects": false,
   "types": "declaration/index.d.ts",
   "module": "dist/imready.esm.js",
   "main": "dist/imready.cjs.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/naver/egjs-imready"
+    "url": "https://github.com/naver/egjs-conveyer"
   },
   "author": {
     "name": "NAVER Corp."
