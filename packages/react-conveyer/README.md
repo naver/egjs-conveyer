@@ -37,6 +37,10 @@ $ npm install @egjs/react-conveyer
 
 ## 🏃 Quick Start
 
+###  in the result of the useConveyer method
+* You can use [reactive properties](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#properties) and [methods](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#methods).
+* You can use [events](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#events) with a camelCase name using the on prefix.
+
 ```jsx
 import { useConveyer } from "@egjs/react-conveyer";
 
@@ -48,10 +52,20 @@ function App() {
     isReachEnd,
     // methods
     scrollIntoView,
+    // events
+    onBeginScroll,
+    onFinishScroll,
   } = useConveyer(ref, {
-    preventClickOnDrag: true,
     horizontal: false,
   });
+
+  onBeginScroll(() => {
+    console.log("begin scroll");
+  }, []);
+  onFinishScroll(() => {
+    console.log("finish scroll");
+  }, []);
+
   return (
     <div className="App">
       <button id="prev" disabled={isReachStart} onClick={() => {
