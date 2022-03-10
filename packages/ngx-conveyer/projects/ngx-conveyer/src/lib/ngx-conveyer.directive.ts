@@ -1,18 +1,19 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { ConveyerOptions, REACTIVE_CONVEYER } from '@egjs/conveyer';
-import { useReactive } from './cfc/useReactive';
+import { useReactive } from './cfcs/useReactive';
+import { ANGULAR_CONVEYER_EVENTS } from './consts';
 import { NgxConveyerInterface } from './ngx-conveyer.interface';
 
 
 @Directive({
   selector: '[ngxConveyer]',
   exportAs: "ngxConveyer",
+  outputs: ANGULAR_CONVEYER_EVENTS,
 })
 export class NgxConveyerDirective extends NgxConveyerInterface {
-  // manual options(props)
   @Input() public ngxConveyer!: ConveyerOptions | "";
   // automatic methods, reactive state
-  protected reacitveConveyer = useReactive(this, {
+  private _reacitveConveyer = useReactive(this, {
     data: () => {
       return {
         container: { current: this._elRef.nativeElement! },
@@ -28,10 +29,10 @@ export class NgxConveyerDirective extends NgxConveyerInterface {
 
   // manual mounted
   ngAfterViewInit() {
-    this.reacitveConveyer.mounted();
+    this._reacitveConveyer.mounted();
   }
   // manual destory
   ngOnDestroy() {
-    this.reacitveConveyer.destroy();
+    this._reacitveConveyer.destroy();
   }
 }

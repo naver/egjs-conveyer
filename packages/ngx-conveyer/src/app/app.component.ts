@@ -54,4 +54,10 @@ export class AppComponent {
       duration: 500,
     });
   }
+  beginScroll(e: any) {
+    (console as any).log("begin", e);
+  }
+  finishScroll(e: any) {
+    (console as any).log("finish", e);
+  }
 }
