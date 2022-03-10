@@ -160,7 +160,7 @@ export class AppModule { } /* Your app */
 ```
 
 ```html title="app.component.html"
-<div class="items" NgxConveyer #conveyer="ngxConveyer">
+<div class="items" [ngxConveyer]="{ horizontal: true }" #conveyer="ngxConveyer">
   <div class="item">1</div>
   <div class="item">2</div>
   <div class="item">3</div>

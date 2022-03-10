@@ -80,18 +80,18 @@ module.exports = {
               label: 'Docs',
               to: 'docs/'
             },
-            // {
-            //   label: 'API',
-            //   to: 'docs/api/conveyer'
-            // },
+            {
+              label: 'API',
+              to: 'docs/api/conveyer'
+            },
           ]
         },
         {
-          title: 'Demo',
+          title: 'Examples',
           items: [
             {
-              label: 'Demos',
-              to: "https://naver.github.io/egjs-conveyer/storybook",
+              label: 'Examples',
+              to: "docs/examples/HorizontalScroll",
             },
           ]
         },
