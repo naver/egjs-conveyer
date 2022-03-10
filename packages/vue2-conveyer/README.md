@@ -37,6 +37,11 @@ $ npm install @egjs/vue2-conveyer
 ```
 
 ## 🏃 Quick Start
+
+###  in the result of the useConveyer method
+* You can use [reactive properties](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#properties) and [methods](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#methods).
+* You can use [events](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#events) with a camelCase name using the on prefix.
+
 ```js
 import Vue from "vue";
 import VueCompositionAPI from '@vue/composition-api';
@@ -73,8 +78,25 @@ import { useConveyer } from "@egjs/vue2-conveyer";
 export default defineComponent({
   name: "App",
   setup() {
-    const { ref, isReachStart, isReachEnd, scrollIntoView } = useConveyer({
+    const {
+      ref,
+      // reactive properties
+      isReachStart,
+      isReachEnd,
+      // methods
+      scrollIntoView,
+      // events
+      onBeginScroll,
+      onFinishScroll,
+    } = useConveyer({
       horizontal: false,
+    });
+
+    onBeginScroll(() => {
+      console.log("begin scroll");
+    });
+    onFinishScroll(() => {
+      console.log("finish scroll");
     });
 
     return {

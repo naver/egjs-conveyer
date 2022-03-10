@@ -27,10 +27,23 @@ import { useConveyer } from "./vue-conveyer";
 export default defineComponent({
   name: "App",
   setup() {
-    const { ref, isReachStart, isReachEnd, scrollIntoView } = useConveyer({
+    const {
+      ref,
+      isReachStart,
+      isReachEnd,
+      scrollIntoView,
+      onBeginScroll,
+      onFinishScroll,
+    } = useConveyer({
       horizontal: false,
     });
 
+    onBeginScroll(() => {
+      console.log("begin scroll");
+    });
+    onFinishScroll(() => {
+      console.log("finish scroll");
+    });
     return {
       ref,
       isReachStart,
