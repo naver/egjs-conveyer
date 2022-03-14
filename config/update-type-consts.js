@@ -31,7 +31,7 @@ function visit(node) {
 
       replacers.push({
         range: [expression.pos, expression.end],
-        text: constTypes,
+        text: ` ${constTypes}`,
       });
     }
   }
