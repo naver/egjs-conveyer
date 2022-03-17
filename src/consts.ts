@@ -28,5 +28,6 @@ export const CONVEYER_EVENTS = [
 export const CONVEYER_REACTIVE_STATE = {
   "isReachStart": false,
   "isReachEnd": false,
+  "scrollPos": 0,
 } as const;
 
