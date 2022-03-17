@@ -20,6 +20,9 @@
     [horizontal]="false"
     [container]="true"
     [ngxConveyer]="{ horizontal: false }"
+    (beginScroll)="beginScroll($event)"
+    (finishScroll)="finishScroll($event)"
+    (ab)="finishScroll($event)"
     #conveyer="ngxConveyer"
     #ig
   >

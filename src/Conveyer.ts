@@ -110,10 +110,10 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Options for the `findElement` method. <ko>findElement 메서드의 옵션</ko>
    * @example
    * <p align="center">
-   *  <img src="/img/scrollIntoView1.png" height="200" />
+   *  <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView1.png" height="200" />
    * </p>
    * <p align="center">
-   *   <img src="/img/scrollIntoView2.png" height="210" />
+   *   <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView2.png" height="210" />
    * </p>
    */
   public findElement(direction: "start" | "end" | "prev" | "next", options: FindItemOptions = {}) {
@@ -127,10 +127,10 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Options for the `findItem` method. <ko>`findItem` 메서드의 옵션</ko>
    * @example
    * <p align="center">
-   *  <img src="/img/scrollIntoView1.png" height="200" />
+   *  <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView1.png" height="200" />
    * </p>
    * <p align="center">
-   *   <img src="/img/scrollIntoView2.png" height="210" />
+   *   <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView2.png" height="210" />
    * </p>
    */
   public findItem(
@@ -219,10 +219,10 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Options for the `scrollIntoView` method. <ko>`scrollIntoView` 메서드의 옵션</ko>
    * @example
    * <p align="center">
-   *  <img src="/img/scrollIntoView1.png" height="200" />
+   *  <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView1.png" height="200" />
    * </p>
    * <p align="center">
-   *   <img src="/img/scrollIntoView2.png" height="210" />
+   *   <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView2.png" height="210" />
    * </p>
    */
   public scrollIntoView(target: HTMLElement | "start" | "end" | "prev" | "next", options: ScrollIntoViewOptions = {}) {

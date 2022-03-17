@@ -1,8 +1,6 @@
-import type { Writable } from "svelte/store";
-import type { ConveyerMethods, ConveyerReactiveState } from "@egjs/conveyer";
-import { Ref, SvelteReactiveResult } from "./cfc/types";
-import Conveyer from "@egjs/conveyer";
+import type { REACTIVE_CONVEYER } from "@egjs/conveyer";
+import { Ref, SvelteReactiveAdapterResult } from "./cfcs/types";
 
-export interface SvelteConveyerResult extends SvelteReactiveResult<Conveyer, ConveyerReactiveState, keyof ConveyerMethods> {
+export interface SvelteConveyerResult extends Ref<HTMLElement>, SvelteReactiveAdapterResult<typeof REACTIVE_CONVEYER> {
   ref: Ref<HTMLElement>;
 }

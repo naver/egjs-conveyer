@@ -128,11 +128,11 @@ See [Component Interaction](https://angular.io/guide/component-interaction#paren
 
 ```html title="app.component.html"
 <div class="container">
-  <button id="prev" [disabled]="conveyer.isReachStart">prev</button>
-  <button id="next" [disabled]="conveyer.isReachEnd">next</button>
+  <button id="prev" [disabled]="conveyer?.isReachStart">prev</button>
+  <button id="next" [disabled]="conveyer?.isReachEnd">next</button>
   <div
     class="items"
-    NgxConveyer
+    ngxConveyer
     #conveyer="ngxConveyer"
     >
     <div class="item"><a href="#1">1</a></div>

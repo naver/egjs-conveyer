@@ -10,22 +10,26 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+Conveyer has scroll related [events](api/Conveyer#events).
+
+You can refer to the documentation and use it according to each framework.
+
 <Tabs
   groupId="cfc"
   defaultValue="js"
   values={[
     { label: "JavaScript", value: "js" },
-    {/* { label: "React", value: "react" },
+    { label: "React", value: "react" },
     { label: "Vue@2", value: "vue2" },
     { label: "Vue@3", value: "vue" },
     { label: "Angular", value: "angular" },
-    { label: "Svelte", value: "svelte" } */}
+    { label: "Svelte", value: "svelte" }
   ]}>
   <TabItem value="js">
 
 You can listen to Conveyer's events with [Conveyer#on](api/Conveyer#on)
 
-Since events occur during initialization, set [autoInit(api/ConveyerOptions) to false if you want to register events.
+Since events occur during initialization, set [autoInit](api/ConveyerOptions) to false if you want to register events.
 
 ```js
 import Conveyer from "@egjs/conveyer";
@@ -54,11 +58,14 @@ import { useConveyer } from "@egjs/react-conveyer";
 
 export default () => {
   const ref = useRef();
-  const { scrollIntoView, onBeginScroll } = useConveyer(ref);
+  const {
+    scrollIntoView,
+    onBeginScroll,
+  } = useConveyer(ref);
 
   onBeginScroll(() => {
     console.log("begin scroll");
-  });
+  }, []);
 
   return <div className="container">
     <div className="buttons">
@@ -112,34 +119,38 @@ import { useConveyer } from "@egjs/vue-conveyer";
 
 export default {
   setup() {
-      const { ref, scrollIntoView, onBeginScroll } = useConveyer({
-        horizontal: false,
-      });
+    const {
+      ref,
+      scrollIntoView,
+      // events
+      onBeginScroll,
+    } = useConveyer({
+      horizontal: false,
+    });
 
-      onBeginScroll(() => {
-        console.log("begin scroll");
-      });
+    onBeginScroll(() => {
+      console.log("begin scroll");
+    });
 
-      return {
-        ref,
-        scrollIntoView,
-      };
+    return {
+      ref,
+      scrollIntoView,
+  };
+  },
+  methods: {
+    prev() {
+      this.scrollIntoView("start", {
+        align: "end",
+        duration: 500,
+      });
     },
-    methods: {
-      prev() {
-        this.scrollIntoView("start", {
-          align: "end",
-          duration: 500,
-        });
-      },
-      next() {
-        this.scrollIntoView("end", {
-          align: "start",
-          duration: 500,
-        });
-      },
+    next() {
+      this.scrollIntoView("end", {
+        align: "start",
+        duration: 500,
+      });
     },
-  });
+  },
 };
 ```
   </TabItem>
@@ -166,33 +177,38 @@ import { useConveyer } from "@egjs/vue2-conveyer";
 
 export default {
   setup() {
-      const { ref, scrollIntoView, onBeginScroll } = useConveyer({
-        horizontal: false,
-      });
+    const {
+      ref,
+      scrollIntoView,
+      // events
+      onBeginScroll,
+    } = useConveyer({
+      horizontal: false,
+    });
 
-      onBeginScroll(() => {
-        console.log("begin scroll");
+    onBeginScroll(() => {
+      console.log("begin scroll");
+    });
+
+    return {
+      ref,
+      scrollIntoView,
+  };
+  },
+  methods: {
+    prev() {
+      this.scrollIntoView("start", {
+        align: "end",
+        duration: 500,
       });
-      return {
-        ref,
-        scrollIntoView,
-      };
     },
-    methods: {
-      prev() {
-        this.scrollIntoView("start", {
-          align: "end",
-          duration: 500,
-        });
-      },
-      next() {
-        this.scrollIntoView("end", {
-          align: "start",
-          duration: 500,
-        });
-      },
+    next() {
+      this.scrollIntoView("end", {
+        align: "start",
+        duration: 500,
+      });
     },
-  });
+  },
 };
 ```
   </TabItem>
@@ -210,7 +226,7 @@ You can listen events of the `ngx-conveyer` using Angular's [event binding](http
   <button id="next" (click)="next()">next</button>
   <div
     class="items"
-    NgxConveyer
+    ngxConveyer
     (beginScroll)="onBeginScroll"
     #conveyer="ngxConveyer"
     >
@@ -233,13 +249,13 @@ You can listen events of the `ngx-conveyer` using Angular's [event binding](http
 ```js title="app.component.ts"
 import { Component, Input, AfterViewInit } from '@angular/core';
 
-import { NgxConveyerComponent } from 'ngx-conveyer';
+import { NgxConveyerDirective } from 'ngx-conveyer';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild("conveyer") conveyer!: NgxConveyerComponent;
+  @ViewChild("conveyer") conveyer!: NgxConveyerDirective;
   onBeginScroll() {
     console.log("begin scroll");
   }
@@ -267,7 +283,12 @@ All events are prefixed with `on-`, and `camelCase`d.
 <script lang="ts">
   import { useConveyer } from "@egjs/svelte-conveyer";
 
-  const { ref, scrollIntoView, onBeginScroll } = useConveyer();
+  const {
+    ref,
+    scrollIntoView,
+    // events
+    onBeginScroll,
+  } = useConveyer();
 
   onBeginScroll(() => {
     console.log("begin scroll");

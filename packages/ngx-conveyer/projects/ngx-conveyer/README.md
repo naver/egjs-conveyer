@@ -56,11 +56,20 @@ import { NgModule } from '@angular/core';
 export class AppModule { } /* Your app */
 ```
 
+* You can use [reactive properties](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#properties) and [methods](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#methods).
+* You can use [events](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#events)
+
+
 ```html
 <div class="container">
   <button id="prev" [disabled]="conveyer?.isReachStart" (click)="prev()">prev</button>
   <button id="next" [disabled]="conveyer?.isReachEnd" (click)="next()">next</button>
-  <div class="items" NgxConveyer #conveyer="ngxConveyer">
+  <div class="items"
+    ngxConveyer
+    #conveyer="ngxConveyer"
+    (beginScroll)="beginScroll"
+    (finishScroll)="finishScroll"
+    >
     <div class="item">1</div>
     <div class="item">2</div>
     <div class="item">3</div>
@@ -70,14 +79,14 @@ export class AppModule { } /* Your app */
 
 ```ts
 import { Component, Input, AfterViewInit } from '@angular/core';
-import { NgxConveyerComponent } from '@egjs/ngx-conveyer';
+import { NgxConveyerDirective } from '@egjs/ngx-conveyer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild("conveyer") conveyer!: NgxConveyerComponent;
+  @ViewChild("conveyer") conveyer!: NgxConveyerDirective;
   prev() {
     this.conveyer.scrollIntoView("start", {
       align: "end",
@@ -89,6 +98,12 @@ export class AppComponent implements AfterViewInit {
       align: "start",
       duration: 500,
     });
+  }
+  beginScroll() {
+    console.log("begin scroll");
+  }
+  finishScroll() {
+    console.log("finish scroll");
   }
 }
 ```

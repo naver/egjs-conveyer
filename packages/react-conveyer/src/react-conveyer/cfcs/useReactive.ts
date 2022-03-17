@@ -1,4 +1,4 @@
-import { withReactiveMethods, ReactiveSubscribe, ReactiveAdapter, keys } from "@egjs/conveyer";
+import { withReactiveMethods, ReactiveSubscribe, ReactiveAdapter, keys, camelize } from "@egjs/conveyer";
 import { useEffect, useRef, useState } from "react";
 import { ReactReactiveResult } from "./types";
 
@@ -9,7 +9,7 @@ export function useReactive<
   Methods extends keyof Partial<Instance> = any,
   Data = any,
   Events extends Record<string, any> = {},
-  >(reactiveProps: ReactiveAdapter<Instance, State, Methods, Data, Events>): ReactReactiveResult<Instance, State, Methods> {
+  >(reactiveProps: ReactiveAdapter<Instance, State, Methods, Data, Events>): ReactReactiveResult<Instance, State, Methods, Events> {
   const reactiveState = reactiveProps.state as any;
   const names = keys<Record<string, any>>(reactiveState);
   const [states] = useState<Record<string, {
@@ -26,26 +26,14 @@ export function useReactive<
       value: state[0],
     };
   }
-  const vanillaRef = useRef<Instance>();
-  const [methods] = useState(() => withReactiveMethods(vanillaRef, reactiveProps.methods || []));
-  // const reactiveEvents = (reactiveProps.events || {});
-  // const events = keys<Record<string, any>>(reactiveEvents).reduce<any>((result, name) => {
-  //   result[name] = (callback: (e: any) => void, dependencies: readonly any[]) => {
-  //     useEffect(() => {
-  //       reactiveProps.on && reactiveProps.on(vanillaRef.current!, name as any, callback as any);
-  //       return () => {
-  //         reactiveProps.off && reactiveProps.off(vanillaRef.current!, name as any, callback as any);
-  //       };
-  //     }, dependencies);
-  //   };
+  const instanceRef = useRef<Instance>();
+  const [methods] = useState(() => withReactiveMethods(instanceRef, reactiveProps.methods || []));
 
-  //   return result;
-  // }, {});
   useEffect(() => {
     const data = reactiveProps.data ? reactiveProps.data() : {} as any;
     const inst = reactiveProps.instance(data);
 
-    vanillaRef.current = inst;
+    instanceRef.current = inst;
     names.forEach((name) => {
       (inst as any).subscribe(name, (value: any) => {
         if (states[name].getter) {
@@ -75,6 +63,21 @@ export function useReactive<
     });
     return result;
   }, {});
+
+  const reactiveEvents = (reactiveProps.events || []);
+
+  reactiveEvents.forEach(name => {
+    result[camelize(`on ${name}`)] = (callback: (e: any) => void, dependencies?: readonly any[]) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useEffect(() => {
+        reactiveProps.on && reactiveProps.on(instanceRef.current!, name as any, callback as any);
+        return () => {
+          reactiveProps.off && reactiveProps.off(instanceRef.current!, name as any, callback as any);
+        };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, dependencies);
+    };
+  });
 
   keys(methods).forEach(name => {
     result[name] = methods[name];

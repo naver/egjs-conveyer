@@ -37,6 +37,11 @@ $ npm install @egjs/svelte-conveyer
 
 ## 🏃 Quick Start
 
+###  in the result of the useConveyer method
+* You can use [reactive properties](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#properties) with $ prefix.
+* You can use [methods](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#methods).
+* You can use [events](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#events) with a camelCase name using the on prefix.
+
 ```html
 <script>
   import { useConveyer } from "@egjs/svelte-conveyer";
@@ -48,8 +53,18 @@ $ npm install @egjs/svelte-conveyer
     isReachEnd,
     // methods
     scrollIntoView,
+    // events
+    onBeginScroll,
+    onFinishScroll,
   } = useConveyer({
     horizontal: false,
+  });
+
+  onBeginScroll(() => {
+    console.log("begin scroll");
+  });
+  onFinishScroll(() => {
+    console.log("finish scroll");
   });
 </script>
 <div class="App">

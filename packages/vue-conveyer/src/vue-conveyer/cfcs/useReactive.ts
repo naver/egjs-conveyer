@@ -1,4 +1,4 @@
-import { withReactiveMethods, ReactiveAdapter, ReactiveSubscribe } from "@egjs/conveyer";
+import { withReactiveMethods, ReactiveAdapter, ReactiveSubscribe, camelize } from "@egjs/conveyer";
 import { onMounted, onUnmounted, Ref, ref } from "vue";
 import { VueReactiveResult } from "./types";
 
@@ -8,8 +8,8 @@ export function useReactive<
   Methods extends keyof Partial<Instance> = any,
   Data = any,
   Events extends Record<string, any> = {},
-  >(reactiveProps: ReactiveAdapter<Instance, State, Methods, Data, Events>): VueReactiveResult<Instance, State, Methods> {
-  const instRef = ref<Instance>();
+  >(reactiveProps: ReactiveAdapter<Instance, State, Methods, Data, Events>): VueReactiveResult<Instance, State, Methods, Events> {
+  const instanceRef = ref<Instance>();
   const reactiveState = reactiveProps.state;
   const names = Object.keys(reactiveState);
   const refs: Record<string, Ref<any>> = {};
@@ -17,13 +17,13 @@ export function useReactive<
     refs[name] = ref(reactiveState[name]);
   }
 
-  const methods = withReactiveMethods(instRef, reactiveProps.methods);
+  const methods = withReactiveMethods(instanceRef, reactiveProps.methods);
 
   onMounted(() => {
     const data = reactiveProps.data ? reactiveProps.data() : {} as Data;
     const inst = reactiveProps.instance(data);
 
-    instRef.value = inst;
+    instanceRef.value = inst;
 
     names.forEach(name => {
       inst.subscribe(name as any, (value: any) => {
@@ -36,11 +36,27 @@ export function useReactive<
 
   onUnmounted(() => {
     const data = reactiveProps.data ? reactiveProps.data() : {} as Data;
-    reactiveProps.destroy(instRef.value!, data);
+
+    reactiveProps.destroy(instanceRef.value!, data);
   });
+
+  const reactiveEvents = (reactiveProps.events || []);
+  const events = reactiveEvents.reduce((result, name) => {
+    result[camelize(`on ${name}`)] = (callback: (...args: any[]) => void) => {
+      onMounted(() => {
+        reactiveProps.on && reactiveProps.on(instanceRef.value!, name as any, callback as any);
+      });
+      onUnmounted(() => {
+        reactiveProps.off && reactiveProps.off(instanceRef.value!, name as any, callback as any);
+      });
+    };
+
+    return result;
+  }, {} as Record<string, any>);
 
   return {
     ...refs,
     ...methods,
+    ...events,
   } as any;
 }

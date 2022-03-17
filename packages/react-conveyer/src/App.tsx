@@ -8,10 +8,20 @@ function App() {
     isReachStart,
     isReachEnd,
     scrollIntoView,
+    onBeginScroll,
+    onFinishScroll,
   } = useConveyer(ref, {
     preventClickOnDrag: true,
     horizontal: false,
   });
+
+  onBeginScroll(() => {
+    console.log("begin scroll");
+  }, []);
+  onFinishScroll(() => {
+    console.log("finish scroll");
+  }, []);
+
   return (
     <div className="App">
       <button id="prev" disabled={isReachStart} onClick={() => {

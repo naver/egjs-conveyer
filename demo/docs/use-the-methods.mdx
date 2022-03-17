@@ -181,7 +181,7 @@ See [Component Interaction](https://angular.io/guide/component-interaction#paren
   <button id="next" (click)="next()">next</button>
   <div
     class="items"
-    NgxConveyer
+    ngxConveyer
     #conveyer="ngxConveyer"
     >
     <div class="item"><a href="#1">1</a></div>
@@ -203,13 +203,13 @@ See [Component Interaction](https://angular.io/guide/component-interaction#paren
 ```js title="app.component.ts"
 import { Component, Input, AfterViewInit } from '@angular/core';
 
-import { NgxConveyerComponent } from 'ngx-conveyer';
+import { NgxConveyerDirective } from 'ngx-conveyer';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild("conveyer") conveyer!: NgxConveyerComponent;
+  @ViewChild("conveyer") conveyer!: NgxConveyerDirective;
   prev() {
     this.conveyer.scrollIntoView("start", {
       align: "end",

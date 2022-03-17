@@ -1,10 +1,10 @@
-import Conveyer, { ConveyerMethods, ConveyerOptions, ConveyerReactiveState, REACTIVE_CONVEYER } from "@egjs/conveyer";
+import { ConveyerOptions, REACTIVE_CONVEYER } from "@egjs/conveyer";
 import { RefObject } from "react";
-import { ReactReactiveResult } from "./cfc/types";
-import { useReactive } from "./cfc/useReactive";
+import { ReactReactiveAdapterResult } from "./cfcs/types";
+import { useReactive } from "./cfcs/useReactive";
 
 
-export interface ReactConveyerResult extends ReactReactiveResult<Conveyer, ConveyerReactiveState, keyof ConveyerMethods> { }
+export interface ReactConveyerResult extends ReactReactiveAdapterResult<typeof REACTIVE_CONVEYER> { }
 
 export function useConveyer(ref: RefObject<HTMLElement>, props: ConveyerOptions = {}): ReactConveyerResult {
   return useReactive({

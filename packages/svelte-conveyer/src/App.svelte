@@ -1,8 +1,22 @@
 <script>
   import { useConveyer } from "./svelte-conveyer/useConveyer.ts";
 
-  const { ref: ref1, isReachStart, isReachEnd, scrollIntoView } = useConveyer({
+  const {
+    ref: ref1,
+    isReachStart,
+    isReachEnd,
+    scrollIntoView,
+    onBeginScroll,
+    onFinishScroll,
+  } = useConveyer({
     horizontal: false,
+  });
+
+  onBeginScroll(() => {
+    console.log("begin scroll");
+  });
+  onFinishScroll(() => {
+    console.log("finish scroll");
   });
 </script>
 
