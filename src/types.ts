@@ -45,6 +45,7 @@ export interface ConveyerEvents {
 export interface ConveyerReactiveState {
   readonly isReachStart: boolean;
   readonly isReachEnd: boolean;
+  readonly scrollPos: number;
 }
 
 

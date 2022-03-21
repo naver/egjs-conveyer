@@ -188,6 +188,20 @@ describe("test Conveyer", () => {
         // Then
         expect(spy.callCount).to.be.equals(1);
       });
+      it("should check if scrollPos changes when scrolling", async () => {
+        // Given
+        conveyer = new Conveyer(".items");
+
+        // When
+        const spy = sinon.spy();
+        conveyer.subscribe("scrollPos", spy);
+        conveyer.scrollTo(300, 100);
+        await waitFor(150);
+
+        // Then
+        expect(spy.callCount).to.be.above(0);
+        expect(conveyer.scrollPos).to.be.equals(300);
+      });
     });
   });
 
@@ -275,6 +289,7 @@ describe("test Conveyer", () => {
 
       // Then
       expect(document.querySelector<HTMLElement>(".items")!.scrollLeft).to.be.equals(100);
+      expect(conveyer.scrollPos).to.be.equals(100);
     });
     it("should check if scrollLeft is changed when scrollBy is called", async () => {
       // Given
@@ -286,6 +301,7 @@ describe("test Conveyer", () => {
 
       // Then
       expect(document.querySelector<HTMLElement>(".items")!.scrollLeft).to.be.equals(100);
+      expect(conveyer.scrollPos).to.be.equals(100);
     });
     it("should check if start and end are inside when scrollLeft is 0", async () => {
       // Given
@@ -379,6 +395,7 @@ describe("test Conveyer", () => {
 
         // Then
         expect(document.querySelector<HTMLElement>(".items")!.scrollLeft).to.be.equals(200);
+        expect(conveyer.scrollPos).to.be.equals(200);
       });
       it("should check it target moves center when align is center", async () => {
         // Given
@@ -396,6 +413,7 @@ describe("test Conveyer", () => {
         const items = document.querySelector<HTMLElement>(".items")!;
         // |1 2 3|
         expect(items.scrollLeft).to.be.equals(200);
+        expect(conveyer.scrollPos).to.be.equals(200);
       });
       it("should check it target moves end when align is end", async () => {
         // Given
@@ -413,6 +431,7 @@ describe("test Conveyer", () => {
         const items = document.querySelector<HTMLElement>(".items")!;
         // |4 5 6|
         expect(items.scrollLeft).to.be.equals(800);
+        expect(conveyer.scrollPos).to.be.equals(800);
       });
       it("should check it target(3) moves start when target is end and align is start", async () => {
         // Given
@@ -430,6 +449,7 @@ describe("test Conveyer", () => {
         // Then
         const items = document.querySelector<HTMLElement>(".items")!;
         expect(items.scrollLeft).to.be.equals(400);
+        expect(conveyer.scrollPos).to.be.equals(400);
       });
       it("should check it target(4) moves start when target is end and sibling(1)", async () => {
         // Given
@@ -448,6 +468,7 @@ describe("test Conveyer", () => {
         // Then
         const items = document.querySelector<HTMLElement>(".items")!;
         expect(items.scrollLeft).to.be.equals(600);
+        expect(conveyer.scrollPos).to.be.equals(600);
       });
       it("should check whether the target moves to start except in place when excludeStand is true", async () => {
         // Given
@@ -469,6 +490,7 @@ describe("test Conveyer", () => {
         // Then
         const items = document.querySelector<HTMLElement>(".items")!;
         expect(items.scrollLeft).to.be.equals(400);
+        expect(conveyer.scrollPos).to.be.equals(400);
       });
     });
   });

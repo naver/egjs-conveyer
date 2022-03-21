@@ -39,7 +39,6 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _scrollAreaElement: HTMLElement;
   protected _axes: Axes;
   protected _items: ConveyerItem[] = [];
-  protected _pos = 0;
   protected _size = 0;
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
@@ -83,6 +82,23 @@ class Conveyer extends Component<ConveyerEvents> {
    * ```
    */
   @Reactive("isReachEnd") private _isReachEnd = false;
+  /**
+   * the scroll position of the container
+   * @ko 컨테이너의 스크롤 위치
+   * @name Conveyer#scrollPos
+   * @type {number}
+   * @default 0
+   * @readonly
+   * @example
+   * ```js
+   * import { Conveyer } from "@egjs/conveyer";
+   *
+   * const conveyer = new Conveyer(".container");
+   *
+   * conveyer.scrollPos
+   * ```
+   */
+  @Reactive("scrollPos") protected _pos = 0;
   /**
    * @param - A base element for a module <ko>모듈을 적용할 기준 엘리먼트</ko>
    * @param - The option object of the InfiniteGrid module <ko>eg.InfiniteGrid 모듈의 옵션 객체</ko>
