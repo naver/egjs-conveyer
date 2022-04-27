@@ -1,0 +1,463 @@
+---
+custom_edit_url: null
+---
+
+```ts
+class Conveyer extends Component
+```
+Conveyer는 네이티브 스크롤에 드래그 제스처를 추가합니다.
+
+<div className="container">
+  <div className="row mb-2"><div className="col col--4"><strong>Properties</strong></div><div className="col col--4"><strong>Methods</strong></div><div className="col col--4"><strong>Events</strong></div></div>
+  <div className="row"><div className="col col--4"><a href="#isReachStart">isReachStart</a><br/><a href="#isReachEnd">isReachEnd</a><br/><a href="#scrollPos">scrollPos</a></div><div className="col col--4"><a href="#findElement">findElement</a><br/><a href="#findItem">findItem</a><br/><a href="#scrollIntoView">scrollIntoView</a><br/><a href="#scrollBy">scrollBy</a><br/><a href="#scrollTo">scrollTo</a><br/><a href="#setItems">setItems</a><br/><a href="#updateItems">updateItems</a><br/><a href="#updateContainer">updateContainer</a><br/><a href="#update">update</a><br/><a href="#init">init</a><br/><a href="#destroy">destroy</a><br/><a href="#trigger">trigger</a><br/><a href="#once">once</a><br/><a href="#hasOn">hasOn</a><br/><a href="#on">on</a><br/><a href="#off">off</a></div><div className="col col--4"><a href="#event-reachStart">reachStart</a><br/><a href="#event-leaveStart">leaveStart</a><br/><a href="#event-reachEnd">reachEnd</a><br/><a href="#event-leaveEnd">leaveEnd</a><br/><a href="#event-beginScroll">beginScroll</a><br/><a href="#event-finishScroll">finishScroll</a></div></div>
+</div>
+
+## Constructor
+```ts
+new Conveyer(scrollArea, options)
+```
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|scrollArea|string \| HTMLElement \| Ref&lt;HTMLElement&gt;|||모듈을 적용할 기준 엘리먼트|
+|options|[ConveyerOptions](ConveyerOptions)|✔️|{}|eg.InfiniteGrid 모듈의 옵션 객체|
+
+## Properties
+
+### isReachStart {#isReachStart}
+
+<div>
+  <span className="badge badge--warning">readonly</span>
+</div>
+
+스크롤이 시작에 닿았는지 여부.
+
+**Type**: boolean
+
+**Default**: false
+
+```js
+import { Conveyer } from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".container");
+
+conveyer.isReachStart
+```
+
+### isReachEnd {#isReachEnd}
+
+<div>
+  <span className="badge badge--warning">readonly</span>
+</div>
+
+스크롤이 끝에 닿았는지 여부.
+
+**Type**: boolean
+
+**Default**: false
+
+```js
+import { Conveyer } from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".container");
+
+conveyer.isReachEnd
+```
+
+### scrollPos {#scrollPos}
+
+<div>
+  <span className="badge badge--warning">readonly</span>
+</div>
+
+컨테이너의 스크롤 위치
+
+**Type**: number
+
+**Default**: 0
+
+```js
+import { Conveyer } from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".container");
+
+conveyer.scrollPos
+```
+
+## Methods
+
+### findElement {#findElement}
+
+<div>
+
+</div>
+
+해당 방향에 대해 엘리먼트를 찾는다.]
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|direction|"start" \| "end" \| "prev" \| "next"|||엘리먼트의 방향. &quot;start&quot;, &quot;end&quot;는 안쪽으로 찾는다. &quot;prev&quot;, &quot;next&quot;는 바깥쪽으로 찾는다.|
+|options|[FindItemOptions](FindItemOptions)|✔️|{}|findElement 메서드의 옵션|
+
+**See**:
+- [direction's example](/docs/examples/Methods) page for detailed information
+<p align="center">
+ <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView1.png" height="200" />
+</p>
+<p align="center">
+  <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView2.png" height="210" />
+</p>
+
+### findItem {#findItem}
+
+<div>
+
+</div>
+
+엘리먼트 또는 해당 방향에 대해 아이템을 찾는다.
+
+**Returns**: [ConveyerItem](ConveyerItem) \| null
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|target|HTMLElement \| "start" \| "end" \| "prev" \| "next"|||엘리먼트의 방향. &quot;start&quot;, &quot;end&quot;는 안쪽으로 찾는다. &quot;prev&quot;, &quot;next&quot;는 바깥쪽으로 찾는다.|
+|options|[FindItemOptions](FindItemOptions)|✔️|{}|<code>findItem</code> 메서드의 옵션|
+
+**See**:
+- [direction's example](/docs/examples/Methods) page for detailed information
+<p align="center">
+ <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView1.png" height="200" />
+</p>
+<p align="center">
+  <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView2.png" height="210" />
+</p>
+
+### scrollIntoView {#scrollIntoView}
+
+<div>
+
+</div>
+
+엘리먼트나 해당 방향에 있는 아이템을 뷰안으로 스크롤을 한다.
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|target|HTMLElement \| "start" \| "end" \| "prev" \| "next"|||엘리먼트의 방향. &quot;start&quot;, &quot;end&quot;는 안쪽으로 찾는다. &quot;prev&quot;, &quot;next&quot;는 바깥쪽으로 찾는다.|
+|options|[ScrollIntoViewOptions](ScrollIntoViewOptions)|✔️|{}|<code>scrollIntoView</code> 메서드의 옵션|
+
+**See**:
+- [target's example](/docs/examples/Methods) page for detailed information
+<p align="center">
+ <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView1.png" height="200" />
+</p>
+<p align="center">
+  <img src="https://naver.github.io/egjs-conveyer/img/scrollIntoView2.png" height="210" />
+</p>
+
+### scrollBy {#scrollBy}
+
+<div>
+
+</div>
+
+주어진 위치 양만큼 스크롤한다.
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|pos|number|||스크롤할 위치의 양.|
+|duration||✔️|0|해당 위치만큼 스크롤하는 시간|
+
+### scrollTo {#scrollTo}
+
+<div>
+
+</div>
+
+주어진 위치로 스크롤한다.
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|pos|number|||스크롤할 위치의 양.|
+|duration||✔️|0|해당 위치로 스크롤하는 시간|
+
+### setItems {#setItems}
+
+<div>
+
+</div>
+
+Conveyer에 아이템들을 직접 설정한다.
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|items|[ConveyerItem](ConveyerItem)[]|||Conveyer에 설정할 아이템들|
+
+### updateItems {#updateItems}
+
+<div>
+
+</div>
+
+아이템들의 포지션, 사이즈 정보를 업데이트 한다.
+
+### updateContainer {#updateContainer}
+
+<div>
+
+</div>
+
+컨테이너의 크기, 스크롤 사이즈를 업데이트 한다.
+
+### update {#update}
+
+<div>
+
+</div>
+
+컨테이너와 아이템들을 업데이트 한다.
+
+### init {#init}
+
+<div>
+
+</div>
+
+autoInit 옵션을 false로 사용하는 경우 직접 init 메서드를 통해 초기화 할 수 있다.
+
+### destroy {#destroy}
+
+<div>
+
+</div>
+
+인스턴스와 이벤트를 해제한다.
+
+### trigger {#trigger}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+커스텀 이벤트를 발생시킨다
+
+**Returns**: this
+- 컴포넌트 자신의 인스턴스
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|event|string \| ComponentEvent|||발생할 커스텀 이벤트의 이름 또는 ComponentEvent의 인스턴스|
+|params|Array&lt;any&gt; \| $ts:...|||커스텀 이벤트가 발생할 때 전달할 데이터|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  beforeHi: ComponentEvent<{ foo: number; bar: string }>;
+  hi: { foo: { a: number; b: boolean } };
+  someEvent: (foo: number, bar: string) => void;
+  someOtherEvent: void; // When there's no event argument
+}> {
+  some(){
+    if(this.trigger("beforeHi")){ // When event call to stop return false.
+      this.trigger("hi");// fire hi event.
+    }
+  }
+}
+
+const some = new Some();
+some.on("beforeHi", e => {
+  if(condition){
+    e.stop(); // When event call to stop, `hi` event not call.
+  }
+  // `currentTarget` is component instance.
+  console.log(some === e.currentTarget); // true
+
+  typeof e.foo; // number
+  typeof e.bar; // string
+});
+some.on("hi", e => {
+  typeof e.foo.b; // boolean
+});
+// If you want to more know event design. You can see article.
+// https://github.com/naver/egjs-component/wiki/How-to-make-Component-event-design%3F
+```
+
+### once {#once}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+이벤트가 한번만 실행된다.
+
+**Returns**: this
+- 컴포넌트 자신의 인스턴스
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string \| $ts:...|||등록할 이벤트의 이름 또는 이벤트 이름-핸들러 오브젝트|
+|handlerToAttach|function \| $ts:...|✔️||등록할 이벤트의 핸들러 함수|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  hi: ComponentEvent;
+}> {
+  hi() {
+    alert("hi");
+  }
+  thing() {
+    this.once("hi", this.hi);
+  }
+}
+
+var some = new Some();
+some.thing();
+some.trigger(new ComponentEvent("hi"));
+// fire alert("hi");
+some.trigger(new ComponentEvent("hi"));
+// Nothing happens
+```
+
+### hasOn {#hasOn}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+컴포넌트에 이벤트가 등록됐는지 확인한다.
+
+**Returns**: boolean
+- 이벤트 등록 여부
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string|||등록 여부를 확인할 이벤트의 이름|
+
+```ts
+import Component from "@egjs/component";
+
+class Some extends Component<{
+  hi: void;
+}> {
+  some() {
+    this.hasOn("hi");// check hi event.
+  }
+}
+```
+
+### on {#on}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+컴포넌트에 이벤트를 등록한다.
+
+**Returns**: this
+- 컴포넌트 자신의 인스턴스
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string \| $ts:...|||등록할 이벤트의 이름 또는 이벤트 이름-핸들러 오브젝트|
+|handlerToAttach|function \| $ts:...|✔️||등록할 이벤트의 핸들러 함수|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  hi: void;
+}> {
+  hi() {
+    console.log("hi");
+  }
+  some() {
+    this.on("hi",this.hi); //attach event
+  }
+}
+```
+
+### off {#off}
+
+<div>
+  <span className="badge badge--danger">inherited</span>
+</div>
+
+컴포넌트에 등록된 이벤트를 해제한다.<br/>`eventName`이 주어지지 않았을 경우 모든 이벤트 핸들러를 제거한다.<br/>`handlerToAttach`가 주어지지 않았을 경우 `eventName`에 해당하는 모든 이벤트 핸들러를 제거한다.
+
+**Returns**: this
+- 컴포넌트 자신의 인스턴스
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|eventName|string \| $ts:...|✔️||해제할 이벤트의 이름|
+|handlerToDetach|function \| $ts:...|✔️||해제할 이벤트의 핸들러 함수|
+
+```ts
+import Component, { ComponentEvent } from "@egjs/component";
+
+class Some extends Component<{
+  hi: void;
+}> {
+  hi() {
+    console.log("hi");
+  }
+  some() {
+    this.off("hi",this.hi); //detach event
+  }
+}
+```
+
+## Events
+### reachStart {#event-reachStart}
+
+<div>
+
+</div>
+
+스크롤이 앞에 닿으면 발생하는 이벤트이다.
+
+### leaveStart {#event-leaveStart}
+
+<div>
+
+</div>
+
+스크롤이 앞에서 떠나면 발생하는 이벤트이다.
+
+### reachEnd {#event-reachEnd}
+
+<div>
+
+</div>
+
+스크롤이 끝에 닿으면 발생하는 이벤트이다.
+
+### leaveEnd {#event-leaveEnd}
+
+<div>
+
+</div>
+
+스크롤이 끝에서 떠나면 발생하는 이벤트이다.
+
+### beginScroll {#event-beginScroll}
+
+<div>
+
+</div>
+
+스크롤이 시작하면 발생하는 이벤트이다.
+
+### finishScroll {#event-finishScroll}
+
+<div>
+
+</div>
+
+스크롤이 끝나면 발생하는 이벤트이다.
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|e|[OnFinishScroll](OnFinishScroll)|||이벤트에 전달되는 데이터 객체|
+
