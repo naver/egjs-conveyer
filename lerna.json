@@ -3,18 +3,20 @@
     "packages/*"
   ],
   "version": "independent",
-  "lernaHelperBeforeRelease": [
-    "npm run packages:build",
-    "npm run demo:build",
-    "npm run demo:deploy"
-  ],
-  "lernaHelperDeployFileMap": [
-    {
-      "basePath": "packages/conveyer/dist",
-      "dists": [
-        "demo/release/{{version}}/dist",
-        "demo/release/latest/dist"
-      ]
-    }
-  ]
+  "lernaHelperOptions": {
+    "deployFileMap": [
+      {
+        "basePath": "packages/conveyer/dist",
+        "dists": [
+          "demo/release/{{version}}/dist",
+          "demo/release/latest/dist"
+        ]
+      }
+    ],
+    "beforeReleaseScripts": [
+      "npm run packages:build",
+      "npm run demo:build",
+      "npm run demo:deploy"
+    ]
+  }
 }
