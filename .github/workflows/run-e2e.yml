@@ -22,3 +22,4 @@ jobs:
         with:
           path-to-lcov: ./packages/conveyer/coverage/lcov.info
           github-token: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ./packages/conveyer
