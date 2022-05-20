@@ -14,6 +14,7 @@ import Conveyer from "./Conveyer";
  * @property - Whether to prevent being selected. (default: true) <ko>셀렉트가 되는 것을 막을지 여부. (default: true) </ko>
  * @property - Whether to prevent click event when dragging. (default: false) <ko>드래그하면 클릭이벤트를 막을지 여부. (default: true)</ko>
  * @property - Whether to automatically initialize when an instance is created. If set to false, initialization is possible while calling the init method. (default: true) <ko>인스턴스를 생성할 때 자동으로 초기화할지 여부. false로 설정하면 init 메서드를 호출하면서 초기화가 가능하다. (default: true)</ko>
+ * @property - If this option is enabled on a Conveyer placed inside an egjs component that has the same scroll direction including the Conveyer itself. The parent component moves in the same direction after the Conveyer reaches the first/last scroll position. <ko>Conveyer 자신을 포함해서 동일한 스크롤 방향을 가진 egjs 컴포넌트 내부에 배치된 Conveyer에서 이 옵션을 활성화하면 Conveyer가 첫/마지막 스크롤 위치에 도달한 뒤부터 같은 방향으로 상위 컴포넌트가 움직인다.</ko>
  */
 export interface ConveyerOptions {
   horizontal?: boolean;
@@ -23,6 +24,7 @@ export interface ConveyerOptions {
   preventDefault?: boolean;
   preventClickOnDrag?: boolean;
   autoInit?: boolean;
+  nested?: boolean;
 }
 
 /**
