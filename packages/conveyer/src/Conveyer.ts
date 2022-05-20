@@ -412,7 +412,7 @@ class Conveyer extends Component<ConveyerEvents> {
           scrollAreaElement.scrollTop -= scroll;
         }
         if (options.nested && e.inputEvent.srcEvent) {
-          this._checkNestedMove(e, scrollAreaElement.scrollLeft);
+          this._checkNestedMove(e);
         }
       },
       "release": e => {
@@ -482,8 +482,8 @@ class Conveyer extends Component<ConveyerEvents> {
     }
     return scrollPos;
   }
-  private _checkNestedMove(e: any, scrollPos: number) {
-    if (scrollPos === 0 || scrollPos === this._scrollSize - this._size) {
+  private _checkNestedMove(e: any) {
+    if (this.isReachStart || this.isReachEnd) {
       e.inputEvent.srcEvent.__childrenAxesAlreadyChanged = false;
     }
   }
