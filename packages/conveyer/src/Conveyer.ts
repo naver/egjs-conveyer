@@ -368,6 +368,7 @@ class Conveyer extends Component<ConveyerEvents> {
     this._scrollAreaElement = el;
     let isDrag = false;
     const scrollAreaElement = this._scrollAreaElement;
+    const options = this._options;
     const axes = new Axes({
       scroll: {
         circular: true,
@@ -376,6 +377,7 @@ class Conveyer extends Component<ConveyerEvents> {
     }, {
       deceleration: 0.005,
       round: 1,
+      nested: options.nested,
     });
     let isHold = false;
 
@@ -388,7 +390,6 @@ class Conveyer extends Component<ConveyerEvents> {
         if (!inputEvent) {
           return;
         }
-        const options = this._options;
         if (options.preventDefault) {
           inputEvent.preventDefault();
         }
@@ -405,10 +406,13 @@ class Conveyer extends Component<ConveyerEvents> {
         isDrag = true;
         const scroll = e.delta.scroll;
 
-        if (this._options.horizontal) {
+        if (options.horizontal) {
           scrollAreaElement.scrollLeft -= scroll;
         } else {
           scrollAreaElement.scrollTop -= scroll;
+        }
+        if (options.nested && e.inputEvent.srcEvent) {
+          this._checkNestedMove(e);
         }
       },
       "release": e => {
@@ -424,9 +428,7 @@ class Conveyer extends Component<ConveyerEvents> {
     if (this._options.useDrag) {
       axes.connect(this._options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
         inputType: ["mouse"],
-        hammerManagerOptions: {
-          touchAction: "auto",
-        },
+        touchAction: "auto",
       }));
     }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
@@ -479,6 +481,11 @@ class Conveyer extends Component<ConveyerEvents> {
       scrollPos = itemPos + itemSize / 2 - size / 2 + padding;
     }
     return scrollPos;
+  }
+  private _checkNestedMove(e: any) {
+    if (this.isReachStart || this.isReachEnd) {
+      e.inputEvent.srcEvent.__childrenAxesAlreadyChanged = false;
+    }
   }
   private _onScroll = (e?: any) => {
     if (e) {

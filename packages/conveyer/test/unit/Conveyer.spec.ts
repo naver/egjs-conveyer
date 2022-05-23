@@ -1,7 +1,13 @@
-import { cleanup, dispatchDrag, sandbox, waitEvent, waitFor } from "./utils/utils";
+import {
+  cleanup,
+  dispatchDrag,
+  sandbox,
+  waitEvent,
+  waitFor,
+} from "./utils/utils";
 import * as sinon from "sinon";
 import Conveyer from "src";
-import { CONVEYER_HTML } from "./utils/consts";
+import { CONVEYER_HTML, NESTED_CONVEYER_HTML } from "./utils/consts";
 import * as browserModules from "../../src/browser";
 import { ImportMock } from "ts-mock-imports";
 
@@ -25,7 +31,9 @@ describe("test Conveyer", () => {
       conveyer = new Conveyer(".items");
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
+      expect(
+        document.querySelector<HTMLElement>(".items")!.style.touchAction
+      ).to.be.equal("auto");
     });
     it("should check if touchAction is auto if horizontal is false", () => {
       // Given, When
@@ -34,7 +42,9 @@ describe("test Conveyer", () => {
       });
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
+      expect(
+        document.querySelector<HTMLElement>(".items")!.style.touchAction
+      ).to.be.equal("auto");
     });
     it("should check if css is not set if not init", () => {
       // Given, When
@@ -43,14 +53,18 @@ describe("test Conveyer", () => {
       });
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.not.equal("auto");
+      expect(
+        document.querySelector<HTMLElement>(".items")!.style.touchAction
+      ).to.be.not.equal("auto");
     });
     it("should check if css is set if target is element", () => {
       // Given, When
       conveyer = new Conveyer(document.querySelector<HTMLElement>(".items")!);
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
+      expect(
+        document.querySelector<HTMLElement>(".items")!.style.touchAction
+      ).to.be.equal("auto");
     });
     it("should check if css is set if target is ref", () => {
       // Given, When
@@ -58,7 +72,9 @@ describe("test Conveyer", () => {
       conveyer = new Conveyer(ref);
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.style.touchAction).to.be.equal("auto");
+      expect(
+        document.querySelector<HTMLElement>(".items")!.style.touchAction
+      ).to.be.equal("auto");
     });
     it(`should check whether the width is corrected when scrollWidth is rounded up for IE`, () => {
       // Given
@@ -155,7 +171,9 @@ describe("test Conveyer", () => {
       conveyer = new Conveyer(".items");
 
       // When
-      conveyer.scrollTo(document.querySelector<HTMLElement>(".items")!.scrollWidth);
+      conveyer.scrollTo(
+        document.querySelector<HTMLElement>(".items")!.scrollWidth
+      );
       await waitFor(100);
 
       // Then
@@ -169,7 +187,9 @@ describe("test Conveyer", () => {
         // When
         const spy = sinon.spy();
         conveyer.subscribe("isReachEnd", spy);
-        conveyer.scrollTo(document.querySelector<HTMLElement>(".items")!.scrollWidth);
+        conveyer.scrollTo(
+          document.querySelector<HTMLElement>(".items")!.scrollWidth
+        );
         await waitFor(100);
 
         // Then
@@ -182,7 +202,9 @@ describe("test Conveyer", () => {
         // When
         const spy = sinon.spy();
         conveyer.subscribe("isReachStart", spy);
-        conveyer.scrollTo(document.querySelector<HTMLElement>(".items")!.scrollWidth);
+        conveyer.scrollTo(
+          document.querySelector<HTMLElement>(".items")!.scrollWidth
+        );
         await waitFor(100);
 
         // Then
@@ -218,7 +240,7 @@ describe("test Conveyer", () => {
         items,
         { left: 0, top: 0 },
         { left: -100, top: 0 },
-        { duration: 100, interval: 50 },
+        { duration: 100, interval: 50 }
       );
 
       await waitEvent(conveyer, "finishScroll");
@@ -244,7 +266,7 @@ describe("test Conveyer", () => {
         container,
         { left: 0, top: 0 },
         { left: -100, top: 0 },
-        { duration: 100, interval: 50 },
+        { duration: 100, interval: 50 }
       );
       await waitFor(100);
 
@@ -270,7 +292,7 @@ describe("test Conveyer", () => {
         items,
         { left: 0, top: 0 },
         { left: 0, top: 0 },
-        { duration: 0, interval: 50 },
+        { duration: 0, interval: 50 }
       );
       await waitFor(60);
 
@@ -288,7 +310,9 @@ describe("test Conveyer", () => {
       await waitFor(100);
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.scrollLeft).to.be.equals(100);
+      expect(
+        document.querySelector<HTMLElement>(".items")!.scrollLeft
+      ).to.be.equals(100);
       expect(conveyer.scrollPos).to.be.equals(100);
     });
     it("should check if scrollLeft is changed when scrollBy is called", async () => {
@@ -300,7 +324,9 @@ describe("test Conveyer", () => {
       await waitFor(100);
 
       // Then
-      expect(document.querySelector<HTMLElement>(".items")!.scrollLeft).to.be.equals(100);
+      expect(
+        document.querySelector<HTMLElement>(".items")!.scrollLeft
+      ).to.be.equals(100);
       expect(conveyer.scrollPos).to.be.equals(100);
     });
     it("should check if start and end are inside when scrollLeft is 0", async () => {
@@ -388,13 +414,18 @@ describe("test Conveyer", () => {
 
         // When
         // 200
-        conveyer.scrollIntoView(document.querySelector<HTMLElement>(".item:nth-child(2)")!, {
-          align: "start",
-        });
+        conveyer.scrollIntoView(
+          document.querySelector<HTMLElement>(".item:nth-child(2)")!,
+          {
+            align: "start",
+          }
+        );
         await waitFor(100);
 
         // Then
-        expect(document.querySelector<HTMLElement>(".items")!.scrollLeft).to.be.equals(200);
+        expect(
+          document.querySelector<HTMLElement>(".items")!.scrollLeft
+        ).to.be.equals(200);
         expect(conveyer.scrollPos).to.be.equals(200);
       });
       it("should check it target moves center when align is center", async () => {
@@ -404,9 +435,12 @@ describe("test Conveyer", () => {
         // When
         // viewport 600
         // 400
-        conveyer.scrollIntoView(document.querySelector<HTMLElement>(".item:nth-child(3)")!, {
-          align: "center",
-        });
+        conveyer.scrollIntoView(
+          document.querySelector<HTMLElement>(".item:nth-child(3)")!,
+          {
+            align: "center",
+          }
+        );
         await waitFor(100);
 
         // Then
@@ -422,9 +456,12 @@ describe("test Conveyer", () => {
         // When
         // viewport 600
         // 1200
-        conveyer.scrollIntoView(document.querySelector<HTMLElement>(".item:nth-child(7)")!, {
-          align: "end",
-        });
+        conveyer.scrollIntoView(
+          document.querySelector<HTMLElement>(".item:nth-child(7)")!,
+          {
+            align: "end",
+          }
+        );
         await waitFor(100);
 
         // Then
@@ -532,7 +569,9 @@ describe("test Conveyer", () => {
       const spy = sinon.spy();
       conveyer.on("reachEnd", spy);
       conveyer.init();
-      conveyer.scrollTo(document.querySelector<HTMLElement>(".items")!.scrollWidth);
+      conveyer.scrollTo(
+        document.querySelector<HTMLElement>(".items")!.scrollWidth
+      );
       await waitFor(100);
 
       // Then
@@ -541,7 +580,9 @@ describe("test Conveyer", () => {
     it("should check if leaveEnd event triggered, isReachEnd is false", async () => {
       // Given
       conveyer = new Conveyer(".items");
-      conveyer.scrollTo(document.querySelector<HTMLElement>(".items")!.scrollWidth);
+      conveyer.scrollTo(
+        document.querySelector<HTMLElement>(".items")!.scrollWidth
+      );
       await waitFor(100);
 
       // When
@@ -553,6 +594,58 @@ describe("test Conveyer", () => {
 
       // Then
       expect(spy.callCount).to.be.equals(1);
+    });
+  });
+  describe("Options", () => {
+    describe("nested", () => {
+      let childConveyer!: Conveyer;
+
+      beforeEach(() => {
+        container.innerHTML = NESTED_CONVEYER_HTML;
+        conveyer = new Conveyer("#parent");
+      });
+
+      afterEach(() => {
+        childConveyer?.destroy();
+      });
+
+      it("should check if parent Conveyer is moving when child Conveyer reaches end and nested is true", async () => {
+        // Given
+        childConveyer = new Conveyer("#child", {
+          nested: true,
+        });
+        const nestedItem = document.querySelector<HTMLElement>("#child")!;
+
+        // When
+        await dispatchDrag(
+          nestedItem,
+          { left: 0, top: 0 },
+          { left: -4000, top: 0 },
+          { duration: 200, interval: 50 }
+        );
+
+        // Then
+        expect(conveyer.scrollPos).to.be.equals(1000);
+        expect(childConveyer.scrollPos).to.be.equals(1000);
+      });
+
+      it("should check if parent Conveyer is not moving when nested is false by default", async () => {
+        // Given
+        childConveyer = new Conveyer("#child");
+        const nestedItem = document.querySelector<HTMLElement>("#child")!;
+
+        // When
+        await dispatchDrag(
+          nestedItem,
+          { left: 0, top: 0 },
+          { left: -4000, top: 0 },
+          { duration: 200, interval: 50 }
+        );
+
+        // Then
+        expect(conveyer.scrollPos).to.be.equals(0);
+        expect(childConveyer.scrollPos).to.be.equals(1000);
+      });
     });
   });
 });

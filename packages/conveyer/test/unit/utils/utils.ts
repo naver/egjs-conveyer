@@ -54,6 +54,7 @@ export function createElement(text: string) {
 
 export function getMouseInit(startRect: { left: number, top: number}, offsetRect: { left: number, top: number}) {
   return {
+    buttons: 1,
     screenX: startRect.left + offsetRect.left,
     screenY: startRect.top + offsetRect.top,
     clientX: startRect.left + offsetRect.left,
