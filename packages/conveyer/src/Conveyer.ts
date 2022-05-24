@@ -478,7 +478,7 @@ class Conveyer extends Component<ConveyerEvents> {
     } else if (align === "end") {
       scrollPos = itemPos + itemSize - size + padding;
     } else if (align === "center") {
-      scrollPos = itemPos + itemSize / 2 - size / 2 + padding;
+      scrollPos = Math.floor(itemPos + itemSize / 2 - size / 2 + padding);
     }
     return scrollPos;
   }
