@@ -99,3 +99,16 @@ export async function dispatchMouseMove(target: HTMLElement, moustInit: any, tim
     target.dispatchEvent(mousemove);
   }, time);
 }
+
+export async function dispatchMouseWheel(
+  target: HTMLElement,
+  deltaY: number,
+  options: { duration: number; interval: number }
+) {
+  const count = Math.floor(options.duration / options.interval);
+  for (let i = 1; i <= count; ++i) {
+    const wheelEvent = new WheelEvent("wheel", { deltaY: deltaY / count });
+    target.dispatchEvent(wheelEvent);
+    await waitFor(options.interval);
+  }
+}

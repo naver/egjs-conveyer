@@ -1,6 +1,7 @@
 import {
   cleanup,
   dispatchDrag,
+  dispatchMouseWheel,
   sandbox,
   waitEvent,
   waitFor,
@@ -597,6 +598,28 @@ describe("test Conveyer", () => {
     });
   });
   describe("Options", () => {
+    describe("useWheel", () => {
+      [true, false].forEach(useWheel => {
+        it(`should check if the target is moved by the mouse wheel only when useWheel is true (useWheel: ${useWheel})`, async () => {
+          // Given
+          conveyer = new Conveyer(".items", {
+            useWheel,
+          });
+
+          // When
+          await dispatchMouseWheel(
+            document.querySelector<HTMLElement>(".items")!,
+            600,
+            { duration: 200, interval: 10 }
+          );
+          await waitFor(200); // wait until release animation is finished
+
+          // Then
+          expect(conveyer.scrollPos).to.be.equals(useWheel ? 600 : 0);
+        });
+      });
+    });
+
     describe("nested", () => {
       let childConveyer!: Conveyer;
 

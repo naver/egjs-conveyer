@@ -10,6 +10,7 @@ import Conveyer from "./Conveyer";
  * @property - scroll direction. (true: Horizontal Scroll, false: Vertical Scroll)  (default: true) <ko>스크롤 방향. (true: 가로 스크롤, false: 세로 스크롤) (default: true)</ko>
  * @property - selector to find items inside. (default: "") <ko>내부의 아이템들을 찾기 위한 selector. (default: "")</ko>
  * @property - Whether to use drag (default: true) <ko> 드래그를 사용할지 여부. (default: true)</ko>
+ * @property - Whether to use the mouse wheel input for same scroll direction (default: true) <ko>스크롤 방향으로 마우스 휠 입력을 사용할지 여부. (default: true)</ko>
  * @property - The maximum amount of time the scroll event does not fire for the finishScroll event to be triggered. (default: 100) <ko> finishScroll 이벤트가 발생되기 위한 scroll 이벤트가 발생하지 않는 최대 시간. (default: 100)</ko>
  * @property - Whether to prevent being selected. (default: true) <ko>셀렉트가 되는 것을 막을지 여부. (default: true) </ko>
  * @property - Whether to prevent click event when dragging. (default: false) <ko>드래그하면 클릭이벤트를 막을지 여부. (default: true)</ko>
@@ -20,6 +21,7 @@ export interface ConveyerOptions {
   horizontal?: boolean;
   itemSelector?: string;
   useDrag?: boolean;
+  useWheel?: boolean;
   scrollDebounce?: number;
   preventDefault?: boolean;
   preventClickOnDrag?: boolean;
