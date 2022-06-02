@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/*"
+    "packages/*",
+    "packages/ngx-conveyer/projects/ngx-conveyer"
   ],
   "version": "independent",
   "lernaHelperOptions": {
