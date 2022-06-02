@@ -1,0 +1,189 @@
+---
+title: Quick Start
+id: quick-start
+slug: /quick-start
+custom_edit_url: null
+---
+
+Native Scroll is the most basic and best scrolling function that a browser can support.
+Conveyer adds Drag gestures to your Native Scroll.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<Tabs
+  groupId="cfc"
+  defaultValue="js"
+  values={[
+    { label: "JavaScript", value: "js" },
+    { label: "React", value: "react" },
+    { label: "Vue@3", value: "vue" },
+    { label: "Vue@2", value: "vue2" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" }
+  ]}>
+  <TabItem value="js">
+
+Add the script/CSS to the page.
+```html
+<!-- https://naver.github.io/egjs-conveyer/release/latest/dist/conveyer.min.js -->
+<script src="https://unpkg.com/conveyer/dist/conveyer.min.js" crossorigin="anonymous"></script>
+```
+
+Or, you can rather import them if you're using a bundler like [webpack](https://webpack.js.org/) or [rollup](https://rollupjs.org/guide/en/).
+```js
+import Conveyer from "@egjs/conveyer";
+```
+
+Then, add some basic HTML layout of Conveyer to your page.
+
+```html
+<div class="items">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+Then initialize Conveyer instance with JavaScript after.
+
+```js
+import Conveyer from "@egjs/react-conveyer";
+
+const ig = new Conveyer(".items");
+```
+
+  </TabItem>
+  <TabItem value="react">
+
+You can import & use Conveyer as a React Component.
+
+```jsx title="SomeComponent.jsx"
+import * as React from "@egjs/react";
+import { useConveyer } from "@egjs/@egjs/react-conveyer";
+
+export default () => {
+  const ref = useRef();
+  useConveyer(ref);
+
+  return <div className="items" ref={ref}>
+    <div className="item">1</div>
+    <div className="item">2</div>
+    <div className="item">3</div>
+  </div>;
+}
+```
+
+  </TabItem>
+  <TabItem value="vue">
+You can import & use Conveyer as a Vue Component.
+
+```html title="<template>"
+<div class="items" ref="ref">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+```js title="<script>"
+import { useConveyer } from "@egjs/vue-conveyer";
+
+export default {
+  setup() {
+    const { ref } = useConveyer();
+
+    return {
+      ref,
+    };
+  },
+};
+```
+
+  </TabItem>
+  <TabItem value="vue2">
+<b>@vue/composition-api</b> is required to use vue2-conveyer.
+
+```js
+import Vue from "vue";
+import VueCompositionAPI from "@vue/composition-api";
+
+Vue.use(VueCompositionAPI);
+```
+You can import & use Conveyer as a Vue Component.
+
+
+```html title="<template>"
+<div class="items" ref="ref">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+```js title="<script>"
+import { useConveyer } from "@egjs/vue2-conveyer";
+
+export default {
+  setup() {
+    const { ref } = useConveyer();
+
+    return {
+      ref,
+    };
+  },
+};
+```
+  </TabItem>
+  <TabItem value="angular">
+
+You can add `NgxConveyerModule` at `imports` of your app module to use Conveyer.
+
+```js title="app.module.ts"
+import { NgxConveyerModule } from '@egjs/ngx-conveyer';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxConveyerModule /* Add in imports */
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { } /* Your app */
+```
+
+```html title="app.component.html"
+<div class="items" [ngxConveyer]="{ horizontal: true }" #conveyer="ngxConveyer">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+  </TabItem>
+  <TabItem value="svelte">
+
+You can import `Conveyer` from the "svelte-conveyer" package.
+
+```jsx title="App.svelte"
+<script lang="ts">
+  import { useConveyer } from "@egjs/svelte-conveyer";
+
+  const { ref } = useConveyer();
+</script>
+<div class="items" use:ref>
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+
+  </TabItem>
+</Tabs>

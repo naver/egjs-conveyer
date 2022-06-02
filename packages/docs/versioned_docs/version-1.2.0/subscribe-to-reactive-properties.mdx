@@ -1,0 +1,186 @@
+---
+title: Subscribe to Reactive Properties
+id: subscribe-to-reactive-properties
+slug: /subscribe-to-reactive-properties
+custom_edit_url: null
+---
+
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+You can subscribe by detecting only changes in [properties](http://localhost:3000/docs/api/Conveyer#properties) instead of events.
+
+You can use reactive properties as a hook.
+
+<Tabs
+  groupId="cfc"
+  defaultValue="js"
+  values={[
+    { label: "JavaScript", value: "js" },
+    { label: "React", value: "react" },
+    { label: "Vue@2", value: "vue2" },
+    { label: "Vue@3", value: "vue" },
+    { label: "Angular", value: "angular" },
+    { label: "Svelte", value: "svelte" }
+  ]}>
+  <TabItem value="js">
+
+```js
+conveyer.subscribe("isReachStart", value => {
+  console.log(value);
+});
+```
+
+  </TabItem>
+  <TabItem value="react">
+
+```jsx
+import * as React from "react";
+import { useConveyer } from "@egjs/react-conveyer";
+
+export default () => {
+  const ref = useRef();
+  const { isReachStart, isReachEnd } = useConveyer(ref);
+
+  return <div className="container">
+    <div className="buttons">
+      <button className="prev" disabled={isReachStart}>Prev</button>
+      <button className="next" disabled={isReachEnd}>Next</button>
+    </div>
+    <div className="items" ref={ref}>
+      <div className="item">1</div>
+      <div className="item">2</div>
+      <div className="item">3</div>
+    </div>
+  </div>;
+};
+```
+  </TabItem>
+  <TabItem value="vue">
+
+```html title="<template>"
+<div class="container">
+  <button id="prev" :disabled="isReachStart">prev</button>
+  <button id="next" :disabled="isReachEnd">next</button>
+  <div class="items" ref="ref">
+    <div class="item"><a href="#1">1</a></div>
+    <div class="item"><a href="#2">2</a></div>
+    <div class="item"><a href="#3">3</a></div>
+  </div>
+</div>
+```
+
+```js title="<script>"
+import { useConveyer } from "@egjs/vue-conveyer";
+
+export default {
+  setup() {
+      const { ref, isReachStart, isReachEnd } = useConveyer();
+      return {
+        ref,
+        scrollIntoView,
+        isReachStart,
+        isReachEnd,
+      };
+    },
+  });
+};
+```
+  </TabItem>
+  <TabItem value="vue2">
+
+```html title="<template>"
+<div class="container">
+  <button id="prev" :disabled="isReachStart">prev</button>
+  <button id="next" :disabled="isReachEnd">next</button>
+  <div class="items" ref="ref">
+    <div class="item"><a href="#1">1</a></div>
+    <div class="item"><a href="#2">2</a></div>
+    <div class="item"><a href="#3">3</a></div>
+  </div>
+</div>
+```
+
+```js title="<script>"
+import { useConveyer } from "@egjs/vue2-conveyer";
+
+export default {
+  setup() {
+      const { ref, isReachStart, isReachEnd } = useConveyer();
+      return {
+        ref,
+        scrollIntoView,
+        isReachStart,
+        isReachEnd,
+      };
+    },
+  });
+};
+```
+  </TabItem>
+  <TabItem value="angular">
+
+There're few ways to interact with child component in Angular.
+See [Component Interaction](https://angular.io/guide/component-interaction#parent-interacts-with-child-via-local-variable) page from Angular official document, and use that to interact with Conveyer.
+
+
+```html title="app.component.html"
+<div class="container">
+  <button id="prev" [disabled]="conveyer?.isReachStart">prev</button>
+  <button id="next" [disabled]="conveyer?.isReachEnd">next</button>
+  <div
+    class="items"
+    ngxConveyer
+    #conveyer="ngxConveyer"
+    >
+    <div class="item"><a href="#1">1</a></div>
+    <div class="item"><a href="#2">2</a></div>
+    <div class="item"><a href="#3">3</a></div>
+    <div class="item"><a href="#4">4</a></div>
+    <div class="item"><a href="#5">5</a></div>
+    <div class="item"><a href="#6">6</a></div>
+    <div class="item"><a href="#7">7</a></div>
+    <div class="item"><a href="#8">8</a></div>
+    <div class="item"><a href="#9">9</a></div>
+    <div class="item"><a href="#10">10</a></div>
+    <div class="item"><a href="#11">11</a></div>
+    <div class="item"><a href="#12">12</a></div>
+  </div>
+</div>
+```
+
+
+  </TabItem>
+  <TabItem value="svelte">
+
+You need to use $-prefix to read reactiver properties in svelte.
+
+
+https://svelte.dev/docs#component-format-script-4-prefix-stores-with-$-to-access-their-values
+
+```jsx
+<script lang="ts">
+  import { useConveyer } from "@egjs/svelte-conveyer";
+
+  const { ref, isReachStart, isReachEnd } = useConveyer();
+
+</script>
+<div class="container">
+  <div class="buttons">
+    <button class="prev" disabled={$isReachStart}>Prev</button>
+    <button class="next" disabled={$isReachEnd}>Next</button>
+  </div>
+  <div class="items" use:ref>
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+</div>
+```
+
+  </TabItem>
+</Tabs>
+
+See all available events at <Link to={useBaseUrl("docs/api/Conveyer#events")}>Conveyer#events</Link>.

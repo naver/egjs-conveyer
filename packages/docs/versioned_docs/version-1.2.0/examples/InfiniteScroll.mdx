@@ -1,0 +1,18 @@
+---
+title: Infinite Scroll
+custom_edit_url: null
+---
+
+
+Infinite Scroll with Conveyer.
+The conveyer can be used in combination with other components.
+
+
+* The InfiniteScroll module uses [InfiniteGrid](https://github.com/naver/egjs-infinitegrid).
+* If it is combined with other components, it is difficult to get a ref. You can initialize it by setting [autoInit](/docs/api/ConveyerOptions) to false and setting the ref directly.
+
+import ConveyerCodeTabs from "@site/docs/codes/ConveyerCodeTabs";
+import InfiniteScroll from "@site/src/examples/InfiniteScroll";
+
+<InfiniteScroll />
+<ConveyerCodeTabs folder="InfiniteScroll" reactCode={require("!!raw-loader!@site/src/examples/InfiniteScroll.tsx").default} />

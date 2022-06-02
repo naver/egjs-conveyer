@@ -1,0 +1,15 @@
+import Conveyer from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".items");
+
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+// subscribe reactive properties
+conveyer.subscribe("isReachStart", (isReachStart) => {
+  prev.disabled = isReachStart;
+});
+
+conveyer.subscribe("isReachEnd", (isReachEnd) => {
+  next.disabled = isReachEnd;
+});
