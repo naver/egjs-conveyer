@@ -6,7 +6,7 @@
     "update-angular-consts": "npm run build --prefix packages/conveyer && node ./config/update-type-consts.js",
     "packages": "npm run packages:update && npm run packages:build && npm run packages:publish",
     "packages:update": "lerna-helper version && npm run update-angular-consts",
-    "packages:build": "lerna run build --ignore @egjs/ngx-conveyer --ignore docs",
+    "packages:build": "npm run build --prefix packages/conveyer && lerna run build --ignore @egjs/conveyer --ignore @egjs/ngx-conveyer --ignore docs --stream",
     "packages:publish": "lerna-helper publish --ignore @egjs/ngx-conveyer --commit 'chore: update packages versions'",
     "changelog": "lerna-helper changelog --type all --base @egjs/conveyer",
     "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
@@ -14,7 +14,7 @@
     "demo:build": "npm run docs:build && npm run docs:version && npm run build --prefix packages/docs",
     "demo:deploy": "lerna-helper deploy --base @egjs/conveyer --remote upstream",
     "release": "lerna-helper release --base @egjs/conveyer --remote upstream --branch main",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap --hoist react --hoist react-dom"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,17 @@
     "egjs-jsdoc-template": "^1.4.4",
     "jsdoc-to-mdx": "^1.1.0",
     "lerna": "^4.0.0",
-    "typescript": "~4.1"
+    "typescript": "~4.1",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "overrides": {
+    "@daybrush/utils": "^1.7.0",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

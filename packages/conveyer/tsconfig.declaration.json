@@ -1,11 +1,12 @@
 {
   "extends": "./tsconfig",
   "compilerOptions": {
-    "removeComments": true,
+    "removeComments": false,
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationDir": "declaration",
     "strictNullChecks": false,
+    "para"
   },
   "include": [
     "./src/**/*.ts",

@@ -62,7 +62,7 @@ export function useReactive<
 
   const reactiveEvents = (reactiveProps.events || []);
   const events = reactiveEvents.reduce((result, name) => {
-    result[camelize(`on ${name}`)] = (callback: (...args: any[]) => void) => {
+    result[camelize(`on ${name as any}`)] = (callback: (...args: any[]) => void) => {
       onMount(() => {
         reactiveProps.on && reactiveProps.on(instanceRef.current!, name as any, callback as any);
       });

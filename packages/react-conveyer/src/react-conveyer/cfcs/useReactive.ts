@@ -67,7 +67,7 @@ export function useReactive<
   const reactiveEvents = (reactiveProps.events || []);
 
   reactiveEvents.forEach(name => {
-    result[camelize(`on ${name}`)] = (callback: (e: any) => void, dependencies?: readonly any[]) => {
+    result[camelize(`on ${name as any}`)] = (callback: (e: any) => void, dependencies?: readonly any[]) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       useEffect(() => {
         reactiveProps.on && reactiveProps.on(instanceRef.current!, name as any, callback as any);
