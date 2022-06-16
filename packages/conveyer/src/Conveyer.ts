@@ -3,7 +3,7 @@
  * Copyright (c) 2022-present NAVER Corp.
  * MIT license
  */
-import Axes, { PanInput } from "@egjs/axes";
+import Axes, { PanInput, WheelInput } from "@egjs/axes";
 import Component from "@egjs/component";
 import { IS_IE } from "./browser";
 import { ReactiveSubscribe, Reactive, Ref } from "./cfcs";
@@ -108,6 +108,7 @@ class Conveyer extends Component<ConveyerEvents> {
     this._options = {
       horizontal: true,
       useDrag: true,
+      useSideWheel: true,
       autoInit: true,
       scrollDebounce: 100,
       ...options,
@@ -385,13 +386,13 @@ class Conveyer extends Component<ConveyerEvents> {
       "hold": e => {
         isHold = true;
         isDrag = false;
-        const inputEvent = e.inputEvent.srcEvent;
+        const nativeEvent = e.inputEvent.srcEvent ? e.inputEvent.srcEvent : e.inputEvent;
 
-        if (!inputEvent) {
+        if (!nativeEvent) {
           return;
         }
         if (options.preventDefault) {
-          inputEvent.preventDefault();
+          nativeEvent.preventDefault();
         }
         if (options.preventClickOnDrag) {
           this._disableClick();
@@ -411,7 +412,7 @@ class Conveyer extends Component<ConveyerEvents> {
         } else {
           scrollAreaElement.scrollTop -= scroll;
         }
-        if (options.nested && e.inputEvent.srcEvent) {
+        if (options.nested) {
           this._checkNestedMove(e);
         }
       },
@@ -425,10 +426,15 @@ class Conveyer extends Component<ConveyerEvents> {
     });
 
     this._axes = axes;
-    if (this._options.useDrag) {
-      axes.connect(this._options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
+    if (options.useDrag) {
+      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
         inputType: ["mouse"],
         touchAction: "auto",
+      }));
+    }
+    if (options.useSideWheel) {
+      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new WheelInput(scrollAreaElement, {
+        scale: 30,
       }));
     }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
@@ -484,7 +490,8 @@ class Conveyer extends Component<ConveyerEvents> {
   }
   private _checkNestedMove(e: any) {
     if (this.isReachStart || this.isReachEnd) {
-      e.inputEvent.srcEvent.__childrenAxesAlreadyChanged = false;
+      const nativeEvent = e.inputEvent.srcEvent ? e.inputEvent.srcEvent : e.inputEvent;
+      nativeEvent.__childrenAxesAlreadyChanged = false;
     }
   }
   private _onScroll = (e?: any) => {
