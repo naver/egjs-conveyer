@@ -439,7 +439,7 @@ class Conveyer extends Component<ConveyerEvents> {
     }
     if (options.useSideWheel) {
       axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new WheelInput(scrollAreaElement, {
-        scale: 30,
+        useNormalized: false,
       }));
     }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
