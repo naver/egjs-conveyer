@@ -3,7 +3,7 @@
  * Copyright (c) 2022-present NAVER Corp.
  * MIT license
  */
-import Axes, { PanInput, WheelInput } from "@egjs/axes";
+import Axes, { OnChange, OnHold, PanInput, WheelInput } from "@egjs/axes";
 import Component from "@egjs/component";
 import { IS_IE } from "./browser";
 import { ReactiveSubscribe, Reactive, Ref } from "./cfcs";
@@ -372,13 +372,14 @@ class Conveyer extends Component<ConveyerEvents> {
     const options = this._options;
     const axes = new Axes({
       scroll: {
-        circular: true,
-        range: [-1000, 1000],
+        range: [-Infinity, Infinity],
       },
     }, {
       deceleration: 0.005,
       round: 1,
       nested: options.nested,
+    }, {
+      scroll: 0,
     });
     let isHold = false;
 
@@ -386,7 +387,7 @@ class Conveyer extends Component<ConveyerEvents> {
       "hold": e => {
         isHold = true;
         isDrag = false;
-        const nativeEvent = e.inputEvent.srcEvent ? e.inputEvent.srcEvent : e.inputEvent;
+        const nativeEvent = this._getNativeEvent(e);
 
         if (!nativeEvent) {
           return;
@@ -399,10 +400,14 @@ class Conveyer extends Component<ConveyerEvents> {
         }
       },
       "change": e => {
-        if (e.inputEvent && !isHold) {
+        const nativeEvent = this._getNativeEvent(e);
+        if (nativeEvent && !isHold) {
           return;
         }
-        this._isDragScroll = !!e.inputEvent;
+        if (options.useSideWheel && this._isMixedWheel(nativeEvent)) {
+          return;
+        }
+        this._isDragScroll = !!nativeEvent && nativeEvent.type !== "wheel";
         this._isAnimation = !!isHold;
         isDrag = true;
         const scroll = e.delta.scroll;
@@ -413,7 +418,7 @@ class Conveyer extends Component<ConveyerEvents> {
           scrollAreaElement.scrollTop -= scroll;
         }
         if (options.nested) {
-          this._checkNestedMove(e);
+          this._checkNestedMove(nativeEvent);
         }
       },
       "release": e => {
@@ -434,7 +439,7 @@ class Conveyer extends Component<ConveyerEvents> {
     }
     if (options.useSideWheel) {
       axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new WheelInput(scrollAreaElement, {
-        scale: 30,
+        scale: -30,
       }));
     }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
@@ -471,6 +476,9 @@ class Conveyer extends Component<ConveyerEvents> {
       size: horizontal ? element.offsetWidth : element.offsetHeight,
     };
   }
+  private _getNativeEvent(e: OnHold | OnChange) {
+    return e?.inputEvent?.srcEvent ? e.inputEvent?.srcEvent : e?.inputEvent;
+  }
   private _getNextScrollPos(item: ConveyerItem, options: ScrollIntoViewOptions) {
     const size = this._size;
     const align = options.align || "start";
@@ -488,9 +496,11 @@ class Conveyer extends Component<ConveyerEvents> {
     }
     return scrollPos;
   }
-  private _checkNestedMove(e: any) {
+  private _isMixedWheel(nativeEvent: any) {
+    return nativeEvent?.type === "wheel" && nativeEvent?.deltaX && nativeEvent?.deltaY;
+  }
+  private _checkNestedMove(nativeEvent: any) {
     if (this.isReachStart || this.isReachEnd) {
-      const nativeEvent = e.inputEvent.srcEvent ? e.inputEvent.srcEvent : e.inputEvent;
       nativeEvent.__childrenAxesAlreadyChanged = false;
     }
   }
