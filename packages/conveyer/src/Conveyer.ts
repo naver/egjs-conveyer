@@ -3,7 +3,7 @@
  * Copyright (c) 2022-present NAVER Corp.
  * MIT license
  */
-import Axes, { PanInput } from "@egjs/axes";
+import Axes, { OnChange, OnHold, PanInput, WheelInput } from "@egjs/axes";
 import Component from "@egjs/component";
 import { IS_IE } from "./browser";
 import { ReactiveSubscribe, Reactive, Ref } from "./cfcs";
@@ -108,6 +108,7 @@ class Conveyer extends Component<ConveyerEvents> {
     this._options = {
       horizontal: true,
       useDrag: true,
+      useSideWheel: true,
       autoInit: true,
       scrollDebounce: 100,
       ...options,
@@ -371,13 +372,14 @@ class Conveyer extends Component<ConveyerEvents> {
     const options = this._options;
     const axes = new Axes({
       scroll: {
-        circular: true,
-        range: [-1000, 1000],
+        range: [-Infinity, Infinity],
       },
     }, {
       deceleration: 0.005,
       round: 1,
       nested: options.nested,
+    }, {
+      scroll: 0,
     });
     let isHold = false;
 
@@ -385,23 +387,27 @@ class Conveyer extends Component<ConveyerEvents> {
       "hold": e => {
         isHold = true;
         isDrag = false;
-        const inputEvent = e.inputEvent.srcEvent;
+        const nativeEvent = this._getNativeEvent(e);
 
-        if (!inputEvent) {
+        if (!nativeEvent) {
           return;
         }
         if (options.preventDefault) {
-          inputEvent.preventDefault();
+          nativeEvent.preventDefault();
         }
         if (options.preventClickOnDrag) {
           this._disableClick();
         }
       },
       "change": e => {
-        if (e.inputEvent && !isHold) {
+        const nativeEvent = this._getNativeEvent(e);
+        if (nativeEvent && !isHold) {
           return;
         }
-        this._isDragScroll = !!e.inputEvent;
+        if (options.useSideWheel && this._isMixedWheel(nativeEvent)) {
+          return;
+        }
+        this._isDragScroll = !!nativeEvent && nativeEvent.type !== "wheel";
         this._isAnimation = !!isHold;
         isDrag = true;
         const scroll = e.delta.scroll;
@@ -411,8 +417,8 @@ class Conveyer extends Component<ConveyerEvents> {
         } else {
           scrollAreaElement.scrollTop -= scroll;
         }
-        if (options.nested && e.inputEvent.srcEvent) {
-          this._checkNestedMove(e);
+        if (options.nested) {
+          this._checkNestedMove(nativeEvent);
         }
       },
       "release": e => {
@@ -425,10 +431,15 @@ class Conveyer extends Component<ConveyerEvents> {
     });
 
     this._axes = axes;
-    if (this._options.useDrag) {
-      axes.connect(this._options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
+    if (options.useDrag) {
+      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
         inputType: ["mouse"],
         touchAction: "auto",
+      }));
+    }
+    if (options.useSideWheel) {
+      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new WheelInput(scrollAreaElement, {
+        useNormalized: false,
       }));
     }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
@@ -465,6 +476,9 @@ class Conveyer extends Component<ConveyerEvents> {
       size: horizontal ? element.offsetWidth : element.offsetHeight,
     };
   }
+  private _getNativeEvent(e: OnHold | OnChange) {
+    return e?.inputEvent?.srcEvent ? e.inputEvent?.srcEvent : e?.inputEvent;
+  }
   private _getNextScrollPos(item: ConveyerItem, options: ScrollIntoViewOptions) {
     const size = this._size;
     const align = options.align || "start";
@@ -482,9 +496,12 @@ class Conveyer extends Component<ConveyerEvents> {
     }
     return scrollPos;
   }
-  private _checkNestedMove(e: any) {
+  private _isMixedWheel(nativeEvent: any) {
+    return !!nativeEvent && nativeEvent?.type === "wheel" && nativeEvent?.deltaX && nativeEvent?.deltaY;
+  }
+  private _checkNestedMove(nativeEvent: any) {
     if (this.isReachStart || this.isReachEnd) {
-      e.inputEvent.srcEvent.__childrenAxesAlreadyChanged = false;
+      nativeEvent.__childrenAxesAlreadyChanged = false;
     }
   }
   private _onScroll = (e?: any) => {
@@ -524,7 +541,7 @@ class Conveyer extends Component<ConveyerEvents> {
        * @event Conveyer#reachEnd
        */
       this.trigger("reachEnd");
-    } else if (pos < scrollSize - size && this.isReachEnd !== false) {
+    } else if (!(scrollSize - size - pos < 1) && this.isReachEnd !== false) {
       this._isReachEnd = false;
       /**
        * This event is fired when scroll leave end.

@@ -1,0 +1,74 @@
+<style>
+  body {
+    background: #F0F3FB;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .items {
+    position: relative;
+    overflow: scroll hidden;
+    width: 100%;
+    white-space: nowrap;
+    overscroll-behavior: none;
+    user-select: none;
+  }
+  .container {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+  .item {
+    display: inline-block;
+    overflow: hidden;
+    margin: 18px 12px 30px 0;
+    width: 271px;
+    height: 244px;
+    line-height: 244px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+  }
+</style>
+
+<body>
+  <div class="items">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="nested item">
+      <div class="item">3.1</div>
+      <div class="item">3.2</div>
+      <div class="item">3.3</div>
+      <div class="item">3.4</div>
+      <div class="item">3.5</div>
+    </div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item">10</div>
+    <div class="item">11</div>
+    <div class="item">12</div>
+  </div>
+</body>
+<script src="../../dist/conveyer.js"></script>
+<script>
+  const conveyer = new Conveyer(".items", {
+    preventClickOnDrag: true,
+    useSideWheel: true,
+  });
+  conveyer.init();
+  const nested = new Conveyer(".nested", {
+    preventClickOnDrag: true,
+    nested: true,
+    useSideWheel: true,
+  });
+  nested.init();
+</script>

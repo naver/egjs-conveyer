@@ -6,7 +6,6 @@
     "emitDeclarationOnly": true,
     "declarationDir": "declaration",
     "strictNullChecks": false,
-    "para"
   },
   "include": [
     "./src/**/*.ts",

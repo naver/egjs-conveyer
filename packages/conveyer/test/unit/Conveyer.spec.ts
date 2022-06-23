@@ -1,13 +1,18 @@
 import {
   cleanup,
   dispatchDrag,
+  dispatchWheel,
   sandbox,
   waitEvent,
   waitFor,
 } from "./utils/utils";
 import * as sinon from "sinon";
 import Conveyer from "src";
-import { CONVEYER_HTML, NESTED_CONVEYER_HTML } from "./utils/consts";
+import {
+  HORIZONTAL_CONVEYER,
+  VERTICAL_CONVEYER,
+  NESTED_CONVEYER,
+} from "./utils/consts";
 import * as browserModules from "../../src/browser";
 import { ImportMock } from "ts-mock-imports";
 
@@ -18,7 +23,7 @@ describe("test Conveyer", () => {
   beforeEach(() => {
     container = sandbox("")!;
 
-    container.innerHTML = CONVEYER_HTML;
+    container.innerHTML = HORIZONTAL_CONVEYER;
   });
 
   afterEach(() => {
@@ -597,11 +602,38 @@ describe("test Conveyer", () => {
     });
   });
   describe("Options", () => {
+    describe("useSideWheel", () => {
+      ["vertical", "horizontal"].forEach((direction) => {
+        [true, false].forEach((useSideWheel) => {
+          it(`should check if the ${direction} conveyer is moved by the side wheel only when useSideWheel is true (useSideWheel: ${useSideWheel})`, async () => {
+            // Given
+            container.innerHTML = direction === "horizontal" ? HORIZONTAL_CONVEYER : VERTICAL_CONVEYER;
+            conveyer = new Conveyer(".items", {
+              horizontal: direction === "horizontal",
+              useSideWheel,
+            });
+
+            // When
+            await dispatchWheel(
+              document.querySelector<HTMLElement>(".items")!,
+              direction === "vertical" ? "horizontal" : "vertical", // opposite side
+              600,
+              { duration: 200, interval: 10 }
+            );
+            await waitFor(200); // wait until release animation is finished
+
+            // Then
+            expect(conveyer.scrollPos).to.be.equals(useSideWheel ? 600 : 0);
+          });
+        });
+      });
+    });
+
     describe("nested", () => {
       let childConveyer!: Conveyer;
 
       beforeEach(() => {
-        container.innerHTML = NESTED_CONVEYER_HTML;
+        container.innerHTML = NESTED_CONVEYER;
         conveyer = new Conveyer("#parent");
       });
 

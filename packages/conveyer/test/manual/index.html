@@ -75,6 +75,7 @@
 <script>
   const conveyer = new Conveyer(".items", {
     preventClickOnDrag: true,
+    useSideWheel: true,
   });
 
   conveyer.on("reachStart", () => {

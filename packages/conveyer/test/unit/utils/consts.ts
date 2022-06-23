@@ -1,4 +1,4 @@
-export const CONVEYER_STYLE = `<style>
+export const HORIZONTAL_CONVEYER_STYLE = `<style>
   html, body {
     margin: 0;
     padding: 0;
@@ -19,7 +19,28 @@ export const CONVEYER_STYLE = `<style>
   }
 </style>`;
 
-export const CONVEYER_HTML = `${CONVEYER_STYLE}
+export const VERTICAL_CONVEYER_STYLE = `<style>
+  .items {
+    position: relative;
+    overflow: scroll;
+    width: 100%;
+    white-space: nowrap;
+    overscroll-behavior: none;
+    user-select: none;
+    height: 400px;
+    border: 1px solid black;
+  }
+  .item {
+    overflow: hidden;
+    margin: 18px 12px 30px 0;
+    width: 271px;
+    height: 244px;
+    line-height: 244px;
+    border-radius: 3px;
+  }
+</style>`;
+
+export const CONVEYER_HTML = `
 <div class="items">
   <div class="item">1</div>
   <div class="item">2</div>
@@ -35,7 +56,7 @@ export const CONVEYER_HTML = `${CONVEYER_STYLE}
   <div class="item">12</div>
 </div>`;
 
-export const NESTED_CONVEYER_HTML = `${CONVEYER_STYLE}
+export const NESTED_CONVEYER_HTML = `
 <div id="parent" class="items">
   <div class="item">1</div>
   <div class="item">2</div>
@@ -57,3 +78,9 @@ export const NESTED_CONVEYER_HTML = `${CONVEYER_STYLE}
   <div class="item">7</div>
   <div class="item">8</div>
 </div>`;
+
+export const HORIZONTAL_CONVEYER = `${HORIZONTAL_CONVEYER_STYLE}${CONVEYER_HTML}`;
+
+export const VERTICAL_CONVEYER = `${VERTICAL_CONVEYER_STYLE}${CONVEYER_HTML}`;
+
+export const NESTED_CONVEYER = `${HORIZONTAL_CONVEYER_STYLE}${NESTED_CONVEYER_HTML}`;
