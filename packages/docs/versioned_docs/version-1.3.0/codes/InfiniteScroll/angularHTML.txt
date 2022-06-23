@@ -1,0 +1,30 @@
+<div class="examples">
+  <div class="buttons">
+    <button class="prev" [disabled]="conveyer?.isReachStart" (click)="prev()">
+      prev
+    </button>
+    <button class="next" [disabled]="conveyer?.isReachEnd" (click)="next()">
+      next
+    </button>
+  </div>
+  <div
+    NgxMasonryInfiniteGrid
+    class="items"
+    [gap]="5"
+    [align]="'justify'"
+    [items]="items"
+    [trackBy]="trackBy"
+    [groupBy]="groupBy"
+    (requestAppend)="onRequestAppend($event)"
+    (renderComplete)="onRenderComplete($event)"
+    [horizontal]="false"
+    [container]="true"
+    [ngxConveyer]="{ horizontal: false }"
+    #conveyer="ngxConveyer"
+    #ig
+  >
+    <div class="item" *ngFor="let item of ig.visibleItems; trackBy: trackBy;">
+      {{item.key}}
+    </div>
+  </div>
+</div>

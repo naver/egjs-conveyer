@@ -1,0 +1,7 @@
+<div class="examples">
+  <div class="buttons">
+    <button class="prev">prev</button>
+    <button class="next">next</button>
+  </div>
+  <div class="items"></div>
+</div>

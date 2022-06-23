@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/naver/egjs-conveyer/compare/1.2.0...1.3.0) (2022-06-23)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.3.0
+* `@egjs/react-conveyer` 1.3.0
+* `@egjs/svelte-conveyer` 1.3.0
+* `@egjs/vue-conveyer` 1.3.0
+* `@egjs/vue2-conveyer` 1.3.0
+* `@egjs/ngx-conveyer` 1.3.0
+
+
+### :rocket: New Features
+
+* `@egjs/conveyer`
+    * use side wheel to move conveyer (#15) ([3cdeab5](https://github.com/naver/egjs-conveyer/commit/3cdeab57a53cae679972696f034b325f7dd3c32c))
+
+
+### :mega: Other
+
+* All
+    * update dependencies ([0630847](https://github.com/naver/egjs-conveyer/commit/06308477eda17a04c7bcef99543b36bb6ac969a3))
+    * update packages versions ([6e5ff78](https://github.com/naver/egjs-conveyer/commit/6e5ff787f1d1f90305261b4cf30ebb408bb0543c))
+* Other
+    * fix github actions workflows ([dc5ce85](https://github.com/naver/egjs-conveyer/commit/dc5ce85827e8f717d9c4d470064aa6dcd2aa0c6c))
+    * fix github actions workflows ([0de06d4](https://github.com/naver/egjs-conveyer/commit/0de06d4d407f62384cef498f2bb6dc8bf30f344e))
+
+
+
 ## [1.2.0](https://github.com/naver/egjs-conveyer/compare/1.1.0...1.2.0) (2022-06-02)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.2.0
