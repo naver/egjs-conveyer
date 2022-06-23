@@ -541,7 +541,7 @@ class Conveyer extends Component<ConveyerEvents> {
        * @event Conveyer#reachEnd
        */
       this.trigger("reachEnd");
-    } else if (pos < scrollSize - size && this.isReachEnd !== false) {
+    } else if (!(scrollSize - size - pos < 1) && this.isReachEnd !== false) {
       this._isReachEnd = false;
       /**
        * This event is fired when scroll leave end.
