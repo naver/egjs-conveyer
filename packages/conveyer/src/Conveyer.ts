@@ -497,7 +497,7 @@ class Conveyer extends Component<ConveyerEvents> {
     return scrollPos;
   }
   private _isMixedWheel(nativeEvent: any) {
-    return nativeEvent?.type === "wheel" && nativeEvent?.deltaX && nativeEvent?.deltaY;
+    return !!nativeEvent && nativeEvent?.type === "wheel" && nativeEvent?.deltaX && nativeEvent?.deltaY;
   }
   private _checkNestedMove(nativeEvent: any) {
     if (this.isReachStart || this.isReachEnd) {
