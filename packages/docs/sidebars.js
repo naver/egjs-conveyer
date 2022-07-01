@@ -12,6 +12,7 @@ module.exports = {
     "examples/Properties",
     "examples/Methods",
     "examples/InfiniteScroll",
+    "examples/SideWheel",
   ],
   ...require("./sidebars-api.js")
 };

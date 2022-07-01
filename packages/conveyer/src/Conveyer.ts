@@ -108,7 +108,7 @@ class Conveyer extends Component<ConveyerEvents> {
     this._options = {
       horizontal: true,
       useDrag: true,
-      useSideWheel: true,
+      useSideWheel: false,
       autoInit: true,
       scrollDebounce: 100,
       ...options,
