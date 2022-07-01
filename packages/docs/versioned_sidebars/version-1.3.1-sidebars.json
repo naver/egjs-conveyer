@@ -11,7 +11,8 @@
     "examples/VerticalScroll",
     "examples/Properties",
     "examples/Methods",
-    "examples/InfiniteScroll"
+    "examples/InfiniteScroll",
+    "examples/SideWheel"
   ],
   "api": [
     {

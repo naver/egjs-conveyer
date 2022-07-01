@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.3.0...@egjs/conveyer@1.3.1) (2022-07-01)
+
+
+### :memo: Documentation
+
+* add useSideWheel demo (#16) ([bc1486d](https://github.com/naver/egjs-conveyer/commit/bc1486d63ec1b8a505259c16e73305c358e68745))
+
+
+### :mega: Other
+
+* update packages versions ([037314d](https://github.com/naver/egjs-conveyer/commit/037314d60b7799066f588f073273d56eb4c308b7))
+
+
+
 ## [1.3.0](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.2.0...@egjs/conveyer@1.3.0) (2022-06-23)
 
 
