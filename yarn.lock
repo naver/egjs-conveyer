@@ -1668,10 +1668,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cfcs/angular@~0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@cfcs/angular/-/angular-0.0.1.tgz#c186669f8baeaea4f1b3690db7c306cde406b0dd"
-  integrity sha512-GLIYbIhV2ZhWSDSAul9iha2JU6yJDYmsf9Diz2Bd3En5b+BoAchByrloD+LBjs+U12Ic/nk/jMCrAACRrrUQ8g==
+"@cfcs/angular@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@cfcs/angular/-/angular-0.0.2.tgz#ab088e584bbedf2b39d38e203a845dfb4bf693ca"
+  integrity sha512-gP1S6EC+nJmPfDXqK7ApcZW5/y1Lf5EIUKMgCYHvqLVyPEUK4Xk08p/YW/lpy6zWp72H1R2uFCeg8rcTf2CPSA==
   dependencies:
     "@cfcs/core" "~0.0.2"
     tslib "^2.3.0"

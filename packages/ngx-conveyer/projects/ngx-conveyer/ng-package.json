@@ -5,6 +5,7 @@
     "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": [
-    "@egjs/conveyer"
+    "@egjs/conveyer",
+    "@cfcs/angular"
   ]
 }
