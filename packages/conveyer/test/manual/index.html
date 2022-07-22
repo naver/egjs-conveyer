@@ -76,6 +76,7 @@
   const conveyer = new Conveyer(".items", {
     preventClickOnDrag: true,
     useSideWheel: true,
+    autoInit: false,
   });
 
   conveyer.on("reachStart", () => {

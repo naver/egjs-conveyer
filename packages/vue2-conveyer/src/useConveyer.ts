@@ -1,8 +1,7 @@
 import { ConveyerOptions, REACTIVE_CONVEYER } from "@egjs/conveyer";
 import { ref } from "@vue/composition-api";
 import type { Ref } from "@vue/composition-api";
-import { useReactive } from "./cfcs/useReactive";
-import { VueReactiveAdapterResult } from "./cfcs/types";
+import { useReactive, VueReactiveAdapterResult } from "@cfcs/vue2";
 
 export interface VueConveyerResult extends VueReactiveAdapterResult<typeof REACTIVE_CONVEYER> {
   ref: Ref<HTMLElement | undefined>;
