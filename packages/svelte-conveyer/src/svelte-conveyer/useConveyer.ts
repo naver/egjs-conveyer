@@ -1,6 +1,6 @@
 import type { SvelteConveyerResult } from "./types";
 import { ConveyerOptions, REACTIVE_CONVEYER } from "@egjs/conveyer";
-import { useReactive, useRef } from "./cfcs/useReactive";
+import { useReactive, useRef } from "@cfcs/svelte";
 
 
 function useConveyer(props: ConveyerOptions = { horizontal: false }): SvelteConveyerResult {

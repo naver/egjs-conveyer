@@ -25,9 +25,3 @@ export const CONVEYER_EVENTS = [
   "finishScroll",
 ] as const;
 
-export const CONVEYER_REACTIVE_STATE = {
-  "isReachStart": false,
-  "isReachEnd": false,
-  "scrollPos": 0,
-} as const;
-

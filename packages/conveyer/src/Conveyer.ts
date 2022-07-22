@@ -6,7 +6,7 @@
 import Axes, { OnChange, OnHold, PanInput, WheelInput } from "@egjs/axes";
 import Component from "@egjs/component";
 import { IS_IE } from "./browser";
-import { ReactiveSubscribe, Reactive, Ref } from "./cfcs";
+import { ReactiveSubscribe, Reactive, Ref } from "@cfcs/core";
 import {
   ConveyerEvents, ConveyerItem,
   ConveyerOptions, FindItemOptions, ConveyerReactiveState,

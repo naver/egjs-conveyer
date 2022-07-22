@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { ConveyerOptions, REACTIVE_CONVEYER } from '@egjs/conveyer';
-import { useReactive } from './cfcs/useReactive';
+import { useReactive } from '@cfcs/angular';
 import { ANGULAR_CONVEYER_EVENTS } from './consts';
 import { NgxConveyerInterface } from './ngx-conveyer.interface';
 

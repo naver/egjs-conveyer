@@ -1,5 +1,5 @@
 import { CONVEYER_EVENTS } from "@egjs/conveyer";
-import { AngularEventsOutputs } from "./cfcs/types";
+import { AngularEventsOutputs } from "@cfcs/angular";
 
 // auto
 // eslint-disable-next-line max-len
