@@ -4,7 +4,7 @@
  * MIT license
  */
 import Conveyer from "./Conveyer";
-import { CONVEYER_EVENTS, CONVEYER_METHODS, CONVEYER_REACTIVE_STATE } from "./consts";
+import { CONVEYER_EVENTS, CONVEYER_METHODS } from "./consts";
 import { ReactiveAdapter, Ref } from "@cfcs/core";
 import { ConveyerEvents, ConveyerMethods, ConveyerOptions, ConveyerReactiveState } from "./types";
 
