@@ -1668,48 +1668,48 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cfcs/angular@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cfcs/angular/-/angular-0.0.2.tgz#ab088e584bbedf2b39d38e203a845dfb4bf693ca"
-  integrity sha512-gP1S6EC+nJmPfDXqK7ApcZW5/y1Lf5EIUKMgCYHvqLVyPEUK4Xk08p/YW/lpy6zWp72H1R2uFCeg8rcTf2CPSA==
+"@cfcs/angular@~0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cfcs/angular/-/angular-0.0.4.tgz#df681e3ac4f198941958e8703001b2c19ba25189"
+  integrity sha512-j2r/Q6ooHi5Ee1le9n735qb2xQGoy253zUF2xirr1IAzT67AAEuG/kTq++UwMkmPe1j008S6s7AzkEYcKu3lvw==
   dependencies:
-    "@cfcs/core" "~0.0.2"
+    "@cfcs/core" "~0.0.4"
     tslib "^2.3.0"
 
-"@cfcs/core@^0.0.2", "@cfcs/core@~0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cfcs/core/-/core-0.0.2.tgz#cd86620e2f5ee2101bd2268965f794ba04d7ef9c"
-  integrity sha512-4vvvwmtTf810rfGEwteDskVTpvfKUx6CTOy3ii6ep7Xr/9OfhECk9rBwqkO0QiTNay3fwTptFh2+FTB8u+Ouvw==
+"@cfcs/core@~0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cfcs/core/-/core-0.0.4.tgz#5c1e89c2c170dfa9ba69450376ed0d894e19e2a1"
+  integrity sha512-Y/BD2l+XpGtx2LT/ehdqUyvJ6OpI3F6yAQMNKj1t57WhzQX1AS6uEQRLmgPWd75fzsyV7u4Aia/+5KeCqgHuNg==
   dependencies:
     "@egjs/component" "^3.0.2"
 
-"@cfcs/react@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cfcs/react/-/react-0.0.2.tgz#d281781558cf3908edd235ddc34d8ab845e9c1ad"
-  integrity sha512-oFmyCtLAJhG+wRxKAW2hLFdaGhHCz9aTpBhTfTdIbr06/eKXd4fsBQ59x28h6X5okLz5H7KCJ1r4iwD1VwBWqg==
+"@cfcs/react@~0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cfcs/react/-/react-0.0.4.tgz#aa22e4bfbd4851c00240ef1f6a1353151facde27"
+  integrity sha512-0ETIzD8dxURPCBq59hjxm8P9TwPDeEqlSTlUng9q4L8IPDBcuQzyQRtmQQKxWVTP2zfA8ov/B85Yw3Qdp2xC9g==
   dependencies:
-    "@cfcs/core" "~0.0.2"
+    "@cfcs/core" "~0.0.4"
 
-"@cfcs/svelte@~0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cfcs/svelte/-/svelte-0.0.2.tgz#237e4acda19342d9705ca487b3da0749c04acab4"
-  integrity sha512-Df0q+YGcteTkCIFbKxSnnpD82vU89cl2RCazURurdctKCSFntUqr6jkllAAVTbzyH4QYNABqj3h2aNsforijkw==
+"@cfcs/svelte@~0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cfcs/svelte/-/svelte-0.0.4.tgz#130afa25805847be0991d7824d31ec576e0f28d0"
+  integrity sha512-HkYn8qGY1IyX70H0r9DvwM/PhnkYew6oqRmewzF4z0RuR6M6xu7dGfAYHiVbEXMDIunY5CFUIAlieK2TY1mmWg==
   dependencies:
-    "@cfcs/core" "~0.0.2"
+    "@cfcs/core" "~0.0.4"
 
-"@cfcs/vue2@~0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cfcs/vue2/-/vue2-0.0.2.tgz#a31b3b7267f3c384997188faaf5398503c214975"
-  integrity sha512-r5PwLrXSjJE+C2JpdEE+Jg50D2EuE9NvO7fQGv2C4LpaykW4XM4HRk79QXqhNzTHBxFbvP/Fmxza+X/ygL9EXg==
+"@cfcs/vue2@~0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cfcs/vue2/-/vue2-0.0.4.tgz#5e27dbcb3dd6b7516f75fc2943fec6037587cf9c"
+  integrity sha512-tFAdAbsYA/Q2kVM+j/KHhXmTrnm+NzfvHTtfgZP2rR4RyMSFkVfUIcUhtOuSTPcdGG052G/6MEVzJJ/tMeL3UA==
   dependencies:
-    "@cfcs/core" "~0.0.2"
+    "@cfcs/core" "~0.0.4"
 
-"@cfcs/vue3@~0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@cfcs/vue3/-/vue3-0.0.2.tgz#65157eda47eb3f1a81949ba28600dc4727f76958"
-  integrity sha512-H0rAxqsklb1/1GpMYSXwyiFrb3WKcme/TdaxPGvzSI/Rc1cI7G4synxA11DKNdZNLz2sd11R74CcPXeuPMhJFQ==
+"@cfcs/vue3@~0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cfcs/vue3/-/vue3-0.0.4.tgz#aff1e3d1a823f303cd0d2414e1b415834b8e8062"
+  integrity sha512-r+6svTEA71diI3UFCL0y4usAkPQ0HSmCy8PUyLtoQS1/fr5mOubt18Klz8noeqpcghkVhkTYjf6QSAjloDzGZw==
   dependencies:
-    "@cfcs/core" "~0.0.2"
+    "@cfcs/core" "~0.0.4"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
