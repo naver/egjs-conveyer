@@ -53,7 +53,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @ko 스크롤이 시작에 닿았는지 여부.
    * @name Conveyer#isReachStart
    * @type {boolean}
-   * @default false
+   * @default true
    * @readonly
    * @example
    * ```js
@@ -64,7 +64,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * conveyer.isReachStart
    * ```
    */
-  @Reactive("isReachStart") private _isReachStart = false;
+  @Reactive("isReachStart") private _isReachStart = true;
   /**
    * Whether the scroll has reached the end.
    * @ko 스크롤이 끝에 닿았는지 여부.
