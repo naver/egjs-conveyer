@@ -8,7 +8,7 @@ egjs-conveyer has several style guidelines to follow.
 Before your start, please read attentively below instructions.
 
 ### Linting and Code Conventions
-We adopted [ESLint](http://eslint.org/) to maintain our code quality. The [rules](https://github.com/naver/eslint-config-naver/tree/master/rules) are modified version based on [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
+We adopted [ESLint](http://eslint.org/) to maintain our code quality.
 All rules are described at [.eslintrc](.eslintrc) file.
 
 ### Commit Log Guidelines
@@ -44,9 +44,10 @@ Steps to submit your pull request:
 2. Create new branch from your egjs master branch (and be sure always to be up-to-date)
 3. Do your work
 4. Create test code for your work (when is possible)
-5. Run `npm run lint` for linting and Code Conventions (update until without any error or warnings)
-6. Run test code by `npm run test OR npm run test:chrome`.
-   Make sure tests are all passed at least in Chrome(latest desktop version)
+5. Move the folder to `packages/conveyer` or frameworks folder.
+6. Run `npm run lint` for linting and Code Conventions (update until without any error or warnings)
+7. Run test code by `npm run test OR npm run test:chrome` in `packages/conveyer`.
+  Make sure tests are all passed at least in Chrome(latest desktop version)
 8. Write commit log following convention and push to your repository branch.
 9. Create a new PR from your branch to egjs-conveyer.
 10. Wait for reviews.
