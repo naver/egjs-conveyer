@@ -537,19 +537,30 @@ describe("test Conveyer", () => {
     });
   });
   describe("Events", () => {
-    it("should check if reachStart event triggered, isReachStart is true", () => {
+    it("should check if reachStart event triggered, isReachStart is true", async () => {
       // Given
-      conveyer = new Conveyer(".items", {
-        autoInit: false,
-      });
+      const container = document.querySelector(".items");
 
-      // When
+      container!.scrollLeft = 100;
+
+      conveyer = new Conveyer(".items");
+
+      // false
+      const firstIsReachStart = conveyer.isReachStart;
+
       const spy = sinon.spy();
       conveyer.on("reachStart", spy);
-      conveyer.init();
+
+
+      // when
+      conveyer.scrollTo(0);
+      await waitFor(100);
+
 
       // Then
       expect(spy.callCount).to.be.equals(1);
+      expect(firstIsReachStart).to.be.equals(false);
+      expect(conveyer.isReachStart).to.be.equals(true);
     });
     it("should check if leaveStart event triggered, isReachStart is false", async () => {
       // Given
