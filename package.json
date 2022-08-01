@@ -55,6 +55,22 @@
     "packages": [
       "packages/*",
       "packages/ngx-conveyer/projects/ngx-conveyer"
+    ],
+    "nohoist": [
+      "**/@egjs/build-helper",
+      "**/@egjs/build-helper/**",
+      "**/rollup-plugin-vue",
+      "**/rollup-plugin-vue/**",
+      "**/karma",
+      "**/karma/**",
+      "**/karma-*",
+      "**/karma-*/**",
+      "**/@tyoes/chai",
+      "**/@tyoes/chai/**",
+      "**/@types/karma-chai",
+      "**/@types/karma-chai/**",
+      "**/@types/mocha",
+      "**/@types/mocha/**"
     ]
   }
 }
