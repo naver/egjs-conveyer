@@ -32,8 +32,17 @@
 
 ## ⚙️ Installation
 
+If Vue is less than 2.7 version, install the composition-api together.
+
 ```bash
 $ npm install @egjs/vue2-conveyer
+$ npm install @vue/composition-api
+```
+
+For Vue 2.7 or higher, use [Vue 3's vue-conveyer](https://github.com/naver/egjs-conveyer/tree/main/packages/vue-conveyer).
+
+```bash
+$ npm install @egjs/vue-conveyer
 ```
 
 ## 🏃 Quick Start
@@ -46,7 +55,7 @@ $ npm install @egjs/vue2-conveyer
 import Vue from "vue";
 import VueCompositionAPI from '@vue/composition-api';
 
-// @vue/composition-api is required to use vue2-conveyer.
+// @vue/composition-api is required to use vue2-conveyer for
 Vue.use(VueCompositionAPI);
 ```
 ```vue

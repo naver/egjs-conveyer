@@ -70,7 +70,11 @@
       "**/@types/karma-chai",
       "**/@types/karma-chai/**",
       "**/@types/mocha",
-      "**/@types/mocha/**"
+      "**/@types/mocha/**",
+      "**/@vue/*",
+      "**/@vue/*/**",
+      "**/vue",
+      "**/vue/**"
     ]
   }
 }
