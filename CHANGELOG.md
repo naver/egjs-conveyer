@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/naver/egjs-conveyer/compare/1.3.1...1.4.0) (2022-08-04)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.4.0
+* `@egjs/react-conveyer` 1.4.0
+* `@egjs/svelte-conveyer` 1.4.0
+* `@egjs/vue-conveyer` 1.4.0
+* `@egjs/vue2-conveyer` 1.4.0
+* `@egjs/ngx-conveyer` 1.4.0
+
+
+### :rocket: New Features
+
+* All
+    * add cfcs module (#17) ([6dc1715](https://github.com/naver/egjs-conveyer/commit/6dc17158b701fa9cf997bec9dff8dd7be4d79eaf))
+
+
+### :bug: Bug Fix
+
+* All
+    * fix isReachStart's default value (#18) ([9c49266](https://github.com/naver/egjs-conveyer/commit/9c492663a45ca2ec0eabdfae85892906003a6fe9))
+
+
+### :memo: Documentation
+
+* `@egjs/vue2-conveyer`
+    * fix README ([1eedb60](https://github.com/naver/egjs-conveyer/commit/1eedb608b437c3b401dcd28036aab4b0cbf30fa5))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([491417a](https://github.com/naver/egjs-conveyer/commit/491417a29531c18ecd8dc13b58debf75b3ba3292))
+
+
+
 ## [1.3.1](https://github.com/naver/egjs-conveyer/compare/1.3.0...1.3.1) (2022-07-01)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.3.1

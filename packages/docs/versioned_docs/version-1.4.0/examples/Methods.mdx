@@ -1,0 +1,37 @@
+---
+title: Use Methods
+custom_edit_url: null
+---
+
+You can use the conveyer's methods via instance or result.
+
+You can also use scroll-related functions through methods.
+
+
+### scrollIntoView
+[scrollIntoView](/docs/api/Conveyer#scrollIntoView) method scrolls an element or an item in that direction into the view.
+
+|PARAMETER|TYPE|OPTIONAL|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|:---:|
+|target|HTMLElement \| "start" \| "end" \| "prev" \| "next"|||<p>direction of the element. &quot;start&quot; and &quot;end&quot; find inside. &quot;prev&quot; and &quot;next&quot; find outside. </p>|
+|options|[ScrollIntoViewOptions](/docs/api/ScrollIntoViewOptions)|✔️|{}|<p>Options for the <code>scrollIntoView</code> method. </p>|
+
+
+
+import Methods from "@site/src/examples/Methods";
+import ScrollIntoViewTarget from "@site/src/examples/ScrollIntoViewTarget";
+import ConveyerCodeTabs from "@site/docs/codes/ConveyerCodeTabs";
+
+<ScrollIntoViewTarget />
+
+
+### Example
+
+* If you click the `prev` button, you can align the items in the `start`(target) direction to `end`(align).
+* If you click the `next` button, you can align the items in the `end`(target) direction to `start`(align).
+
+
+<Methods />
+
+
+<ConveyerCodeTabs folder="Methods" reactCode={require("!!raw-loader!@site/src/examples/Methods.tsx").default} />

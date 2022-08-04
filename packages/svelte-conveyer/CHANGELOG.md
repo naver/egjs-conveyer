@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/naver/egjs-conveyer/compare/@egjs/svelte-conveyer@1.3.1...@egjs/svelte-conveyer@1.4.0) (2022-08-04)
+
+
+### :rocket: New Features
+
+* add cfcs module (#17) ([6dc1715](https://github.com/naver/egjs-conveyer/commit/6dc17158b701fa9cf997bec9dff8dd7be4d79eaf))
+
+
+### :bug: Bug Fix
+
+* fix isReachStart's default value (#18) ([9c49266](https://github.com/naver/egjs-conveyer/commit/9c492663a45ca2ec0eabdfae85892906003a6fe9))
+
+
+### :mega: Other
+
+* update packages versions ([491417a](https://github.com/naver/egjs-conveyer/commit/491417a29531c18ecd8dc13b58debf75b3ba3292))
+
+
+
 ## [1.3.1](https://github.com/naver/egjs-conveyer/compare/@egjs/svelte-conveyer@1.3.0...@egjs/svelte-conveyer@1.3.1) (2022-07-01)
 
 
