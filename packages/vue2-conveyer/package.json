@@ -1,6 +1,6 @@
 {
   "name": "@egjs/vue2-conveyer",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Vue 2 Conveyer adds Drag gestures to your Native Scroll.",
   "main": "dist/conveyer.cjs.js",
   "module": "dist/conveyer.esm.js",
@@ -33,6 +33,10 @@
     "vue2",
     "use"
   ],
+  "files": [
+    "./*",
+    "dist/*"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@egjs/build-helper": "^0.1.2",
@@ -59,6 +63,6 @@
   },
   "dependencies": {
     "@cfcs/vue2": "~0.0.4",
-    "@egjs/conveyer": "~1.4.0"
+    "@egjs/conveyer": "~1.4.1"
   }
 }
