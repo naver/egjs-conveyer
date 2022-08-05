@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/naver/egjs-conveyer/compare/@egjs/vue2-conveyer@1.4.0...@egjs/vue2-conveyer@1.4.1) (2022-08-05)
+
+
+### :mega: Other
+
+* add files field in package.json ([b61b084](https://github.com/naver/egjs-conveyer/commit/b61b084734f98a5fd8e67ddd1401aa7da56dfcc5))
+
+
+
 ## [1.4.0](https://github.com/naver/egjs-conveyer/compare/@egjs/vue2-conveyer@1.3.1...@egjs/vue2-conveyer@1.4.0) (2022-08-04)
 
 
