@@ -36,7 +36,7 @@
   ],
 	"dependencies": {
 		"@cfcs/core": "~0.0.4",
-		"@egjs/axes": "^3.4.0",
+		"@egjs/axes": "^3.7.0",
 		"@egjs/component": "^3.0.1"
 	},
 	"devDependencies": {
