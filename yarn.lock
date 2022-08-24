@@ -1676,7 +1676,7 @@
     "@cfcs/core" "~0.0.4"
     tslib "^2.3.0"
 
-"@cfcs/core@~0.0.4":
+"@cfcs/core@^0.0.4", "@cfcs/core@~0.0.4":
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/@cfcs/core/-/core-0.0.4.tgz#5c1e89c2c170dfa9ba69450376ed0d894e19e2a1"
   integrity sha512-Y/BD2l+XpGtx2LT/ehdqUyvJ6OpI3F6yAQMNKj1t57WhzQX1AS6uEQRLmgPWd75fzsyV7u4Aia/+5KeCqgHuNg==
@@ -2260,6 +2260,15 @@
   resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-3.5.0.tgz#ae0c76a284b5b0ff642ba5c4bb6684a512bff28c"
   integrity sha512-LKf/Y6WyDjxzd5o2Y9MUhiXEFwYWM1veeSo0q+QHzniMkTMVlLWyDec+LKoIBoAaMfi+LTNnHYC5/My7tuDSgg==
   dependencies:
+    "@egjs/agent" "^2.2.1"
+    "@egjs/component" "^3.0.1"
+
+"@egjs/axes@^3.7.0":
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-3.7.0.tgz#09fed55c0d59d15527a600d3ee66d212803c3cc6"
+  integrity sha512-w5TEWcRH3EsI8iRH7y+ikPJX5d1F0/KSq1IfB92HbsIEIs67+dzYtmO/M2iRBnRXLw4tPhW0w8fxsnT8tYljng==
+  dependencies:
+    "@cfcs/core" "^0.0.4"
     "@egjs/agent" "^2.2.1"
     "@egjs/component" "^3.0.1"
 
