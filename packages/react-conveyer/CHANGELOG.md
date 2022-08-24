@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/naver/egjs-conveyer/compare/@egjs/react-conveyer@1.4.1...@egjs/react-conveyer@1.4.2) (2022-08-24)
+
+
+### :mega: Other
+
+* update packages versions ([515ede9](https://github.com/naver/egjs-conveyer/commit/515ede994bc12a460d0c12abb5a62da9571218ac))
+
+
+
 ## [1.4.1](https://github.com/naver/egjs-conveyer/compare/@egjs/react-conveyer@1.4.0...@egjs/react-conveyer@1.4.1) (2022-08-05)
 
 
