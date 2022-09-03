@@ -4,7 +4,7 @@ name: @egjs/conveyer
 license: MIT
 author: NAVER Crop.
 repository: https://github.com/naver/egjs-conveyer
-version: 1.4.2
+version: 1.3.1
 */
 import Axes, { PanInput, WheelInput } from '@egjs/axes';
 import Component from '@egjs/component';
