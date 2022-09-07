@@ -4,7 +4,7 @@ name: @egjs/conveyer
 license: MIT
 author: NAVER Crop.
 repository: https://github.com/naver/egjs-conveyer
-version: 1.4.3
+version: 1.4.4
 */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -5145,8 +5145,6 @@ version: 1.4.3
         }));
       },
       init: function (instance, data) {
-        console.log(data.props.autoInit, data.props.autoInit !== false);
-
         if (data.props.autoInit !== false) {
           instance.init();
         }

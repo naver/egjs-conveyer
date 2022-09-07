@@ -4,7 +4,7 @@ name: @egjs/conveyer
 license: MIT
 author: NAVER Crop.
 repository: https://github.com/naver/egjs-conveyer
-version: 1.4.3
+version: 1.4.4
 */
 import Axes, { PanInput, WheelInput } from '@egjs/axes';
 import Component from '@egjs/component';
@@ -801,8 +801,6 @@ var REACTIVE_CONVEYER = {
     }));
   },
   init: function (instance, data) {
-    console.log(data.props.autoInit, data.props.autoInit !== false);
-
     if (data.props.autoInit !== false) {
       instance.init();
     }
