@@ -19,10 +19,10 @@ export default buildHelper([
 		resolve: true,
 	},
 	{
-		input: "./src/index.umd.ts",
+		input: "./src/index.cjs.ts",
 		output: "./dist/conveyer.cjs.js",
 		format: "cjs",
-		exports: "default",
+		exports: "named",
 	},
 	{
 		input: "./src/index.ts",

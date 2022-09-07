@@ -26,8 +26,10 @@ export const REACTIVE_CONVEYER: ReactiveAdapter<
   created(data) {
     return new Conveyer(data.container, { ...data.props, autoInit: false });
   },
-  init(instance) {
-    instance.init();
+  init(instance, data) {
+    if (data.props.autoInit) {
+      instance.init();
+    }
   },
   on(instance, name, callback) {
     instance.on(name, callback);
