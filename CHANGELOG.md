@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/naver/egjs-conveyer/compare/1.3.0...1.4.3) (2022-09-07)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.4.3
+* `@egjs/react-conveyer` 1.4.3
+* `@egjs/svelte-conveyer` 1.4.3
+* `@egjs/vue-conveyer` 1.4.3
+* `@egjs/vue2-conveyer` 1.4.3
+* `@egjs/ngx-conveyer` 1.4.3
+
+
+### :rocket: New Features
+
+* All
+    * add cfcs module (#17) ([6dc1715](https://github.com/naver/egjs-conveyer/commit/6dc17158b701fa9cf997bec9dff8dd7be4d79eaf))
+
+
+### :bug: Bug Fix
+
+* All
+    * fix isReachStart's default value (#18) ([9c49266](https://github.com/naver/egjs-conveyer/commit/9c492663a45ca2ec0eabdfae85892906003a6fe9))
+* `@egjs/conveyer`
+    * fix autoInit option not working correctly (#21) ([11bb2f1](https://github.com/naver/egjs-conveyer/commit/11bb2f178c983e4576765ee42850613142b8d239))
+    * update axes version (#20) ([57f83fa](https://github.com/naver/egjs-conveyer/commit/57f83fada28dec52bf63a0bf448dd22030df63d2))
+
+
+### :memo: Documentation
+
+* `@egjs/conveyer`
+    * add useSideWheel demo (#16) ([bc1486d](https://github.com/naver/egjs-conveyer/commit/bc1486d63ec1b8a505259c16e73305c358e68745))
+* `@egjs/vue2-conveyer`
+    * fix README ([1eedb60](https://github.com/naver/egjs-conveyer/commit/1eedb608b437c3b401dcd28036aab4b0cbf30fa5))
+
+
+### :mega: Other
+
+* All
+    * add files field in package.json ([b61b084](https://github.com/naver/egjs-conveyer/commit/b61b084734f98a5fd8e67ddd1401aa7da56dfcc5))
+    * Release 1.3.1 ([414cb12](https://github.com/naver/egjs-conveyer/commit/414cb12b66d0e2091ab5edbe2295dff0dbbc9b8d))
+    * Release 1.4.0 ([2128b77](https://github.com/naver/egjs-conveyer/commit/2128b77ea2a54ee026ac265075c5cf0fda8bc8c7))
+    * Release 1.4.1 ([d1dcfcc](https://github.com/naver/egjs-conveyer/commit/d1dcfcce5fe114beb34449b5f11227bd85d7043d))
+    * Release 1.4.2 ([e5b8b33](https://github.com/naver/egjs-conveyer/commit/e5b8b3319c88ba49c09914de7f41894b5a62fbe4))
+    * update packages versions ([56e6a99](https://github.com/naver/egjs-conveyer/commit/56e6a99509405f43966daa03c3fb3953ed26cdfa))
+    * update packages versions ([515ede9](https://github.com/naver/egjs-conveyer/commit/515ede994bc12a460d0c12abb5a62da9571218ac))
+    * update packages versions ([491417a](https://github.com/naver/egjs-conveyer/commit/491417a29531c18ecd8dc13b58debf75b3ba3292))
+    * update packages versions ([037314d](https://github.com/naver/egjs-conveyer/commit/037314d60b7799066f588f073273d56eb4c308b7))
+
+
+
 ## [1.4.2](https://github.com/naver/egjs-conveyer/compare/1.4.1...1.4.2) (2022-08-24)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.4.2
