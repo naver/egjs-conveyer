@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.3...@egjs/conveyer@1.4.4) (2022-09-07)
+
+
+### :bug: Bug Fix
+
+* check autoInit must be false ([86cfb1d](https://github.com/naver/egjs-conveyer/commit/86cfb1d5dd8a895b8c7411e97b455baa1f3ee610))
+
+
+### :mega: Other
+
+* update packages versions ([a2dc556](https://github.com/naver/egjs-conveyer/commit/a2dc556610b062e3a6c7e2624712df2b00ad9a83))
+
+
+
 ## [1.4.3](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.3.0...@egjs/conveyer@1.4.3) (2022-09-07)
 
 

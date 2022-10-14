@@ -1,6 +1,6 @@
 {
   "name": "@egjs/ngx-conveyer",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Angular Conveyer adds Drag gestures to your Native Scroll.",
   "author": {
     "name": "NAVER Corp."
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@cfcs/angular": "~0.0.4",
-    "@egjs/conveyer": "~1.4.3",
+    "@egjs/conveyer": "~1.4.4",
     "tslib": "^2.3.0"
   }
 }
