@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/naver/egjs-conveyer/compare/@egjs/vue2-conveyer@1.4.3...@egjs/vue2-conveyer@1.4.5) (2022-10-14)
+
+
+### :bug: Bug Fix
+
+* add declaration files to package (#23) ([8b907db](https://github.com/naver/egjs-conveyer/commit/8b907dbcc803b237d65ff82b84e922a08dc59930))
+
+
+### :mega: Other
+
+* Release 1.4.4 ([eed54b2](https://github.com/naver/egjs-conveyer/commit/eed54b2f926b7767068e9054325e8d785c5a6ca1))
+* update packages versions ([1b3e74a](https://github.com/naver/egjs-conveyer/commit/1b3e74a8b58e77b5e27104324602bd7a7de38b7b))
+
+
+
 ## [1.4.4](https://github.com/naver/egjs-conveyer/compare/@egjs/vue2-conveyer@1.4.3...@egjs/vue2-conveyer@1.4.4) (2022-09-07)
 
 

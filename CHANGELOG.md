@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/naver/egjs-conveyer/compare/1.4.3...1.4.5) (2022-10-14)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.4.5
+* `@egjs/react-conveyer` 1.4.5
+* `@egjs/svelte-conveyer` 1.4.5
+* `@egjs/vue-conveyer` 1.4.5
+* `@egjs/vue2-conveyer` 1.4.5
+* `@egjs/ngx-conveyer` 1.4.5
+
+
+### :bug: Bug Fix
+
+* `@egjs/vue2-conveyer`, `@egjs/vue-conveyer`, `@egjs/svelte-conveyer`, `@egjs/react-conveyer`, `@egjs/conveyer`
+    * add declaration files to package (#23) ([8b907db](https://github.com/naver/egjs-conveyer/commit/8b907dbcc803b237d65ff82b84e922a08dc59930))
+* `@egjs/conveyer`
+    * check autoInit must be false (#22) ([d86581d](https://github.com/naver/egjs-conveyer/commit/d86581d1827ae79954df84c2165e6e33659fd5e1))
+
+
+### :mega: Other
+
+* All
+    * Release 1.4.4 ([eed54b2](https://github.com/naver/egjs-conveyer/commit/eed54b2f926b7767068e9054325e8d785c5a6ca1))
+    * update packages versions ([1b3e74a](https://github.com/naver/egjs-conveyer/commit/1b3e74a8b58e77b5e27104324602bd7a7de38b7b))
+
+
+
 ## [1.4.4](https://github.com/naver/egjs-conveyer/compare/1.4.3...1.4.4) (2022-09-07)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.4.4
