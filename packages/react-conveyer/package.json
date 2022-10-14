@@ -24,6 +24,7 @@
   ],
   "files": [
     "./*",
+    "declaration/*",
     "dist/*"
   ],
   "dependencies": {
