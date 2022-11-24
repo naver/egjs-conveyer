@@ -4,8 +4,8 @@
   "description": "Svelte Conveyer adds Drag gestures to your Native Scroll.",
   "sideEffects": false,
   "types": "declaration/index.d.ts",
-  "module": "dist/imready.esm.js",
-  "main": "dist/imready.cjs.js",
+  "module": "dist/conveyer.esm.js",
+  "main": "dist/conveyer.cjs.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/naver/egjs-conveyer"
