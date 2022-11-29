@@ -304,6 +304,26 @@ describe("test Conveyer", () => {
       // Then
       expect(clickSpy.callCount).to.be.equals(1);
     });
+    it.only("should check if it works even if you init again after destroy", async () => {
+      // Given
+      const items = document.querySelector<HTMLElement>(".items")!;
+
+      conveyer = new Conveyer(items);
+
+      // When
+      conveyer.destroy();
+      conveyer.init();
+
+      await dispatchDrag(
+        items,
+        { left: 0, top: 0 },
+        { left: -100, top: 0 },
+        { duration: 100, interval: 50 }
+      );
+
+      await waitEvent(conveyer, "finishScroll");
+      expect(items.scrollLeft).to.be.at.least(100);
+    });
   });
   describe("Methods", () => {
     it("should check if scrollLeft is changed when scrollTo is called", async () => {
