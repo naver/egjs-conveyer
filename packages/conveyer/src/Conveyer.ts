@@ -37,7 +37,7 @@ const conveyer = new Conveyer(".items");
 @ReactiveSubscribe
 class Conveyer extends Component<ConveyerEvents> {
   protected _scrollAreaElement: HTMLElement;
-  protected _axes: Axes;
+  protected _axes: Axes | null = null;
   protected _items: ConveyerItem[] = [];
   protected _size = 0;
   protected _scrollSize = 0;
@@ -275,7 +275,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll by that position. <ko>해당 위치만큼 스크롤하는 시간</ko>
    */
   public scrollBy(pos: number, duration = 0) {
-    this._axes.setBy({ scroll: -pos }, duration);
+    this._axes!.setBy({ scroll: -pos }, duration);
   }
   /**
    * Scroll to the given position.
@@ -284,7 +284,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
-    this._axes.setBy({ scroll: this._pos - pos }, duration);
+    this._axes!.setBy({ scroll: this._pos - pos }, duration);
   }
   /**
    * Set the items directly to the Conveyer.
@@ -457,6 +457,7 @@ class Conveyer extends Component<ConveyerEvents> {
     this._scrollAreaElement?.removeEventListener("scroll", this._onScroll);
     window.removeEventListener("resize", this.update);
     this.off();
+    this._axes = null;
   }
   private _refreshScroll() {
     const horizontal = this._options.horizontal;
