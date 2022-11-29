@@ -304,7 +304,7 @@ describe("test Conveyer", () => {
       // Then
       expect(clickSpy.callCount).to.be.equals(1);
     });
-    it.only("should check if it works even if you init again after destroy", async () => {
+    it("should check if it works even if you init again after destroy", async () => {
       // Given
       const items = document.querySelector<HTMLElement>(".items")!;
 
