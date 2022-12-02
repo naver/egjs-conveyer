@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/naver/egjs-conveyer/compare/1.4.5...1.4.6) (2022-12-02)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.4.6
+* `@egjs/react-conveyer` 1.4.6
+* `@egjs/svelte-conveyer` 1.4.6
+* `@egjs/vue-conveyer` 1.4.6
+* `@egjs/vue2-conveyer` 1.4.6
+* `@egjs/ngx-conveyer` 1.4.6
+
+
+### :bug: Bug Fix
+
+* `@egjs/svelte-conveyer`
+    * fix incorrect main/module/exports. (#24) ([976d2aa](https://github.com/naver/egjs-conveyer/commit/976d2aa27d4000bd5733325059913793b1542a6d))
+* `@egjs/conveyer`
+    * remove axes instance on destory (#26) ([f7e7769](https://github.com/naver/egjs-conveyer/commit/f7e7769fc4ee9e9ba4d58f228ce3ac4480d00d9f))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([21ab1df](https://github.com/naver/egjs-conveyer/commit/21ab1df94e32216e5436ad53a028035c644d849d))
+
+
+
 ## [1.4.5](https://github.com/naver/egjs-conveyer/compare/1.4.3...1.4.5) (2022-10-14)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.4.5

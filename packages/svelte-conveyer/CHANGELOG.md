@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/naver/egjs-conveyer/compare/@egjs/svelte-conveyer@1.4.5...@egjs/svelte-conveyer@1.4.6) (2022-12-02)
+
+
+### :bug: Bug Fix
+
+* fix incorrect main/module/exports. (#24) ([976d2aa](https://github.com/naver/egjs-conveyer/commit/976d2aa27d4000bd5733325059913793b1542a6d))
+
+
+### :mega: Other
+
+* update packages versions ([21ab1df](https://github.com/naver/egjs-conveyer/commit/21ab1df94e32216e5436ad53a028035c644d849d))
+
+
+
 ## [1.4.5](https://github.com/naver/egjs-conveyer/compare/@egjs/svelte-conveyer@1.4.3...@egjs/svelte-conveyer@1.4.5) (2022-10-14)
 
 

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.5...@egjs/conveyer@1.4.6) (2022-12-02)
+
+
+### :bug: Bug Fix
+
+* remove axes instance on destory (#26) ([f7e7769](https://github.com/naver/egjs-conveyer/commit/f7e7769fc4ee9e9ba4d58f228ce3ac4480d00d9f))
+
+
+### :mega: Other
+
+* update packages versions ([21ab1df](https://github.com/naver/egjs-conveyer/commit/21ab1df94e32216e5436ad53a028035c644d849d))
+
+
+
 ## [1.4.5](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.3...@egjs/conveyer@1.4.5) (2022-10-14)
 
 
