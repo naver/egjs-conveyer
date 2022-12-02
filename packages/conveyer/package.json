@@ -1,6 +1,6 @@
 {
 	"name": "@egjs/conveyer",
-	"version": "1.4.5",
+	"version": "1.4.6",
 	"description": "Conveyer adds Drag gestures to your Native Scroll.",
 	"main": "./dist/conveyer.cjs.js",
 	"module": "./dist/conveyer.esm.js",
@@ -18,7 +18,7 @@
 		"type": "git",
 		"url": "https://github.com/naver/egjs-conveyer"
 	},
-	"author": "NAVER Crop.",
+	"author": "NAVER Corp.",
 	"license": "MIT",
 	"keywords": [
 		"scroll",
@@ -30,14 +30,14 @@
 		"list",
 		"drag"
 	],
-  "files": [
-    "./*",
-    "declaration/*",
-    "dist/*"
-  ],
+	"files": [
+		"./*",
+		"declaration/*",
+		"dist/*"
+	],
 	"dependencies": {
 		"@cfcs/core": "~0.0.4",
-		"@egjs/axes": "^3.7.0",
+		"@egjs/axes": "^3.8.3",
 		"@egjs/component": "^3.0.1"
 	},
 	"devDependencies": {

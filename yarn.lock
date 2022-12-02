@@ -2263,10 +2263,10 @@
     "@egjs/agent" "^2.2.1"
     "@egjs/component" "^3.0.1"
 
-"@egjs/axes@^3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-3.7.0.tgz#09fed55c0d59d15527a600d3ee66d212803c3cc6"
-  integrity sha512-w5TEWcRH3EsI8iRH7y+ikPJX5d1F0/KSq1IfB92HbsIEIs67+dzYtmO/M2iRBnRXLw4tPhW0w8fxsnT8tYljng==
+"@egjs/axes@^3.8.3":
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-3.8.3.tgz#0c959682ffdb4a239d4b1289cf061aeb44f3e4ba"
+  integrity sha512-T0+71+glVCxSRnJim7smdGLrmsGmEuoJ62RXBMy7lpsePbXlKmtnFFKgr1tkJJyghJXW3zZNHefCC4nrzEjfEg==
   dependencies:
     "@cfcs/core" "^0.0.4"
     "@egjs/agent" "^2.2.1"
