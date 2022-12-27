@@ -26,7 +26,7 @@ export const REACTIVE_CONVEYER: ReactiveAdapter<
   created(data) {
     return new Conveyer(data.container, { ...data.props, autoInit: false });
   },
-  mounted(data, instance) {
+  init(instance, data) {
     if (data.props.autoInit !== false) {
       instance!.init();
     }
