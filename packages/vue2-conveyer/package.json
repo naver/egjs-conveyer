@@ -63,7 +63,7 @@
     "vue": "^2.0.0"
   },
   "dependencies": {
-    "@cfcs/vue2": "~0.0.4",
+    "@cfcs/vue2": "~0.0.12",
     "@egjs/conveyer": "~1.4.6"
   }
 }

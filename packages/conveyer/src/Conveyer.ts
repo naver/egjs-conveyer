@@ -455,7 +455,10 @@ class Conveyer extends Component<ConveyerEvents> {
     this._axes?.destroy();
     this.unsubscribe();
     this._scrollAreaElement?.removeEventListener("scroll", this._onScroll);
-    window.removeEventListener("resize", this.update);
+
+    if (typeof window !== "undefined") {
+      window.removeEventListener("resize", this.update);
+    }
     this.off();
     this._axes = null;
   }

@@ -28,7 +28,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@cfcs/react": "~0.0.4",
+    "@cfcs/react": "~0.0.12",
     "@egjs/conveyer": "~1.4.6"
   },
   "devDependencies": {

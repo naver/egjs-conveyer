@@ -5,6 +5,7 @@
   "sideEffects": false,
   "types": "declaration/index.d.ts",
   "module": "dist/conveyer.esm.js",
+  "svelte": "dist/conveyer.esm.js",
   "main": "dist/conveyer.cjs.js",
   "repository": {
     "type": "git",
@@ -69,7 +70,7 @@
     "typescript": "^4.1.6"
   },
   "dependencies": {
-    "@cfcs/svelte": "~0.0.4",
+    "@cfcs/svelte": "~0.0.12",
     "@egjs/conveyer": "~1.4.6"
   }
 }

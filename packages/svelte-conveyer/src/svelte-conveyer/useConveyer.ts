@@ -3,7 +3,7 @@ import { ConveyerOptions, REACTIVE_CONVEYER } from "@egjs/conveyer";
 import { useReactive, useRef } from "@cfcs/svelte";
 
 
-function useConveyer(props: ConveyerOptions = { horizontal: false }): SvelteConveyerResult {
+function useConveyer(props: ConveyerOptions = {}): SvelteConveyerResult {
   const elementRef = useRef<HTMLElement>();
   const result = useReactive({
     data() {
