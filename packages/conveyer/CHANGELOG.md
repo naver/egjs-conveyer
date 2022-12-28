@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.7](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.6...@egjs/conveyer@1.4.7) (2022-12-28)
+
+
+### :bug: Bug Fix
+
+* fix svelte field (#28) ([998ccee](https://github.com/naver/egjs-conveyer/commit/998ccee276579ab09aaf0eaa519d7b8a39fe084e))
+
+
+### :mega: Other
+
+* update packages versions ([859e335](https://github.com/naver/egjs-conveyer/commit/859e3358a6d12fea7f95299b13d70427a1a9d2e6))
+
+
+
 ## [1.4.6](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.5...@egjs/conveyer@1.4.6) (2022-12-02)
 
 
