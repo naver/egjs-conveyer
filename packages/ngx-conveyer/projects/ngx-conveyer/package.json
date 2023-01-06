@@ -28,7 +28,7 @@
     "@angular/core": "^13.0.0"
   },
   "dependencies": {
-    "@cfcs/angular": "~0.0.12",
+    "@cfcs/angular": "~0.0.13",
     "@egjs/conveyer": "~1.4.7",
     "tslib": "^2.3.0"
   }

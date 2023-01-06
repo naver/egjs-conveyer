@@ -1668,13 +1668,21 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cfcs/angular@~0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@cfcs/angular/-/angular-0.0.12.tgz#b49272f8763e64ba8755872258dc513703880a06"
-  integrity sha512-OTtw7RcBj5JB0wEzCRXDVUB9bgry54T3S+sKOCTFjjqpGfNj8zLQFN6eQHkDd0Vpn1UvfsCfe0CDc+VfnOS2/g==
+"@cfcs/angular@~0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/@cfcs/angular/-/angular-0.0.13.tgz#ffb917fcdbe7819dfe665aea944bb984af7b2cd2"
+  integrity sha512-6TuPgO3E44QOfdbk5f6LHuffsHw50fUMerpw7Pn8O3PBJpnB0MiNaHAQE1RHEqKxsnr8nvtFnLW3j738nA0YqA==
   dependencies:
-    "@cfcs/core" "~0.0.12"
+    "@cfcs/core" "~0.0.13"
     tslib "^2.3.0"
+
+"@cfcs/cli@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/@cfcs/cli/-/cli-0.0.3.tgz#97e1c2ad7fba194c1a93d0623a29cde673415719"
+  integrity sha512-IM6bynnDzyz0oCirX6K/NB0k6O8Nb+wzXfyTB9BcKmJbftP3W3pP5MRYkXTzNXt05bIDDy3cfY/sr+5yIVZBmQ==
+  dependencies:
+    commander "^9.4.1"
+    sync-exec "^0.6.2"
 
 "@cfcs/core@^0.0.4":
   version "0.0.4"
@@ -1683,40 +1691,40 @@
   dependencies:
     "@egjs/component" "^3.0.2"
 
-"@cfcs/core@~0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@cfcs/core/-/core-0.0.12.tgz#b06ad9b95d4a5316cd756b3b3128ad3e8c48d3ba"
-  integrity sha512-DqFagZYApByyx5xcQfG5dApxjAZzhr53biM8eB5sTXsZbTaIZ6E+MyocoeTAChg4GArM9qsRT0QWEtdbIDsJdA==
+"@cfcs/core@~0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/@cfcs/core/-/core-0.0.13.tgz#40fcd7631cb4b2d14f1ef9bce35a158abe612392"
+  integrity sha512-V6lVn99xFoyqVkwls/wADSncrminhRtEVlXcIP9qMj7EWLOaZq67MBJGOBuzmaWKQ7rmbZHzt7adUJnz3ZxJ3g==
   dependencies:
     "@egjs/component" "^3.0.3"
 
-"@cfcs/react@~0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@cfcs/react/-/react-0.0.12.tgz#9270e11d989dde8f40d74d2e23b8ae386d49842e"
-  integrity sha512-sAU8aXS1krIbLhW34AZWMY64t2UnXdwNX/39dHW6Y98A/P8XiOEWBa1bcD9M2PPrgM3lhiW35Bor9xcf3FO1hQ==
+"@cfcs/react@~0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/@cfcs/react/-/react-0.0.13.tgz#772bc2dfe409533eea2c912135da8d8fc587e293"
+  integrity sha512-hCQsN7hMQ+x9vWtP11A39E132rd0hXtEwB1l3Yv1Ksu5RSRZhIkKVUlzR1cYT3RTajlV/QomTJoF7t4BP1wzrg==
   dependencies:
-    "@cfcs/core" "~0.0.12"
+    "@cfcs/core" "~0.0.13"
 
-"@cfcs/svelte@~0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@cfcs/svelte/-/svelte-0.0.12.tgz#a60f3e05159c15af6fd48ca6787250e677202441"
-  integrity sha512-W6r8s56uR8mhajtzWTqSWnXzdZCH/Vg0hNl/YhCY4eRMjB6ErdvOgTr8P/4r2xbzOsq3QNhq2X7CK/ba6W/xFw==
+"@cfcs/svelte@~0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/@cfcs/svelte/-/svelte-0.0.13.tgz#12a7070405464675f89df4c452cf440454c0e3a9"
+  integrity sha512-fiWh1M4eZNsbs8J9gbcFbRoBBg9tFdDHEPiwX2V/GXy4kLOtyHXvTedXLCa7JqXArdwMmdNjFlEn5YydTvRqSg==
   dependencies:
-    "@cfcs/core" "~0.0.12"
+    "@cfcs/core" "~0.0.13"
 
-"@cfcs/vue2@~0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@cfcs/vue2/-/vue2-0.0.12.tgz#3088d46fbad61857c75e26b77eca2f07e85dde9c"
-  integrity sha512-7eodpA1zuMiOQrOEQY0Bh6U3sK/fwlPzkjZxlKSxV6bS87AmyPpaMUsbEZYDOyvhj7TStSqGlazVPTHfoaFtNw==
+"@cfcs/vue2@~0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/@cfcs/vue2/-/vue2-0.0.13.tgz#50d0d9c5d5835f2c9cc056a65db3c9949c76cc80"
+  integrity sha512-+pV58R2mo4GVPXzYi/EygBQOMiLoDIl9kCtzAJhpfEIhuniFRez+sEX89TrSdFdmY1CXvY7lIhlECddkrMQZow==
   dependencies:
-    "@cfcs/core" "~0.0.12"
+    "@cfcs/core" "~0.0.13"
 
-"@cfcs/vue3@~0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@cfcs/vue3/-/vue3-0.0.12.tgz#d420522512e6958ca1e11914ee2e09c277e905d3"
-  integrity sha512-fJes14jQh97WT9iC79RxvymAJCEQbzjQnL8aiOWx8RUJt94VnIa70/EtreTk/48PcaAt7l6MNtBBXUd7ylCgYA==
+"@cfcs/vue3@~0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/@cfcs/vue3/-/vue3-0.0.13.tgz#e7af810bbb3ce9bb4bfb6142dcb47612f64ae33e"
+  integrity sha512-4mrniYPJXLSvqxBN58PFUpZzSkz+9RwN9XVHXTCyWmsxsJxgAVDU6DtsW4larNdrrejxbPQeLZlAwX2mWzAPww==
   dependencies:
-    "@cfcs/core" "~0.0.12"
+    "@cfcs/core" "~0.0.13"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -7936,6 +7944,11 @@ commander@^9.2.0:
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.0.tgz#bc4a40918fefe52e22450c111ecd6b7acce6f11c"
   integrity sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==
+
+commander@^9.4.1:
+  version "9.4.1"
+  resolved "https://registry.npmjs.org/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
+  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
 
 commander@~2.19.0:
   version "2.19.0"
