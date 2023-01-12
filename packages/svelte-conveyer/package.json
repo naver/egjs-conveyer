@@ -70,7 +70,7 @@
     "typescript": "^4.1.6"
   },
   "dependencies": {
-    "@cfcs/svelte": "~0.0.12",
+    "@cfcs/svelte": "~0.0.13",
     "@egjs/conveyer": "~1.4.7"
   }
 }
