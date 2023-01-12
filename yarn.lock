@@ -2270,20 +2270,20 @@
   resolved "https://registry.yarnpkg.com/@egjs/agent/-/agent-2.4.2.tgz#9a0efb4ae36e4f1ee869008fbcafbddb8760c7de"
   integrity sha512-UZQzdpPl0g0M1wDAiq4EY2vUzUI6P5SKGOAPkf0yxSnlcwrU8/zuoyUWbYj11ROFeHV8iW0IetGsmia83z1Hbw==
 
+"@egjs/axes@3.8.4":
+  version "3.8.4"
+  resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-3.8.4.tgz#3137089ec890430509e0fd2a6d312a6bb8244dec"
+  integrity sha512-mRN04qcq3hf8PRsxdysLnsN9nuAPiwqiQMUzyiirT0uqdsOWxgC5C5UbpiXF+HJzLHTgIdwTEYjXJrhAT8WkrA==
+  dependencies:
+    "@cfcs/core" "^0.0.4"
+    "@egjs/agent" "^2.2.1"
+    "@egjs/component" "^3.0.1"
+
 "@egjs/axes@^3.4.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-3.5.0.tgz#ae0c76a284b5b0ff642ba5c4bb6684a512bff28c"
   integrity sha512-LKf/Y6WyDjxzd5o2Y9MUhiXEFwYWM1veeSo0q+QHzniMkTMVlLWyDec+LKoIBoAaMfi+LTNnHYC5/My7tuDSgg==
   dependencies:
-    "@egjs/agent" "^2.2.1"
-    "@egjs/component" "^3.0.1"
-
-"@egjs/axes@^3.8.3":
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/@egjs/axes/-/axes-3.8.3.tgz#0c959682ffdb4a239d4b1289cf061aeb44f3e4ba"
-  integrity sha512-T0+71+glVCxSRnJim7smdGLrmsGmEuoJ62RXBMy7lpsePbXlKmtnFFKgr1tkJJyghJXW3zZNHefCC4nrzEjfEg==
-  dependencies:
-    "@cfcs/core" "^0.0.4"
     "@egjs/agent" "^2.2.1"
     "@egjs/component" "^3.0.1"
 
