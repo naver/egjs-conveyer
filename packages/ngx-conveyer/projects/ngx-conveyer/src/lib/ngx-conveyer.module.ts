@@ -1,15 +1,9 @@
-import { NgModule } from "@angular/core";
-import { NgxConveyerDirective } from "./ngx-conveyer.directive";
+import { NgModule } from '@angular/core';
+
+import { NgxConveyerDirective } from './ngx-conveyer.directive';
 
 @NgModule({
-  declarations: [
-    NgxConveyerDirective,
-  ],
-  imports: [
-  ],
-  exports: [
-    NgxConveyerDirective,
-  ],
+  declarations: [NgxConveyerDirective],
+  exports: [NgxConveyerDirective],
 })
-export class NgxConveyerModule {
-}
+export class NgxConveyerModule {}

@@ -23,13 +23,8 @@
     "list",
     "drag"
   ],
-  "peerDependencies": {
-    "@angular/common": "^13.0.0",
-    "@angular/core": "^13.0.0"
-  },
   "dependencies": {
     "@cfcs/angular": "~0.0.13",
-    "@egjs/conveyer": "~1.4.8",
-    "tslib": "^2.3.0"
+    "@egjs/conveyer": "~1.4.8"
   }
 }
