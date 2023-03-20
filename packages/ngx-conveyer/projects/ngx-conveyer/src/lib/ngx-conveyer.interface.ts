@@ -1,9 +1,10 @@
+import { Directive } from '@angular/core';
 import { REACTIVE_CONVEYER } from '@egjs/conveyer';
-import { AngularReactiveAdapterResult } from '@cfcs/angular';
+import { ReactiveAdapterResult } from '@cfcs/angular';
 
-
-export class NgxConveyerInterface { }
+@Directive()
+export class NgxConveyerInterface {}
 
 // automatic reactive state, methods types
 export interface NgxConveyerInterface
-  extends AngularReactiveAdapterResult<typeof REACTIVE_CONVEYER> { }
+  extends ReactiveAdapterResult<typeof REACTIVE_CONVEYER, 'ngx'> {}

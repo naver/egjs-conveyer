@@ -20,10 +20,10 @@
   <b>Conveyer adds Drag gestures to your Native Scroll.</b><br />📱💻🖥
 </p>
 
-
------
+---
 
 ## ✨ Features
+
 - You can use Native Scroll-like behavior through Drag.
 - By adding easing features such as bounce, elasticity, and back, you can create smooth scrolling animations like Native Scroll.
 - Supports Reactive Properties that can change state through properties that automatically detect changes instead of events.
@@ -33,10 +33,16 @@
 
 ```bash
 $ npm install @egjs/ngx-conveyer
+# Or if you are using yarn
+$ yarn add @egjs/ngx-conveyer
+# Or if you are using pnpm
+$ pnpm install @egjs/ngx-conveyer
 ```
 
 ## 🏃 Quick Start
+
 ### Module definition
+
 ```diff
 +import { NgxConveyerModule } from '@egjs/ngx-conveyer';
 import { BrowserModule } from '@angular/platform-browser';
@@ -56,20 +62,24 @@ import { NgModule } from '@angular/core';
 export class AppModule { } /* Your app */
 ```
 
-* You can use [reactive properties](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#properties) and [methods](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#methods).
-* You can use [events](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#events)
-
+- You can use [reactive properties](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#properties) and [methods](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#methods).
+- You can use [events](https://naver.github.io/egjs-conveyer/docs/api/Conveyer#events)
 
 ```html
 <div class="container">
-  <button id="prev" [disabled]="conveyer?.isReachStart" (click)="prev()">prev</button>
-  <button id="next" [disabled]="conveyer?.isReachEnd" (click)="next()">next</button>
-  <div class="items"
+  <button id="prev" [disabled]="conveyer?.isReachStart" (click)="prev()">
+    prev
+  </button>
+  <button id="next" [disabled]="conveyer?.isReachEnd" (click)="next()">
+    next
+  </button>
+  <div
+    class="items"
     ngxConveyer
     #conveyer="ngxConveyer"
-    (beginScroll)="beginScroll"
-    (finishScroll)="finishScroll"
-    >
+    (beginScroll)="beginScroll()"
+    (finishScroll)="finishScroll()"
+  >
     <div class="item">1</div>
     <div class="item">2</div>
     <div class="item">3</div>
@@ -86,48 +96,56 @@ import { NgxConveyerDirective } from '@egjs/ngx-conveyer';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild("conveyer") conveyer!: NgxConveyerDirective;
+  @ViewChild('conveyer') conveyer!: NgxConveyerDirective;
+
   prev() {
-    this.conveyer.scrollIntoView("start", {
-      align: "end",
+    this.conveyer.scrollIntoView('start', {
+      align: 'end',
       duration: 500,
     });
   }
+
   next() {
-    this.conveyer.scrollIntoView("end", {
-      align: "start",
+    this.conveyer.scrollIntoView('end', {
+      align: 'start',
       duration: 500,
     });
   }
+
   beginScroll() {
-    console.log("begin scroll");
+    console.log('begin scroll');
   }
+
   finishScroll() {
-    console.log("finish scroll");
+    console.log('finish scroll');
   }
 }
 ```
 
-
 ## 🌐 Supported Browsers
-|<img width="20" src="https://simpleicons.org/icons/internetexplorer.svg" alt="IE" />|<img width="20" src="https://simpleicons.org/icons/googlechrome.svg" alt="Chrome" />|<img width="20" src="https://simpleicons.org/icons/firefoxbrowser.svg" alt="Firefox" />|<img width="20" src="https://simpleicons.org/icons/safari.svg" alt="Safari" />|<img width="20" src="https://simpleicons.org/icons/apple.svg" alt="iOS" />|<img width="20" src="https://simpleicons.org/icons/android.svg" alt="Android" />|
-|:---:|:---:|:---:|:---:|:---:|:---:|
-|9+(With polyfill), 11+ for Angular & Svelte|Latest|Latest|Latest|7+|4+|
+
+| <img width="20" src="https://simpleicons.org/icons/internetexplorer.svg" alt="IE" /> | <img width="20" src="https://simpleicons.org/icons/googlechrome.svg" alt="Chrome" /> | <img width="20" src="https://simpleicons.org/icons/firefoxbrowser.svg" alt="Firefox" /> | <img width="20" src="https://simpleicons.org/icons/safari.svg" alt="Safari" /> | <img width="20" src="https://simpleicons.org/icons/apple.svg" alt="iOS" /> | <img width="20" src="https://simpleicons.org/icons/android.svg" alt="Android" /> |
+| :----------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
+|                     9+(With polyfill), 11+ for Angular & Svelte                      |                                        Latest                                        |                                         Latest                                          |                                     Latest                                     |                                     7+                                     |                                        4+                                        |
 
 ## 📼 Demos
+
 Check our [Demos](https://naver.github.io/egjs-conveyer/).
 
 ## 📖 Documentation
+
 See [Documentation](https://naver.github.io/egjs-conveyer/docs/api/Conveyer) page.
 
 ## 🙌 Contributing
+
 See [CONTRIBUTING.md](https://github.com/naver/egjs-conveyer/blob/main/CONTRIBUTING.md).
 
 ## 📝 Feedback
+
 Please file an [Issue](https://github.com/naver/egjs-conveyer/issues).
 
-
 ## 📜 License
+
 @egjs/ngx-conveyer is released under the [MIT license](https://github.com/naver/egjs-conveyer/blob/main/LICENSE).
 
 ```
