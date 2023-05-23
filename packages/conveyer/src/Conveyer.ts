@@ -485,8 +485,10 @@ class Conveyer extends Component<ConveyerEvents> {
   }
   private _getNextScrollPos(item: ConveyerItem, options: ScrollIntoViewOptions) {
     const size = this._size;
+    const scrollSize = this._scrollSize;
     const align = options.align || "start";
     const padding = options.offset || 0;
+    const fixedDuration = options.fixedDuration || false;
     const itemPos = item!.pos;
     const itemSize = item!.size;
     let scrollPos = 0;
@@ -497,6 +499,9 @@ class Conveyer extends Component<ConveyerEvents> {
       scrollPos = itemPos + itemSize - size + padding;
     } else if (align === "center") {
       scrollPos = itemPos + itemSize / 2 - size / 2 + padding;
+    }
+    if (fixedDuration) {
+      scrollPos = Math.max(0, Math.min(scrollPos, scrollSize - size));
     }
     return scrollPos;
   }

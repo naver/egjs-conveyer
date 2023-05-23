@@ -554,6 +554,49 @@ describe("test Conveyer", () => {
         expect(items.scrollLeft).to.be.equals(400);
         expect(conveyer.scrollPos).to.be.equals(400);
       });
+      it("should check whether the animation should end early when the target position is outside the scroll area", async () => {
+        // Given
+        conveyer = new Conveyer(".items");
+        // 2 3 4
+        conveyer.scrollTo(200);
+        await waitFor(100);
+
+        // When
+        // to
+        // 1 2 3
+        conveyer.scrollIntoView("start", {
+          align: "end",
+          duration: 1000,
+        });
+        await waitFor(300);
+
+        // Then
+        const items = document.querySelector<HTMLElement>(".items")!;
+        expect(items.scrollLeft).to.be.equals(0);
+        expect(conveyer.scrollPos).to.be.equals(0);
+      });
+      it("should check whether the scroll animate for fixed duration when the target position is outside the scroll area and fixedDuration is true", async () => {
+        // Given
+        conveyer = new Conveyer(".items");
+        // 2 3 4
+        conveyer.scrollTo(200);
+        await waitFor(100);
+
+        // When
+        // to
+        // 1 2 3
+        conveyer.scrollIntoView("start", {
+          align: "end",
+          duration: 1000,
+          fixedDuration: true,
+        });
+        await waitFor(300);
+
+        // Then
+        const items = document.querySelector<HTMLElement>(".items")!;
+        expect(items.scrollLeft).to.be.not.equals(0);
+        expect(conveyer.scrollPos).to.be.not.equals(0);
+      });
     });
   });
   describe("Events", () => {
