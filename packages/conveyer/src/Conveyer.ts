@@ -426,6 +426,7 @@ class Conveyer extends Component<ConveyerEvents> {
           e.setTo({ ...e.depaPos }, 0);
           this._enableClick();
         }
+        isHold = false;
         isDrag = false;
       },
     });
