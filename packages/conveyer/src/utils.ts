@@ -20,5 +20,5 @@ export function findIndex<T>(arr: T[], callback: (element: T, index: number) => 
 
 
 export function instanceOfElement(el: any): el is Element {
-  return el instanceof Element || ("tagName" in el && "nodeType" in el);
+  return el instanceof Element || el instanceof Node;
 }
