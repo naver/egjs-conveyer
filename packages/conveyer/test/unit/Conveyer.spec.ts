@@ -150,6 +150,24 @@ describe("test Conveyer", () => {
       expect(conveyer.isReachStart).to.be.equal(true);
       expect(conveyer.isReachEnd).to.be.equal(true);
     });
+    it("should check if it works even if there is a contaminated Element", () => {
+
+      // Given
+      const items = document.querySelector<HTMLElement>(".items")!;
+
+      // When
+      const Element = window.Element;
+      (window as any).Element = () => {};
+
+      try {
+        conveyer = new Conveyer(items);
+      } catch (e) {}
+
+      window.Element = Element;
+
+      // Thwn
+      expect(items.style.userSelect).to.be.equals("none");
+    });
   });
   describe("Reactvie Properties", () => {
     it("should check if isReachStart is true, isReachEnd is false if init", () => {
