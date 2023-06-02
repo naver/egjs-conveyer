@@ -71,14 +71,12 @@ export interface FindItemOptions {
  * @property - Whether to find the next item except sorting it in place. (default: false) <ko>아이템을 제자리에 정렬하는 것을 제외하고 다음 아이템을 찾을지 여부. (default: false)</ko>
  * @property - The value to scroll further from the sort position. (default: 0) <ko>정렬하는 위치에서 얼만큼 더 스크롤할 값. (default: 0)</ko>
  * @property - How long to scroll animation time. (default: 0) <ko>얼마동한 스크롤할 할지 애니메이션 시간. (default: 0)</ko>
- * @property - Whether to always use the same duration even if the scroll target point is outside the min/max scroll area. By default, the duration can be different depending on the remaining distance. (default: false) <ko>스크롤 목표 지점이 최소/최대 스크롤 영역 바깥에 있는 경우에도 항상 동일한 duration을 사용할지 여부. 기본적으로는 남은 거리에 따라 duration이 달라질 수 있다. (default: false)</ko>
  */
 export interface ScrollIntoViewOptions extends FindItemOptions {
   align?: "start" | "end" | "center";
   excludeStand?: boolean;
   offset?: number;
   duration?: number;
-  fixedDuration?: boolean;
 }
 
 /**

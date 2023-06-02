@@ -488,7 +488,6 @@ class Conveyer extends Component<ConveyerEvents> {
     const scrollSize = this._scrollSize;
     const align = options.align || "start";
     const padding = options.offset || 0;
-    const fixedDuration = options.fixedDuration || false;
     const itemPos = item!.pos;
     const itemSize = item!.size;
     let scrollPos = 0;
@@ -500,9 +499,7 @@ class Conveyer extends Component<ConveyerEvents> {
     } else if (align === "center") {
       scrollPos = itemPos + itemSize / 2 - size / 2 + padding;
     }
-    if (fixedDuration) {
-      scrollPos = Math.max(0, Math.min(scrollPos, scrollSize - size));
-    }
+    scrollPos = Math.max(0, Math.min(scrollPos, scrollSize - size));
     return scrollPos;
   }
   private _isMixedWheel(nativeEvent: any) {
