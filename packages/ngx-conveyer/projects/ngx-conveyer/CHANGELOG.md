@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.9](https://github.com/naver/egjs-conveyer/compare/@egjs/ngx-conveyer@1.4.8...@egjs/ngx-conveyer@1.4.9) (2023-06-02)
+
+
+### :rocket: New Features
+
+* **ngx-conveyer:** reduce view updates and fix outputs (#32) ([85c6c30](https://github.com/naver/egjs-conveyer/commit/85c6c30d90ced259017ee20e002e257eb4cc1034))
+
+
+### :mega: Other
+
+* update packages versions ([989c041](https://github.com/naver/egjs-conveyer/commit/989c041877d9960b809030b5b4fd5af8097da2ba))
+
+
+
 ## [1.4.8](https://github.com/naver/egjs-conveyer/compare/@egjs/ngx-conveyer@1.4.7...@egjs/ngx-conveyer@1.4.8) (2023-01-12)
 
 

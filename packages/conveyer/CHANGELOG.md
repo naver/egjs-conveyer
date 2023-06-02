@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.9](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.8...@egjs/conveyer@1.4.9) (2023-06-02)
+
+
+### :bug: Bug Fix
+
+* fix instanceof Element (#38) ([72fec40](https://github.com/naver/egjs-conveyer/commit/72fec4029eafe87cd3e387939f9e89edf6179573))
+* scrollIntoView ending earlier than the duration given as an option (#35) ([3a42aa3](https://github.com/naver/egjs-conveyer/commit/3a42aa3fad6a860ec5d679c953b26c8168a3eeb2))
+* set isHold to false when release occur (#34) ([07ae681](https://github.com/naver/egjs-conveyer/commit/07ae68193d94b896e5dbc9b0f2cda7a86bed38e8))
+
+
+### :mega: Other
+
+* update packages versions ([989c041](https://github.com/naver/egjs-conveyer/commit/989c041877d9960b809030b5b4fd5af8097da2ba))
+
+
+
 ## [1.4.8](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.7...@egjs/conveyer@1.4.8) (2023-01-12)
 
 

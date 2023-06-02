@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.9](https://github.com/naver/egjs-conveyer/compare/1.4.8...1.4.9) (2023-06-02)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.4.9
+* `@egjs/react-conveyer` 1.4.9
+* `@egjs/svelte-conveyer` 1.4.9
+* `@egjs/vue-conveyer` 1.4.9
+* `@egjs/vue2-conveyer` 1.4.9
+* `@egjs/ngx-conveyer` 1.4.9
+
+
+### :rocket: New Features
+
+* `@egjs/ngx-conveyer`
+    * **ngx-conveyer:** reduce view updates and fix outputs (#32) ([85c6c30](https://github.com/naver/egjs-conveyer/commit/85c6c30d90ced259017ee20e002e257eb4cc1034))
+
+
+### :bug: Bug Fix
+
+* `@egjs/conveyer`
+    * fix instanceof Element (#38) ([72fec40](https://github.com/naver/egjs-conveyer/commit/72fec4029eafe87cd3e387939f9e89edf6179573))
+    * scrollIntoView ending earlier than the duration given as an option (#35) ([3a42aa3](https://github.com/naver/egjs-conveyer/commit/3a42aa3fad6a860ec5d679c953b26c8168a3eeb2))
+    * set isHold to false when release occur (#34) ([07ae681](https://github.com/naver/egjs-conveyer/commit/07ae68193d94b896e5dbc9b0f2cda7a86bed38e8))
+* Other
+    * fix broken document link (#30) ([a716e2a](https://github.com/naver/egjs-conveyer/commit/a716e2ac0b4cf975420de9e8cd5f432715bbbffe))
+
+
+### :memo: Documentation
+
+* fix latest and version docs react import (#33) ([90a8451](https://github.com/naver/egjs-conveyer/commit/90a8451414b1322f228a567aa1d07ef63c13919f))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([989c041](https://github.com/naver/egjs-conveyer/commit/989c041877d9960b809030b5b4fd5af8097da2ba))
+
+
+
 ## [1.4.8](https://github.com/naver/egjs-conveyer/compare/1.4.7...1.4.8) (2023-01-12)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.4.8
