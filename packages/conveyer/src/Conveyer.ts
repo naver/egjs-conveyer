@@ -12,7 +12,7 @@ import {
   ConveyerOptions, FindItemOptions, ConveyerReactiveState,
   ScrollIntoViewOptions,
 } from "./types";
-import { isString } from "./utils";
+import { instanceOfElement, isString } from "./utils";
 
 
 /**
@@ -360,10 +360,14 @@ class Conveyer extends Component<ConveyerEvents> {
 
     if (isString(scrollArea)) {
       el = document.querySelector<HTMLElement>(scrollArea)!;
-    } else if (scrollArea instanceof Element) {
+    } else if (instanceOfElement(scrollArea)) {
       el = scrollArea;
     } else if ("value" in scrollArea || "current" in scrollArea) {
       el = scrollArea.value! || scrollArea.current!;
+    }
+
+    if (!el) {
+      return;
     }
 
     this._scrollAreaElement = el;
