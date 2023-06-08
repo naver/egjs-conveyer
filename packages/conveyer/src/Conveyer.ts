@@ -110,6 +110,7 @@ class Conveyer extends Component<ConveyerEvents> {
       useDrag: true,
       useSideWheel: false,
       autoInit: true,
+      boundaryMargin: 0,
       scrollDebounce: 100,
       ...options,
     };
@@ -524,9 +525,10 @@ class Conveyer extends Component<ConveyerEvents> {
     const size = this._size;
     const scrollSize = this._scrollSize;
     const pos = this._pos;
+    const boundaryMargin = this._options.boundaryMargin ?? 0;
 
     // enter start
-    if (pos <= 0 && this.isReachStart !== true) {
+    if (pos <= boundaryMargin && this.isReachStart !== true) {
       this._isReachStart = true;
       /**
        * This event is fired when scroll reach start.
@@ -534,7 +536,7 @@ class Conveyer extends Component<ConveyerEvents> {
        * @event Conveyer#reachStart
        */
       this.trigger("reachStart");
-    } else if (pos > 0 && this.isReachStart !== false) {
+    } else if (pos > boundaryMargin && this.isReachStart !== false) {
       this._isReachStart = false;
       /**
        * This event is fired when scroll leave start.
@@ -544,7 +546,7 @@ class Conveyer extends Component<ConveyerEvents> {
       this.trigger("leaveStart");
     }
     // enter end
-    if (scrollSize - size - pos < 1 && this.isReachEnd !== true) {
+    if (scrollSize - size - pos < 1 + boundaryMargin && this.isReachEnd !== true) {
       this._isReachEnd = true;
       /**
        * This event is fired when scroll reach end.
@@ -552,7 +554,7 @@ class Conveyer extends Component<ConveyerEvents> {
        * @event Conveyer#reachEnd
        */
       this.trigger("reachEnd");
-    } else if (!(scrollSize - size - pos < 1) && this.isReachEnd !== false) {
+    } else if (!(scrollSize - size - pos < 1 + boundaryMargin) && this.isReachEnd !== false) {
       this._isReachEnd = false;
       /**
        * This event is fired when scroll leave end.

@@ -11,6 +11,8 @@ import Conveyer from "./Conveyer";
  * @property - selector to find items inside. (default: "") <ko>내부의 아이템들을 찾기 위한 selector. (default: "")</ko>
  * @property - Whether to use drag (default: true) <ko> 드래그를 사용할지 여부. (default: true)</ko>
  * @property - Whether to use the mouse wheel in a direction aside from the scroll direction (default: false) <ko>스크롤 방향과 다른 방향의 마우스 휠 입력을 사용할지 여부. (default: false)</ko>
+ * @property - The minimum margin space for {@link Conveyer#event-reachStart reachStart}, {@link Conveyer#event-leaveStart leaveStart}, {@link Conveyer#event-reachEnd reachEnd}, and {@link Conveyer#event-leaveEnd leaveEnd} events to occur at the beginning and end of the scroll area. (default: 0)
+ * <ko> 스크롤 영역의 시작과 끝에서 {@link Conveyer#event-reachStart reachStart}, {@link Conveyer#event-leaveStart leaveStart}, {@link Conveyer#event-reachEnd reachEnd}, {@link Conveyer#event-leaveEnd leaveEnd} 이벤트들이 발생하기 위한 최소 여백. (default: 0)</ko>
  * @property - The maximum amount of time the scroll event does not fire for the finishScroll event to be triggered. (default: 100) <ko> finishScroll 이벤트가 발생되기 위한 scroll 이벤트가 발생하지 않는 최대 시간. (default: 100)</ko>
  * @property - Whether to prevent being selected. (default: true) <ko>셀렉트가 되는 것을 막을지 여부. (default: true) </ko>
  * @property - Whether to prevent click event when dragging. (default: false) <ko>드래그하면 클릭이벤트를 막을지 여부. (default: true)</ko>
@@ -22,6 +24,7 @@ export interface ConveyerOptions {
   itemSelector?: string;
   useDrag?: boolean;
   useSideWheel?: boolean;
+  boundaryMargin?: number;
   scrollDebounce?: number;
   preventDefault?: boolean;
   preventClickOnDrag?: boolean;
