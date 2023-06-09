@@ -44,6 +44,7 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _options: ConveyerOptions;
 
   private _scrollTimer = 0;
+  private _isNativeScroll = false;
   private _isDragScroll = false;
   private _isAnimation = false;
   private _scrollArea: string | HTMLElement | Ref<HTMLElement>;
@@ -405,14 +406,12 @@ class Conveyer extends Component<ConveyerEvents> {
       },
       "change": e => {
         const nativeEvent = this._getNativeEvent(e);
-        if (nativeEvent && !isHold) {
-          return;
-        }
         if (options.useSideWheel && this._isMixedWheel(nativeEvent)) {
           return;
         }
-        this._isDragScroll = !!nativeEvent && nativeEvent.type !== "wheel";
-        this._isAnimation = !!isHold;
+        this._isNativeScroll = !!nativeEvent && nativeEvent.type === "wheel";
+        this._isDragScroll = !!nativeEvent && !this._isNativeScroll;
+        this._isAnimation = !this._isNativeScroll && !isHold;
         isDrag = true;
         const scroll = e.delta.scroll;
 
@@ -593,9 +592,10 @@ class Conveyer extends Component<ConveyerEvents> {
        */
       this.trigger("finishScroll", {
         isDragScroll: this._isDragScroll,
-        isTrusted: this._isDragScroll || !this._isAnimation,
+        isTrusted: this._isNativeScroll || this._isDragScroll || !this._isAnimation,
       });
 
+      this._isNativeScroll = false;
       this._isDragScroll = false;
       this._isAnimation = false;
     }, this._options.scrollDebounce);

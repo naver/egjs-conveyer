@@ -670,6 +670,41 @@ describe("test Conveyer", () => {
       // Then
       expect(spy.callCount).to.be.equals(1);
     });
+    it("should check if isTrusted of finishScroll event is true when drag occurs", (done) => {
+      // Given
+      const items = document.querySelector<HTMLElement>(".items")!;
+      const finishScrollHandler = sinon.spy((event) => {
+        // Then
+        expect(event.isTrusted).to.be.true;
+        done();
+      });
+
+      conveyer = new Conveyer(items);
+      conveyer.on("finishScroll", finishScrollHandler);
+
+      // When
+      dispatchDrag(
+        items,
+        { left: 0, top: 0 },
+        { left: -100, top: 0 },
+        { duration: 100, interval: 50 }
+      );
+    });
+    it("should check if isTrusted of finishScroll event is false when conveyer moves by method", (done) => {
+      // Given
+      const items = document.querySelector<HTMLElement>(".items")!;
+      const finishScrollHandler = sinon.spy((event) => {
+        // Then
+        expect(event.isTrusted).to.be.false;
+        done();
+      });
+
+      conveyer = new Conveyer(items);
+      conveyer.on("finishScroll", finishScrollHandler);
+
+      // When
+      conveyer.scrollTo(600);
+    });
   });
   describe("Options", () => {
     describe("useSideWheel", () => {
