@@ -44,9 +44,9 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _options: ConveyerOptions;
 
   private _scrollTimer = 0;
-  private _isNativeScroll = false;
+  private _isWheelScroll = false;
   private _isDragScroll = false;
-  private _isAnimation = false;
+  private _isAnimationScroll = false;
   private _scrollArea: string | HTMLElement | Ref<HTMLElement>;
 
   /**
@@ -409,9 +409,9 @@ class Conveyer extends Component<ConveyerEvents> {
         if (options.useSideWheel && this._isMixedWheel(nativeEvent)) {
           return;
         }
-        this._isNativeScroll = !!nativeEvent && nativeEvent.type === "wheel";
-        this._isDragScroll = !!nativeEvent && !this._isNativeScroll;
-        this._isAnimation = !this._isNativeScroll && !isHold;
+        this._isWheelScroll = !!nativeEvent && nativeEvent.type === "wheel";
+        this._isDragScroll = !!nativeEvent && !this._isWheelScroll;
+        this._isAnimationScroll = !this._isWheelScroll && !isHold;
         isDrag = true;
         const scroll = e.delta.scroll;
 
@@ -583,6 +583,9 @@ class Conveyer extends Component<ConveyerEvents> {
     }
     window.clearTimeout(this._scrollTimer);
     this._scrollTimer = window.setTimeout(() => {
+      const isWheelScroll = this._isWheelScroll;
+      const isDragScroll = this._isDragScroll;
+      const isAnimationScroll = this._isAnimationScroll;
       this._scrollTimer = 0;
       /**
        * This event is fired when finish scroll.
@@ -591,13 +594,15 @@ class Conveyer extends Component<ConveyerEvents> {
        * @param {OnFinishScroll} e - The object of data to be sent to an event <ko>이벤트에 전달되는 데이터 객체</ko>
        */
       this.trigger("finishScroll", {
-        isDragScroll: this._isDragScroll,
-        isTrusted: this._isNativeScroll || this._isDragScroll || !this._isAnimation,
+        isWheelScroll,
+        isDragScroll,
+        isAnimationScroll,
+        isTrusted: isWheelScroll || isDragScroll || !isAnimationScroll,
       });
 
-      this._isNativeScroll = false;
+      this._isWheelScroll = false;
       this._isDragScroll = false;
-      this._isAnimation = false;
+      this._isAnimationScroll = false;
     }, this._options.scrollDebounce);
   }
 }

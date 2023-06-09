@@ -33,7 +33,9 @@ export interface ConveyerOptions {
  * @typedef
  */
 export interface OnFinishScroll {
+  isWheelScroll: boolean;
   isDragScroll: boolean;
+  isAnimationScroll: boolean;
   isTrusted: boolean;
 }
 
