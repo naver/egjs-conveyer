@@ -699,6 +699,45 @@ describe("test Conveyer", () => {
       });
     });
 
+    describe("boundaryMargin", () => {
+      const NEARBY_DISTANCE = 20;
+
+      [10, 30].forEach((boundaryMargin) => {
+        const isMarginEnough = boundaryMargin >= NEARBY_DISTANCE;
+
+        it(`should check if the boundaryMargin affects the scroll positions at which events are triggered (boundaryMargin is ${isMarginEnough ? "more" : "less"} than blank space)`, async () => {
+          // Given
+          conveyer = new Conveyer(".items", {
+            boundaryMargin,
+          });
+
+          // When
+          const leaveStartSpy = sinon.spy();
+          const reachEndSpy = sinon.spy();
+          const leaveEndSpy = sinon.spy();
+          const reachStartSpy = sinon.spy();
+          const items = document.querySelector<HTMLElement>(".items")!;
+          conveyer.init();
+          conveyer.scrollTo(NEARBY_DISTANCE);
+          await waitFor(100);
+          conveyer.on("reachStart", reachStartSpy);
+          conveyer.on("leaveStart", leaveStartSpy);
+          conveyer.on("reachEnd", reachEndSpy);
+          conveyer.on("leaveEnd", leaveEndSpy);
+          conveyer.scrollTo(items.scrollWidth - items.clientWidth - NEARBY_DISTANCE);
+          await waitFor(100);
+          conveyer.scrollTo(NEARBY_DISTANCE);
+          await waitFor(100);
+
+          // Then
+          expect(leaveStartSpy.callCount).to.be.equals(isMarginEnough ? 1 : 0);
+          expect(reachEndSpy.callCount).to.be.equals(isMarginEnough ? 1 : 0);
+          expect(leaveEndSpy.callCount).to.be.equals(isMarginEnough ? 1 : 0);
+          expect(reachStartSpy.callCount).to.be.equals(isMarginEnough ? 1 : 0);
+        });
+      });
+    });
+
     describe("nested", () => {
       let childConveyer!: Conveyer;
 
