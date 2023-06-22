@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/naver/egjs-conveyer/compare/@egjs/svelte-conveyer@1.4.9...@egjs/svelte-conveyer@1.5.0) (2023-06-22)
+
+
+### :mega: Other
+
+* update packages versions ([b7d57e1](https://github.com/naver/egjs-conveyer/commit/b7d57e17a1a7603d295033fbf351a180206bad15))
+
+
+
 ## [1.4.9](https://github.com/naver/egjs-conveyer/compare/@egjs/svelte-conveyer@1.4.8...@egjs/svelte-conveyer@1.4.9) (2023-06-02)
 
 

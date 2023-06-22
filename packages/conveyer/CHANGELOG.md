@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.9...@egjs/conveyer@1.5.0) (2023-06-22)
+
+
+### :rocket: New Features
+
+* add boundaryMargin option (#40) ([5d1cf77](https://github.com/naver/egjs-conveyer/commit/5d1cf7752d179d34e35ebd5843a628306f4d0e7d))
+
+
+### :bug: Bug Fix
+
+* fix incorrect isTrusted value in finishScroll event (#41) ([7a32ec8](https://github.com/naver/egjs-conveyer/commit/7a32ec86ebc98ae663b5c460aa40af3e5ab32a74))
+
+
+### :mega: Other
+
+* update packages versions ([b7d57e1](https://github.com/naver/egjs-conveyer/commit/b7d57e17a1a7603d295033fbf351a180206bad15))
+
+
+
 ## [1.4.9](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.8...@egjs/conveyer@1.4.9) (2023-06-02)
 
 
