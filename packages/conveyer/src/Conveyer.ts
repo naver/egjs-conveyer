@@ -401,9 +401,6 @@ class Conveyer extends Component<ConveyerEvents> {
         if (options.preventDefault) {
           nativeEvent.preventDefault();
         }
-        if (options.preventClickOnDrag) {
-          this._disableClick();
-        }
       },
       "change": e => {
         const nativeEvent = this._getNativeEvent(e);
@@ -428,7 +425,6 @@ class Conveyer extends Component<ConveyerEvents> {
       "release": e => {
         if (!isDrag) {
           e.setTo({ ...e.depaPos }, 0);
-          this._enableClick();
         }
         isHold = false;
         isDrag = false;
@@ -438,6 +434,7 @@ class Conveyer extends Component<ConveyerEvents> {
     this._axes = axes;
     if (options.useDrag) {
       axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
+        preventClickOnDrag: options.preventClickOnDrag,
         inputType: ["mouse"],
         touchAction: "auto",
       }));
@@ -562,17 +559,6 @@ class Conveyer extends Component<ConveyerEvents> {
        */
       this.trigger("leaveEnd");
     }
-  }
-  private _onPreventClick = (e: Event) => {
-    e.stopPropagation();
-    e.preventDefault();
-    this._enableClick();
-  }
-  private _enableClick() {
-    window.removeEventListener("click", this._onPreventClick, true);
-  }
-  private _disableClick() {
-    window.addEventListener("click", this._onPreventClick, true);
   }
   private _debounceScroll() {
     if (!this._scrollTimer) {
