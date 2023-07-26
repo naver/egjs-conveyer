@@ -286,7 +286,7 @@ describe("test Conveyer", () => {
 
       // When
       await dispatchDrag(
-        container,
+        items,
         { left: 0, top: 0 },
         { left: -100, top: 0 },
         { duration: 100, interval: 50 }
