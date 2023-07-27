@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/naver/egjs-conveyer/compare/1.5.0...1.5.1) (2023-07-27)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.5.1
+* `@egjs/react-conveyer` 1.5.1
+* `@egjs/svelte-conveyer` 1.5.1
+* `@egjs/vue-conveyer` 1.5.1
+* `@egjs/vue2-conveyer` 1.5.1
+* `@egjs/ngx-conveyer` 1.5.1
+
+
+### :bug: Bug Fix
+
+* `@egjs/conveyer`
+    * use preventClickOnDrag of Axes (#43) ([1743ce1](https://github.com/naver/egjs-conveyer/commit/1743ce190235477d3a76f054afcbe03a921618cc))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([adcc2ce](https://github.com/naver/egjs-conveyer/commit/adcc2ce99e160cfe334e7f7d50e1e7d8e5449ae5))
+
+
+
 ## [1.5.0](https://github.com/naver/egjs-conveyer/compare/1.4.9...1.5.0) (2023-06-22)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.5.0

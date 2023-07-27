@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.5.0...@egjs/conveyer@1.5.1) (2023-07-27)
+
+
+### :bug: Bug Fix
+
+* use preventClickOnDrag of Axes (#43) ([1743ce1](https://github.com/naver/egjs-conveyer/commit/1743ce190235477d3a76f054afcbe03a921618cc))
+
+
+### :mega: Other
+
+* update packages versions ([adcc2ce](https://github.com/naver/egjs-conveyer/commit/adcc2ce99e160cfe334e7f7d50e1e7d8e5449ae5))
+
+
+
 ## [1.5.0](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.4.9...@egjs/conveyer@1.5.0) (2023-06-22)
 
 
