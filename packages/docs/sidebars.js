@@ -11,6 +11,7 @@ module.exports = {
     "examples/VerticalScroll",
     "examples/Properties",
     "examples/Methods",
+    "examples/Intersection",
     "examples/InfiniteScroll",
     "examples/SideWheel",
   ],
