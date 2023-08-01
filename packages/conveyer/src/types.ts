@@ -60,11 +60,25 @@ export interface ConveyerReactiveState {
 
 /**
  * @typedef
- * @property - size ratio to find items. (default: 1) <ko>아이템을 찾기 위한 사이즈 비율. (default: 1)</ko>
- * @property - The number of items next to the item's index to return. (default: 0) <ko>해당 아이템의 index에서 얼마나 옆에 있는 아이템을 반환할지 개수 (default: 0)</ko>
  */
 export interface FindItemOptions {
+  /**
+   * size ratio to find items.
+   * <ko>아이템을 찾기 위한 사이즈 비율.</ko>
+   * @default 1
+   */
   hitTest?: number;
+  /**
+   * Whether to include items that intersect on the side
+   * <ko>사이드에 교차하는 아이템까지 포함할지 여부.</ko>
+   * @default 0
+   */
+  intersection?: boolean;
+  /**
+   * The number of items next to the item's index to return.
+   * <ko>해당 아이템의 index에서 얼마나 옆에 있는 아이템을 반환할지 개수.</ko>
+   * @default 0
+   */
   sibling?: number;
 }
 

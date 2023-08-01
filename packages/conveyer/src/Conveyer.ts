@@ -164,6 +164,7 @@ class Conveyer extends Component<ConveyerEvents> {
     const length = items.length;
     const endPos = pos + size;
     const sibling = options.sibling;
+    const intersection = options.intersection;
     const startVirtualItem = { pos: 0, size: 0 };
     const endVirtualItem = { pos: scrollSize, size: 0 };
 
@@ -180,13 +181,13 @@ class Conveyer extends Component<ConveyerEvents> {
       if (pos < 0) {
         return null;
       }
-      const selectedItems = [...items].reverse().filter(item => {
+      const selectedItems = items.filter(item => {
         const itemSize = item.size;
         const dist = item.pos - pos;
         const dist2 = dist + itemSize;
 
-        return (dist >= 0) || (dist2 >= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
-      }).reverse();
+        return (dist >= 0) || (dist2 >= 0 && (intersection || !itemSize || Math.abs(dist2) / itemSize >= hitTest));
+      });
 
       selectedItem = (selectedItems[0] === startVirtualItem && selectedItems[1]) || selectedItems[0];
     } else if (target === "end") {
@@ -198,7 +199,7 @@ class Conveyer extends Component<ConveyerEvents> {
         const dist = item.pos + itemSize - endPos;
         const dist2 = dist - itemSize;
 
-        return dist <= 0 || (dist2 <= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
+        return dist <= 0 || (dist2 <= 0 && (intersection || !itemSize || Math.abs(dist2) / itemSize >= hitTest));
       }).reverse();
 
       selectedItem = (selectedItems[0] === endVirtualItem && selectedItems[1]) || selectedItems[0];
@@ -208,16 +209,16 @@ class Conveyer extends Component<ConveyerEvents> {
         const dist = item.pos + itemSize - pos;
         const dist2 = dist - itemSize;
 
-        return dist <= 0 || (dist2 <= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
+        return dist <= 0 || (dist2 <= 0 && (intersection || !itemSize || Math.abs(dist2) / itemSize >= hitTest));
       }).reverse()[0];
     } else if (target === "next") {
-      selectedItem = items.reverse().filter(item => {
+      selectedItem = items.filter(item => {
         const itemSize = item.size;
         const dist = item.pos - endPos;
         const dist2 = dist + itemSize;
 
-        return dist >= 0 || (dist2 >= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
-      }).reverse()[0];
+        return dist >= 0 || (dist2 >= 0 && (intersection || !itemSize || Math.abs(dist2) / itemSize >= hitTest));
+      })[0];
     } else {
       return this._getItem(target);
     }
