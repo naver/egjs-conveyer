@@ -1,6 +1,6 @@
 {
 	"name": "@egjs/conveyer",
-	"version": "1.5.1",
+	"version": "1.6.1",
 	"description": "Conveyer adds Drag gestures to your Native Scroll.",
 	"main": "./dist/conveyer.cjs.js",
 	"module": "./dist/conveyer.esm.js",
