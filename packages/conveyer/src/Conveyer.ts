@@ -436,6 +436,7 @@ class Conveyer extends Component<ConveyerEvents> {
     if (options.useDrag) {
       axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
         preventClickOnDrag: options.preventClickOnDrag,
+        preventDefaultOnDrag: options.preventDefaultOnDrag,
         inputType: ["mouse"],
         touchAction: "auto",
       }));

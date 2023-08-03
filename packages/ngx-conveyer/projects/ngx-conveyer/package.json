@@ -24,7 +24,7 @@
     "drag"
   ],
   "dependencies": {
-    "@cfcs/angular": "~0.0.13",
+    "@cfcs/angular": "^0.1.1",
     "@egjs/conveyer": "~1.5.1"
   }
 }
