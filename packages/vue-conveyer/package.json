@@ -39,7 +39,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@cfcs/vue3": "~0.0.13",
+    "@cfcs/vue3": "^0.1.0",
     "@egjs/conveyer": "~1.5.1"
   },
   "devDependencies": {

@@ -16,6 +16,7 @@ import Conveyer from "./Conveyer";
  * @property - The maximum amount of time the scroll event does not fire for the finishScroll event to be triggered. (default: 100) <ko> finishScroll 이벤트가 발생되기 위한 scroll 이벤트가 발생하지 않는 최대 시간. (default: 100)</ko>
  * @property - Whether to prevent being selected. (default: true) <ko>셀렉트가 되는 것을 막을지 여부. (default: true) </ko>
  * @property - Whether to prevent click event when dragging. (default: false) <ko>드래그하면 클릭이벤트를 막을지 여부. (default: true)</ko>
+ * @property - Whether to use the {@link https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault preventDefault} when the user starts dragging <ko>사용자가 드래그를 시작할 때 {@link https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault preventDefault} 실행 여부</ko>
  * @property - Whether to automatically initialize when an instance is created. If set to false, initialization is possible while calling the init method. (default: true) <ko>인스턴스를 생성할 때 자동으로 초기화할지 여부. false로 설정하면 init 메서드를 호출하면서 초기화가 가능하다. (default: true)</ko>
  * @property - If this option is enabled on a Conveyer placed inside an egjs component that has the same scroll direction including the Conveyer itself. The parent component moves in the same direction after the Conveyer reaches the first/last scroll position. <ko>Conveyer 자신을 포함해서 동일한 스크롤 방향을 가진 egjs 컴포넌트 내부에 배치된 Conveyer에서 이 옵션을 활성화하면 Conveyer가 첫/마지막 스크롤 위치에 도달한 뒤부터 같은 방향으로 상위 컴포넌트가 움직인다.</ko>
  */
@@ -28,6 +29,7 @@ export interface ConveyerOptions {
   scrollDebounce?: number;
   preventDefault?: boolean;
   preventClickOnDrag?: boolean;
+  preventDefaultOnDrag?: boolean;
   autoInit?: boolean;
   nested?: boolean;
 }
@@ -60,11 +62,25 @@ export interface ConveyerReactiveState {
 
 /**
  * @typedef
- * @property - size ratio to find items. (default: 1) <ko>아이템을 찾기 위한 사이즈 비율. (default: 1)</ko>
- * @property - The number of items next to the item's index to return. (default: 0) <ko>해당 아이템의 index에서 얼마나 옆에 있는 아이템을 반환할지 개수 (default: 0)</ko>
  */
 export interface FindItemOptions {
+  /**
+   * size ratio to find items.
+   * <ko>아이템을 찾기 위한 사이즈 비율.</ko>
+   * @default 1
+   */
   hitTest?: number;
+  /**
+   * Whether to include items that intersect on the side
+   * <ko>사이드에 교차하는 아이템까지 포함할지 여부.</ko>
+   * @default 0
+   */
+  intersection?: boolean;
+  /**
+   * The number of items next to the item's index to return.
+   * <ko>해당 아이템의 index에서 얼마나 옆에 있는 아이템을 반환할지 개수.</ko>
+   * @default 0
+   */
   sibling?: number;
 }
 
