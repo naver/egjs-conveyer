@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/naver/egjs-conveyer/compare/1.5.1...1.6.1) (2023-08-03)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.6.1
+* `@egjs/react-conveyer` 1.6.1
+* `@egjs/svelte-conveyer` 1.6.1
+* `@egjs/vue-conveyer` 1.6.1
+* `@egjs/vue2-conveyer` 1.6.1
+* `@egjs/ngx-conveyer` 1.6.1
+
+
+### :rocket: New Features
+
+* All
+    * add intersection option (#46) ([091fda5](https://github.com/naver/egjs-conveyer/commit/091fda54a5a669d8db26d6829a3d1b2b6b9a211d))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([b1a0858](https://github.com/naver/egjs-conveyer/commit/b1a0858fa3a3cd94d6c0ab1abed505d106e75d14))
+
+
+
 ## [1.5.1](https://github.com/naver/egjs-conveyer/compare/1.5.0...1.5.1) (2023-07-27)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.5.1
