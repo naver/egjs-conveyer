@@ -543,7 +543,7 @@ describe("test Conveyer", () => {
         // When
         // 2 3(end) 4(intersection) 5(next)
         // to
-        // 3 4 5
+        // 4 5 6
         conveyer.scrollIntoView("end", {
           align: "start",
           intersection: true,
@@ -558,8 +558,50 @@ describe("test Conveyer", () => {
       it("should check it target(3) moves start when target is end (intersection) and align is start", async () => {
         // Given
         conveyer = new Conveyer(".items");
-        // 1 (prev) 2(intersection) 3 (start) 4 5
         conveyer.scrollTo(300);
+        await waitFor(100);
+
+        // When
+        // 1 (prev) 2(intersection) 3 (start) 4 5
+        // to
+        // 1 2 3
+        conveyer.scrollIntoView("start", {
+          align: "end",
+          intersection: true,
+        });
+        await waitFor(100);
+
+        // Then
+        const items = document.querySelector<HTMLElement>(".items")!;
+        expect(items.scrollLeft).to.be.equals(0);
+        expect(conveyer.scrollPos).to.be.equals(0);
+      });
+      it("should check it target(3, intersection) moves start when target is end and align is start", async () => {
+        // Given
+        const items = document.querySelector<HTMLElement>(".items")!;
+
+        conveyer = new Conveyer(".items");
+
+        // When
+        // 1 2 3(end) 4(next) 5
+        // to
+        // 3 4 5
+        conveyer.scrollIntoView("end", {
+          align: "start",
+          intersection: true,
+        });
+        await waitFor(100);
+
+        // Then
+
+        expect(items.scrollLeft).to.be.equals(400);
+        expect(conveyer.scrollPos).to.be.equals(400);
+      });
+      it("should check it target(3, intersection) moves start when target is start and align is end", async () => {
+        // Given
+        conveyer = new Conveyer(".items");
+        // 1 2(prev) 3 (start) 4 5
+        conveyer.scrollTo(400);
         await waitFor(100);
 
         // When
