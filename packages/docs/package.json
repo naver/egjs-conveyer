@@ -33,7 +33,7 @@
     "@docusaurus/preset-classic": "2.0.0-beta.14",
     "@docusaurus/theme-live-codeblock": "2.0.0-beta.14",
     "@egjs/flicking-plugins": "^4.2.1",
-    "@egjs/react-conveyer": "~1.6.1",
+    "@egjs/react-conveyer": "~1.6.2",
     "@egjs/react-flicking": "^4.2.1",
     "@egjs/react-infinitegrid": "^4.5.0",
     "@mdx-js/react": "^1.6.21",
