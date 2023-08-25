@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.6.1...@egjs/conveyer@1.6.2) (2023-08-25)
+
+
+### :bug: Bug Fix
+
+* fix no intersection item with intersection option (#49) ([7de868b](https://github.com/naver/egjs-conveyer/commit/7de868bea09999c1f02c3758e763302a383161ec))
+
+
+### :memo: Documentation
+
+* update jsdoc-to-mdx and fix types (#47) ([0210e64](https://github.com/naver/egjs-conveyer/commit/0210e64ea7c1604e9b1da384777d5c4ef2952ff1))
+
+
+### :mega: Other
+
+* update packages versions ([bdbf252](https://github.com/naver/egjs-conveyer/commit/bdbf2520a26cc3bdb299dd7b4bfbef7a15b1e889))
+
+
+
 ## [1.6.1](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.5.1...@egjs/conveyer@1.6.1) (2023-08-03)
 
 

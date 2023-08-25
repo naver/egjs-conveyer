@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/naver/egjs-conveyer/compare/@egjs/ngx-conveyer@1.6.1...@egjs/ngx-conveyer@1.6.2) (2023-08-25)
+
+
+### :mega: Other
+
+* update packages versions ([bdbf252](https://github.com/naver/egjs-conveyer/commit/bdbf2520a26cc3bdb299dd7b4bfbef7a15b1e889))
+
+
+
 ## [1.6.1](https://github.com/naver/egjs-conveyer/compare/@egjs/ngx-conveyer@1.5.1...@egjs/ngx-conveyer@1.6.1) (2023-08-03)
 
 
