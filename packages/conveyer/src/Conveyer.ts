@@ -42,6 +42,7 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _size = 0;
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
+  protected _resizeObserver: ResizeObserver | null = null;
 
   private _scrollTimer = 0;
   private _isWheelScroll = false;
@@ -113,6 +114,7 @@ class Conveyer extends Component<ConveyerEvents> {
       autoInit: true,
       boundaryMargin: 0,
       scrollDebounce: 100,
+      useResizeObserver: false,
       ...options,
     };
 
@@ -454,6 +456,16 @@ class Conveyer extends Component<ConveyerEvents> {
         useNormalized: false,
       }));
     }
+    if (!IS_IE && options.useResizeObserver) {
+      const observer = new ResizeObserver((entries) => {
+        entries.forEach((entry) => {
+          this.update();
+        });
+      });
+
+      this._resizeObserver = observer;
+      this._resizeObserver.observe(scrollAreaElement);
+    }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
     window.addEventListener("resize", this.update);
 
@@ -467,12 +479,14 @@ class Conveyer extends Component<ConveyerEvents> {
     this._axes?.destroy();
     this.unsubscribe();
     this._scrollAreaElement?.removeEventListener("scroll", this._onScroll);
+    this._resizeObserver?.disconnect();
 
     if (typeof window !== "undefined") {
       window.removeEventListener("resize", this.update);
     }
     this.off();
     this._axes = null;
+    this._resizeObserver = null;
   }
   private _refreshScroll() {
     const horizontal = this._options.horizontal;

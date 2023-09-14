@@ -1,0 +1,94 @@
+<style>
+  body {
+    background: #f0f3fb;
+  }
+
+  .container {
+    background: #c4c4c4;
+    margin: 20px;
+    padding: 12px;
+    border-radius: 5px;
+    resize: horizontal;
+    overflow: auto;
+  }
+
+  .items {
+    position: relative;
+    overflow: scroll hidden;
+    width: 100%;
+    white-space: nowrap;
+    overscroll-behavior: none;
+    user-select: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .item {
+    display: inline-block;
+    overflow: hidden;
+    margin: 6px 12px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+  }
+</style>
+
+<body>
+  <h3>Conveyer TO-BE</h3>
+  <b id="status"></b>
+  <div class="container">
+    <div id="conveyerB" class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+    </div>
+  </div>
+  <button id="initBtn">init</button>
+  <button id="destroyBtn">destroy</button>
+</body>
+<script src="../../dist/conveyer.js"></script>
+<script>
+  const conveyer = new Conveyer("#conveyerB", {
+    useSideWheel: true,
+    useResizeObserver: true,
+    autoInit: false,
+  });
+
+  const updateStatus = () => {
+    document.querySelector(
+      "#status"
+    ).innerHTML = `isReachStart: ${conveyer.isReachStart}, isReachEnd: ${conveyer.isReachEnd}`;
+  };
+
+  const initialize = () => {
+    conveyer.init();
+
+    conveyer.on("reachStart", () => updateStatus());
+    conveyer.on("leaveStart", () => updateStatus());
+    conveyer.on("reachEnd", () => updateStatus());
+    conveyer.on("leaveEnd", () => updateStatus());
+  
+    updateStatus();
+  }
+  initialize();
+
+  document.getElementById("initBtn").onclick = () => {
+    initialize();
+  }
+  document.getElementById("destroyBtn").onclick = () => {
+    conveyer.destroy();
+  }
+
+</script>
