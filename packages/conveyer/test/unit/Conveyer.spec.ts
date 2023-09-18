@@ -12,6 +12,7 @@ import {
   HORIZONTAL_CONVEYER,
   VERTICAL_CONVEYER,
   NESTED_CONVEYER,
+  RESIZE_CONVEYER,
 } from "./utils/consts";
 import * as browserModules from "../../src/browser";
 import { ImportMock } from "ts-mock-imports";
@@ -908,6 +909,30 @@ describe("test Conveyer", () => {
         // Then
         expect(conveyer.scrollPos).to.be.equals(0);
         expect(childConveyer.scrollPos).to.be.equals(1000);
+      });
+    });
+
+    describe("useResizeObserver", () => {
+      [true, false].forEach((useResizeObserver) => {
+        it(`should check if the conveyer status is updated when the conveyer is resized and useResizeObserver is true (useResizeObserver: ${useResizeObserver})`, async () => {
+          // Given
+          container.innerHTML = RESIZE_CONVEYER;
+          const itemContainer = document.querySelector<HTMLElement>(".container")!;
+          conveyer = new Conveyer(".items", {
+            useResizeObserver,
+          });
+
+          // When
+          await dispatchDrag(
+            itemContainer,
+            { left: itemContainer.clientWidth, top: itemContainer.clientHeight },
+            { left: 0, top: 0 },
+            { duration: 200, interval: 50 }
+          );
+
+          // Then
+          expect(conveyer.isReachEnd).to.be.equals(useResizeObserver ? false : true);
+        });
       });
     });
   });
