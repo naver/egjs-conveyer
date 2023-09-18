@@ -923,12 +923,7 @@ describe("test Conveyer", () => {
           });
 
           // When
-          await dispatchDrag(
-            itemContainer,
-            { left: itemContainer.clientWidth, top: itemContainer.clientHeight },
-            { left: 0, top: 0 },
-            { duration: 200, interval: 50 }
-          );
+          itemContainer.style.width = "0px";
 
           // Then
           expect(conveyer.isReachEnd).to.be.equals(useResizeObserver ? false : true);
