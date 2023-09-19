@@ -924,6 +924,7 @@ describe("test Conveyer", () => {
 
           // When
           itemContainer.style.width = "0px";
+          await waitFor(100);
 
           // Then
           expect(conveyer.isReachEnd).to.be.equals(useResizeObserver ? false : true);

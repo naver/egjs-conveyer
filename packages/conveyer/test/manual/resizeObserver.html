@@ -31,9 +31,9 @@
     display: inline-block;
     overflow: hidden;
     margin: 6px 12px;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
@@ -45,7 +45,6 @@
 </style>
 
 <body>
-  <h3>Conveyer TO-BE</h3>
   <b id="status"></b>
   <div class="container">
     <div id="conveyerB" class="items">
@@ -55,8 +54,6 @@
       <div class="item">4</div>
     </div>
   </div>
-  <button id="initBtn">init</button>
-  <button id="destroyBtn">destroy</button>
 </body>
 <script src="../../dist/conveyer.js"></script>
 <script>
@@ -72,23 +69,12 @@
     ).innerHTML = `isReachStart: ${conveyer.isReachStart}, isReachEnd: ${conveyer.isReachEnd}`;
   };
 
-  const initialize = () => {
-    conveyer.init();
+  conveyer.init();
 
-    conveyer.on("reachStart", () => updateStatus());
-    conveyer.on("leaveStart", () => updateStatus());
-    conveyer.on("reachEnd", () => updateStatus());
-    conveyer.on("leaveEnd", () => updateStatus());
-  
-    updateStatus();
-  }
-  initialize();
+  conveyer.on("reachStart", () => updateStatus());
+  conveyer.on("leaveStart", () => updateStatus());
+  conveyer.on("reachEnd", () => updateStatus());
+  conveyer.on("leaveEnd", () => updateStatus());
 
-  document.getElementById("initBtn").onclick = () => {
-    initialize();
-  }
-  document.getElementById("destroyBtn").onclick = () => {
-    conveyer.destroy();
-  }
-
+  updateStatus();
 </script>
