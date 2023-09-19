@@ -27,11 +27,41 @@ You can use reactive properties as a hook.
   ]}>
   <TabItem value="js">
 
+You need to set the inital state in the HTML attributes.
+
+```html
+<div class="container">
+  <div class="buttons">
+    <button class="prev" disabled>Start</button>
+    <button class="next">End</button>
+  </div>
+  <div class="items horizontal">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item">10</div>
+  </div>
+</div>
+```
 ```js
+import Conveyer from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".items");
+
 conveyer.subscribe("isReachStart", value => {
-  console.log(value);
+  document.querySelector(".prev").disabled = value;
+});
+conveyer.subscribe("isReachEnd", value => {
+  document.querySelector(".next").disabled = value;
 });
 ```
+
 
   </TabItem>
   <TabItem value="react">
