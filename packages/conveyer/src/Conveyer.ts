@@ -42,8 +42,8 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _size = 0;
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
-  protected _resizeObserver: ResizeObserver | null = null;
-
+  
+  private _resizeObserver: ResizeObserver | null = null;
   private _scrollTimer = 0;
   private _isWheelScroll = false;
   private _isDragScroll = false;
@@ -456,14 +456,11 @@ class Conveyer extends Component<ConveyerEvents> {
         useNormalized: false,
       }));
     }
-    if (!IS_IE && options.useResizeObserver) {
-      const observer = new ResizeObserver((entries) => {
-        entries.forEach((entry) => {
-          this.update();
-        });
+    if (options.useResizeObserver && window.ResizeObserver) {
+      this._resizeObserver = new ResizeObserver(() => {
+        this.update();
       });
 
-      this._resizeObserver = observer;
       this._resizeObserver.observe(scrollAreaElement);
     }
     scrollAreaElement.addEventListener("scroll", this._onScroll);
