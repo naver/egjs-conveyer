@@ -5,6 +5,7 @@
  */
 import Axes, { OnChange, OnHold, PanInput, WheelInput } from "@egjs/axes";
 import Component from "@egjs/component";
+import ChildrenDiffer from "@egjs/children-differ";
 import { IS_IE } from "./browser";
 import { ReactiveSubscribe, Reactive, Ref } from "@cfcs/core";
 import {
@@ -44,6 +45,7 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _options: ConveyerOptions;
   
   private _resizeObserver: ResizeObserver | null = null;
+  private _childrenDiffer: ChildrenDiffer | null = null;
   private _scrollTimer = 0;
   private _isWheelScroll = false;
   private _isDragScroll = false;
@@ -314,10 +316,22 @@ class Conveyer extends Component<ConveyerEvents> {
   public updateItems() {
     const scrollAreaElement = this._scrollAreaElement;
     const itemSelector = this._options.itemSelector;
+    const childrenDiffer = this._childrenDiffer;
+    const resizeObserver = this._resizeObserver;
+    
     const itemElements = [].slice.call(
       itemSelector ? scrollAreaElement.querySelectorAll(itemSelector) : scrollAreaElement.children,
     );
     this.setItems(itemElements.map((el) => this._getItem(el)));
+
+    if (resizeObserver && childrenDiffer){
+      const changed = childrenDiffer.update(itemElements);
+      const removed = changed.removed;
+      const added = changed.added;
+
+      removed.forEach((index) => resizeObserver.unobserve(changed.prevList[index]));
+      added.forEach((index) => resizeObserver.observe(changed.list[index]));
+    }
   }
   /**
    * Update container size and scroll size.
@@ -457,16 +471,36 @@ class Conveyer extends Component<ConveyerEvents> {
       }));
     }
     if (options.useResizeObserver && window.ResizeObserver) {
-      this._resizeObserver = new ResizeObserver(() => {
-        this.update();
+      this._childrenDiffer = new ChildrenDiffer();
+      this._resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+        const items = this._items;
+        let index = items.length;
+
+        entries.forEach((entry: ResizeObserverEntry) => {
+          if (entry.target !== this._scrollAreaElement) {
+            for (let i = 0; i < items.length; i++) {
+              if (items[i].element === entry.target) {
+                index = Math.min(index, i);
+                break;
+              }
+            }
+          }
+        });
+
+        for (let i = index; i < items.length; i++) {
+          items[i] = this._getItem(items[i].element!);
+        }
+        this.updateContainer();
       });
 
-      this._resizeObserver.observe(scrollAreaElement);
     }
+
+    this.update();
+    
+    this._resizeObserver?.observe(scrollAreaElement);
     scrollAreaElement.addEventListener("scroll", this._onScroll);
     window.addEventListener("resize", this.update);
 
-    this.update();
   }
   /**
    * Releases the instnace and events.

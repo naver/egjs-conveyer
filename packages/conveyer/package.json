@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@cfcs/core": "^0.1.0",
 		"@egjs/axes": "^3.9.0",
+		"@egjs/children-differ": "^1.0.1",
 		"@egjs/component": "^3.0.1"
 	},
 	"devDependencies": {
