@@ -44,7 +44,6 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
   
-  private _itemElements: HTMLElement[] = [];
   private _resizeObserver: ResizeObserver | null = null;
   private _scrollTimer = 0;
   private _isWheelScroll = false;
@@ -317,6 +316,7 @@ class Conveyer extends Component<ConveyerEvents> {
     const scrollAreaElement = this._scrollAreaElement;
     const itemSelector = this._options.itemSelector;
     const resizeObserver = this._resizeObserver;
+    const prevItemElements = this._items.map(item => item.element!);
     
     const itemElements = [].slice.call(
       itemSelector ? scrollAreaElement.querySelectorAll(itemSelector) : scrollAreaElement.children,
@@ -324,15 +324,12 @@ class Conveyer extends Component<ConveyerEvents> {
       this.setItems(itemElements.map((el) => this._getItem(el)));
       
       if (resizeObserver){
-      const prevItemElements = this._itemElements;
-      const changed = diff(prevItemElements, itemElements)
+      const changed = diff(prevItemElements, itemElements);
       const removed = changed.removed;
       const added = changed.added;
 
       removed.forEach((index) => resizeObserver.unobserve(changed.prevList[index]));
       added.forEach((index) => resizeObserver.observe(changed.list[index]));
-      
-      this._itemElements = itemElements;
     }
 
   }
@@ -499,11 +496,11 @@ class Conveyer extends Component<ConveyerEvents> {
     }
 
     this.update();
-    
+
     this._resizeObserver?.observe(scrollAreaElement);
     scrollAreaElement.addEventListener("scroll", this._onScroll);
     window.addEventListener("resize", this.update);
-
+    
   }
   /**
    * Releases the instnace and events.
