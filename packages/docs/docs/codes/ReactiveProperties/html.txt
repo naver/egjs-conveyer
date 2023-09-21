@@ -1,6 +1,6 @@
 <div class="examples">
   <div class="buttons">
-    <button class="prev">Start</button>
+    <button class="prev" disabled>Start</button>
     <button class="next">End</button>
   </div>
   <div class="items horizontal">

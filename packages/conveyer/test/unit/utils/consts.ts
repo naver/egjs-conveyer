@@ -40,6 +40,31 @@ export const VERTICAL_CONVEYER_STYLE = `<style>
   }
 </style>`;
 
+export const RESIZE_CONVEYER_STYLE = `<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    resize: horizontal;
+    overflow: auto;
+  }
+  .items, .nested {
+    position: relative;
+    overflow: scroll hidden;
+    width: 100%;
+    white-space: nowrap;
+    overscroll-behavior: none;
+    user-select: none;
+    font-size: 0;
+  }
+  .item {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+  }
+</style>`;
+
 export const CONVEYER_HTML = `
 <div class="items">
   <div class="item">1</div>
@@ -79,8 +104,20 @@ export const NESTED_CONVEYER_HTML = `
   <div class="item">8</div>
 </div>`;
 
+export const RESIZE_CONVEYER_HTML = `
+<div class="container">
+  <div id="conveyer" class="items">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+</div>
+`;
+
 export const HORIZONTAL_CONVEYER = `${HORIZONTAL_CONVEYER_STYLE}${CONVEYER_HTML}`;
 
 export const VERTICAL_CONVEYER = `${VERTICAL_CONVEYER_STYLE}${CONVEYER_HTML}`;
 
 export const NESTED_CONVEYER = `${HORIZONTAL_CONVEYER_STYLE}${NESTED_CONVEYER_HTML}`;
+
+export const RESIZE_CONVEYER = `${RESIZE_CONVEYER_STYLE}${RESIZE_CONVEYER_HTML}`;

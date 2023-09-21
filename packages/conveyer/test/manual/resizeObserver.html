@@ -1,0 +1,116 @@
+<style>
+  body {
+    background: #f0f3fb;
+  }
+
+  .container {
+    background: #c4c4c4;
+    margin: 20px;
+    padding: 12px;
+    border-radius: 5px;
+    resize: horizontal;
+    overflow: auto;
+  }
+
+  .items {
+    position: relative;
+    overflow: scroll hidden;
+    width: 100%;
+    white-space: nowrap;
+    overscroll-behavior: none;
+    user-select: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .item {
+    display: inline-block;
+    overflow: hidden;
+    resize: horizontal;
+    margin: 6px 12px;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 3px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 4%), 0 0 2px 0 rgb(0 0 0 / 15%);
+  }
+</style>
+
+<body>
+  <b id="status"></b>
+  <div class="container">
+    <div id="conveyer" class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+    </div>
+  </div>
+  
+  <button id="updateItems">updateItems</button>
+  <button id="addItem">add item</button>
+  <button id="removeItem">remove Item</button>
+</body>
+<script src="../../dist/conveyer.js"></script>
+<script>
+  const container = document.querySelector(".items");
+  const conveyer = new Conveyer("#conveyer", {
+    useSideWheel: true,
+    useResizeObserver: true,
+    autoInit: false,
+  });
+
+  const updateStatus = () => {
+    document.querySelector(
+      "#status"
+    ).innerHTML = `isReachStart: ${conveyer.isReachStart}, isReachEnd: ${conveyer.isReachEnd}`;
+  };
+
+  conveyer.init();
+
+  conveyer.on("reachStart", () => updateStatus());
+  conveyer.on("leaveStart", () => updateStatus());
+  conveyer.on("reachEnd", () => updateStatus());
+  conveyer.on("leaveEnd", () => updateStatus());
+
+  updateStatus();
+
+  document.querySelectorAll(".item").forEach((el) => {
+      el.addEventListener("click", () => {
+        conveyer.scrollIntoView(el, {
+          align: "center",
+          duration: 500,
+        });
+      });
+    });
+
+  document.querySelector("#updateItems").addEventListener("click", () => {
+    conveyer.updateItems();
+  })
+
+  let num = 4;
+
+  document.querySelector("#addItem").addEventListener("click", () => {
+    const itemNode = document.createElement("div")
+    itemNode.setAttribute("class", "item");
+    const itemNum = document.createTextNode(++num);
+    itemNode.appendChild(itemNum);
+
+    container.appendChild(itemNode);
+  })
+
+  document.querySelector("#removeItem").addEventListener("click", () => {
+    container.removeChild(container.querySelector(".item:last-child"));
+    num--;
+  })
+
+</script>

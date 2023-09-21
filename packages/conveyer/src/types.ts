@@ -77,6 +77,12 @@ export interface ConveyerOptions {
    * @default false
    */
   nested?: boolean;
+  /**
+   * Whether to use the {@link https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver ResizeObserver} when resizing the Conveyer element and ConveyerItem elements.
+   * <ko>Conveyer element와 ConveyerItem element 크기가 변경될 때 {@link https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver ResizeObserver} 적용 여부 </ko>
+   * @default false
+   */
+  useResizeObserver?: boolean;
 }
 
 /**

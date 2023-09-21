@@ -12,6 +12,7 @@ import {
   HORIZONTAL_CONVEYER,
   VERTICAL_CONVEYER,
   NESTED_CONVEYER,
+  RESIZE_CONVEYER,
 } from "./utils/consts";
 import * as browserModules from "../../src/browser";
 import { ImportMock } from "ts-mock-imports";
@@ -908,6 +909,44 @@ describe("test Conveyer", () => {
         // Then
         expect(conveyer.scrollPos).to.be.equals(0);
         expect(childConveyer.scrollPos).to.be.equals(1000);
+      });
+    });
+
+    describe("useResizeObserver", () => {
+      [true, false].forEach((useResizeObserver) => {
+        it(`should check if the conveyer status is updated when the conveyer is resized and useResizeObserver is true (useResizeObserver: ${useResizeObserver})`, async () => {
+          // Given
+          container.innerHTML = RESIZE_CONVEYER;
+          const itemContainer = document.querySelector<HTMLElement>(".container")!;
+          conveyer = new Conveyer(".items", {
+            useResizeObserver,
+          });
+
+          // When
+          itemContainer.style.width = "0px";
+          await waitFor(100);
+
+          // Then
+          expect(conveyer.isReachEnd).to.be.equals(useResizeObserver ? false : true);
+        });
+      });
+
+      [true, false].forEach((useResizeObserver) => {
+        it(`should check if the conveyer status is updated when the conveyerItem is resized and useResizeObserver is true (useResizeObserver: ${useResizeObserver})`, async () => {
+          // Given
+          container.innerHTML = RESIZE_CONVEYER;
+          const item = document.querySelector<HTMLElement>(".item")!;
+          conveyer = new Conveyer(".items", {
+            useResizeObserver,
+          });
+
+          // When
+          item.style.width = "1000px";
+          await waitFor(100);
+
+          // Then
+          expect(conveyer.isReachEnd).to.be.equals(useResizeObserver ? false : true);
+        });
       });
     });
   });
