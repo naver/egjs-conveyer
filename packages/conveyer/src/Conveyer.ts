@@ -5,7 +5,7 @@
  */
 import Axes, { OnChange, OnHold, PanInput, WheelInput } from "@egjs/axes";
 import Component from "@egjs/component";
-import ChildrenDiffer from "@egjs/children-differ";
+import { diff } from "@egjs/children-differ";
 import { IS_IE } from "./browser";
 import { ReactiveSubscribe, Reactive, Ref } from "@cfcs/core";
 import {
@@ -44,8 +44,8 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
   
+  private _itemElements: HTMLElement[] = [];
   private _resizeObserver: ResizeObserver | null = null;
-  private _childrenDiffer: ChildrenDiffer | null = null;
   private _scrollTimer = 0;
   private _isWheelScroll = false;
   private _isDragScroll = false;
@@ -316,22 +316,25 @@ class Conveyer extends Component<ConveyerEvents> {
   public updateItems() {
     const scrollAreaElement = this._scrollAreaElement;
     const itemSelector = this._options.itemSelector;
-    const childrenDiffer = this._childrenDiffer;
     const resizeObserver = this._resizeObserver;
     
     const itemElements = [].slice.call(
       itemSelector ? scrollAreaElement.querySelectorAll(itemSelector) : scrollAreaElement.children,
-    );
-    this.setItems(itemElements.map((el) => this._getItem(el)));
-
-    if (resizeObserver && childrenDiffer){
-      const changed = childrenDiffer.update(itemElements);
+      );
+      this.setItems(itemElements.map((el) => this._getItem(el)));
+      
+      if (resizeObserver){
+      const prevItemElements = this._itemElements;
+      const changed = diff(prevItemElements, itemElements)
       const removed = changed.removed;
       const added = changed.added;
 
       removed.forEach((index) => resizeObserver.unobserve(changed.prevList[index]));
       added.forEach((index) => resizeObserver.observe(changed.list[index]));
+      
+      this._itemElements = itemElements;
     }
+
   }
   /**
    * Update container size and scroll size.
@@ -471,14 +474,14 @@ class Conveyer extends Component<ConveyerEvents> {
       }));
     }
     if (options.useResizeObserver && window.ResizeObserver) {
-      this._childrenDiffer = new ChildrenDiffer();
       this._resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
         const items = this._items;
-        let index = items.length;
+        const length = items.length;
+        let index = length;
 
         entries.forEach((entry: ResizeObserverEntry) => {
           if (entry.target !== this._scrollAreaElement) {
-            for (let i = 0; i < items.length; i++) {
+            for (let i = 0; i < length; i++) {
               if (items[i].element === entry.target) {
                 index = Math.min(index, i);
                 break;
@@ -487,7 +490,7 @@ class Conveyer extends Component<ConveyerEvents> {
           }
         });
 
-        for (let i = index; i < items.length; i++) {
+        for (let i = index; i < length; i++) {
           items[i] = this._getItem(items[i].element!);
         }
         this.updateContainer();
