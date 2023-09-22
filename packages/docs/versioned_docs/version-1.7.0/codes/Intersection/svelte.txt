@@ -1,0 +1,43 @@
+<script>
+  import { useConveyer } from "@egjs/svelte-conveyer";
+
+  const {
+    scrollIntoView,
+    ref,
+  } = useConveyer({
+    horizontal: false,
+    autoInit: false,
+  });
+</script>
+<div class="examples">
+  <div className="buttons">
+    <button className="prev" disabled={$isReachStart} on:click={() => {
+      // start to end
+      scrollIntoView("start", {
+        align: "end",
+        duration: 500,
+        intersection: true,
+      });
+    }}>Prev</button>
+    <button className="next" disabled={$isReachEnd} on:click={() => {
+      // end to start
+      scrollIntoView("end", {
+        align: "start",
+        duration: 500,
+        intersection: true,
+      });
+    }}>Next</button>
+  </div>
+  <div class="items horizontal" use:ref>
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <div class="item">8</div>
+    <div class="item">9</div>
+    <div class="item">10</div>
+  </div>
+</div>

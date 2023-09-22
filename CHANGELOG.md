@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/naver/egjs-conveyer/compare/1.6.2...1.7.0) (2023-09-22)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.7.0
+* `@egjs/react-conveyer` 1.7.0
+* `@egjs/svelte-conveyer` 1.7.0
+* `@egjs/vue-conveyer` 1.7.0
+* `@egjs/vue2-conveyer` 1.7.0
+* `@egjs/ngx-conveyer` 1.7.0
+
+
+### :rocket: New Features
+
+* `@egjs/conveyer`
+    * add useResizeObserver option (#51) ([57138e7](https://github.com/naver/egjs-conveyer/commit/57138e7923e00705e6d275bbd750c2e0db90cfea))
+
+
+### :house: Code Refactoring
+
+* `@egjs/conveyer`
+    * remove itemElements member ([c666863](https://github.com/naver/egjs-conveyer/commit/c6668637661dcb062fd98b5058af6fc987ca200f))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([34785f2](https://github.com/naver/egjs-conveyer/commit/34785f27897a3c7b983bc9f18ce50fdc517c9757))
+
+
+
 ## [1.6.2](https://github.com/naver/egjs-conveyer/compare/1.6.1...1.6.2) (2023-08-25)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.6.2

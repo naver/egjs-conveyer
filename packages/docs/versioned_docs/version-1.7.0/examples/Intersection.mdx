@@ -1,0 +1,39 @@
+---
+title: Use scrollIntoView Method (intersection side)
+custom_edit_url: null
+---
+
+You can use the conveyer's methods via instance or result.
+
+You can also use scroll-related functions through methods.
+
+
+### scrollIntoView
+[`.scrollIntoView`](/docs/api/Conveyer#scrollIntoView) method scrolls an element or an item in that direction into the view.
+
+Also, if the `intersection` option is enabled, items overlapping on the side can also be included in the target.
+
+
+import Intersection from "@site/src/examples/Intersection";
+import {
+  ScrollIntoViewTargetWithIntersectionStartEnd,
+  ScrollIntoViewTargetWithIntersectionPrevNext,
+} from "@site/src/examples/ScrollIntoViewTarget";
+import ConveyerCodeTabs from "@site/docs/codes/ConveyerCodeTabs";
+
+<ScrollIntoViewTargetWithIntersectionStartEnd />
+
+<ScrollIntoViewTargetWithIntersectionPrevNext />
+
+
+
+### Example
+
+* If you click the `prev` button, you can align the items in the `start`(target) direction to `end`(align).
+* If you click the `next` button, you can align the items in the `end`(target) direction to `start`(align).
+
+
+<Intersection />
+
+
+<ConveyerCodeTabs folder="Intersection" reactCode={require("!!raw-loader!@site/src/examples/Intersection.tsx").default} />

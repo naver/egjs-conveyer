@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.6.2...@egjs/conveyer@1.7.0) (2023-09-22)
+
+
+### :rocket: New Features
+
+* add useResizeObserver option (#51) ([57138e7](https://github.com/naver/egjs-conveyer/commit/57138e7923e00705e6d275bbd750c2e0db90cfea))
+
+
+### :house: Code Refactoring
+
+* remove itemElements member ([c666863](https://github.com/naver/egjs-conveyer/commit/c6668637661dcb062fd98b5058af6fc987ca200f))
+
+
+### :mega: Other
+
+* update packages versions ([34785f2](https://github.com/naver/egjs-conveyer/commit/34785f27897a3c7b983bc9f18ce50fdc517c9757))
+
+
+
 ## [1.6.2](https://github.com/naver/egjs-conveyer/compare/@egjs/conveyer@1.6.1...@egjs/conveyer@1.6.2) (2023-08-25)
 
 

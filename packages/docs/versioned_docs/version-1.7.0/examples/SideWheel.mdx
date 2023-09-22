@@ -1,0 +1,21 @@
+---
+title: Using Side Wheel
+custom_edit_url: null
+---
+
+You can move conveyer by using the mouse wheel in a direction aside from the scroll direction.
+
+If the useSideWheel option is set to true, horizontal conveyer can be moved with the vertical mouse wheel and the vertical conveyer can be moved with the horizontal mouse wheel.
+
+|Property|Type|Description|
+|:---:|:---:|---|
+|[useSideWheel](/docs/api/ConveyerOptions)|boolean|Whether to use the mouse wheel in a direction aside from the scroll direction (default: false)|
+
+import ConveyerCodeTabs from "@site/docs/codes/ConveyerCodeTabs";
+import SideWheel from "@site/src/examples/SideWheel";
+
+
+
+
+<SideWheel />
+<ConveyerCodeTabs folder="SideWheel" reactCode={require("!!raw-loader!@site/src/examples/SideWheel.tsx").default} />
