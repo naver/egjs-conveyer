@@ -320,13 +320,13 @@ class Conveyer extends Component<ConveyerEvents> {
     const itemSelector = this._options.itemSelector;
     const resizeObserver = this._resizeObserver;
     const prevItemElements = this._items.map(item => item.element!);
-    
+
     const itemElements = [].slice.call(
       itemSelector ? scrollAreaElement.querySelectorAll(itemSelector) : scrollAreaElement.children,
-      );
-      this.setItems(itemElements.map((el) => this._getItem(el)));
-      
-      if (resizeObserver){
+    );
+    this.setItems(itemElements.map((el) => this._getItem(el)));
+
+    if (resizeObserver){
       const changed = diff(prevItemElements, itemElements);
       const removed = changed.removed;
       const added = changed.added;
