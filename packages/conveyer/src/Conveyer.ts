@@ -46,6 +46,7 @@ class Conveyer extends Component<ConveyerEvents> {
   
   private _resizeObserver: ResizeObserver | null = null;
   private _scrollTimer = 0;
+  private _animationPos = 0;
   private _isWheelScroll = false;
   private _isDragScroll = false;
   private _isAnimationScroll = false;
@@ -289,6 +290,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll by that position. <ko>해당 위치만큼 스크롤하는 시간</ko>
    */
   public scrollBy(pos: number, duration = 0) {
+    this._animationPos = this._pos + pos;
     this._axes!.setBy({ scroll: -pos }, duration);
   }
   /**
@@ -298,6 +300,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
+    this._animationPos = pos;
     this._axes!.setBy({ scroll: this._pos - pos }, duration);
   }
   /**
@@ -445,6 +448,11 @@ class Conveyer extends Component<ConveyerEvents> {
         }
         if (options.nested) {
           this._checkNestedMove(nativeEvent);
+        }
+      },
+      "animationEnd": e => {
+        if (!e.isTrusted && this._pos !== this._animationPos) {
+          this.scrollTo(this._animationPos);
         }
       },
       "release": e => {
