@@ -43,10 +43,16 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _size = 0;
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
-  
+  protected _animateParam: {
+    startTime: number;
+    duration: number;
+    depaPos: number;
+    destPos: number;
+    latestDiff: number;
+  } | null = null;
+
   private _resizeObserver: ResizeObserver | null = null;
   private _scrollTimer = 0;
-  private _animationPos = 0;
   private _isWheelScroll = false;
   private _isDragScroll = false;
   private _isAnimationScroll = false;
@@ -290,7 +296,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll by that position. <ko>해당 위치만큼 스크롤하는 시간</ko>
    */
   public scrollBy(pos: number, duration = 0) {
-    this._animationPos = this._pos + pos;
+    this._createAnimationParam(this._pos, this._pos + pos, duration);
     this._axes!.setBy({ scroll: -pos }, duration);
   }
   /**
@@ -300,7 +306,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
-    this._animationPos = pos;
+    this._createAnimationParam(this._pos, pos, duration);
     this._axes!.setBy({ scroll: this._pos - pos }, duration);
   }
   /**
@@ -432,6 +438,7 @@ class Conveyer extends Component<ConveyerEvents> {
       },
       "change": e => {
         const nativeEvent = this._getNativeEvent(e);
+        const animateParam = this._animateParam;
         if (options.useSideWheel && this._isMixedWheel(nativeEvent)) {
           return;
         }
@@ -440,19 +447,39 @@ class Conveyer extends Component<ConveyerEvents> {
         this._isAnimationScroll = !this._isWheelScroll && !isHold;
         isDrag = true;
         const scroll = e.delta.scroll;
-
         if (options.horizontal) {
           scrollAreaElement.scrollLeft -= scroll;
         } else {
           scrollAreaElement.scrollTop -= scroll;
+        }
+        if (!e.isTrusted && animateParam?.duration) {
+          const easing = this._axes!.options.easing!;
+          const diffTime = new Date().getTime() - animateParam.startTime;
+          const ratio = diffTime / animateParam.duration;
+          const delta = animateParam.destPos - animateParam.depaPos;
+          const scrollPos = options.horizontal ? scrollAreaElement.scrollLeft : scrollAreaElement.scrollTop;
+          const expectedPos = animateParam.depaPos + easing(ratio) * delta;
+          const diffPos = expectedPos - scrollPos;
+          if (Math.abs(diffPos) >= 1 && Math.abs(animateParam.latestDiff) >= 1) {
+            if (options.horizontal) {
+              scrollAreaElement.scrollLeft += diffPos;
+            } else {
+              scrollAreaElement.scrollTop += diffPos;
+            }
+          }
+          animateParam.latestDiff = diffPos;
+        } else {
+          this._animateParam = null;
         }
         if (options.nested) {
           this._checkNestedMove(nativeEvent);
         }
       },
       "animationEnd": e => {
-        if (!e.isTrusted && this._pos !== this._animationPos) {
-          this.scrollTo(this._animationPos);
+        const animateParam = this._animateParam;
+        const isCanceled = !(animateParam && new Date().getTime() - animateParam.duration >= animateParam.startTime);
+        if (!e.isTrusted && !isCanceled && this._pos !== animateParam.destPos) {
+          this.scrollTo(animateParam.destPos);
         }
       },
       "release": e => {
@@ -508,7 +535,6 @@ class Conveyer extends Component<ConveyerEvents> {
     this._resizeObserver?.observe(scrollAreaElement);
     scrollAreaElement.addEventListener("scroll", this._onScroll);
     window.addEventListener("resize", this.update);
-    
   }
   /**
    * Releases the instnace and events.
@@ -655,6 +681,16 @@ class Conveyer extends Component<ConveyerEvents> {
       this._isDragScroll = false;
       this._isAnimationScroll = false;
     }, this._options.scrollDebounce);
+  }
+
+  private _createAnimationParam(depaPos: number, destPos: number, duration: number) {
+    this._animateParam = {
+      depaPos,
+      destPos,
+      duration,
+      startTime: new Date().getTime(),
+      latestDiff: 0,
+    };
   }
 }
 
