@@ -451,7 +451,7 @@ class Conveyer extends Component<ConveyerEvents> {
         } else {
           scrollAreaElement.scrollTop -= scroll;
         }
-        if (!e.isTrusted && animateParam?.duration) {
+        if (!e.isTrusted && animateParam) {
           animateParam.expectedPos -= scroll;
           const scrollPos = options.horizontal ? scrollAreaElement.scrollLeft : scrollAreaElement.scrollTop;
           const diffPos = animateParam.expectedPos - scrollPos;
