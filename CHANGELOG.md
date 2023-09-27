@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/naver/egjs-conveyer/compare/1.7.0...1.7.1) (2023-09-27)
+### :sparkles: Packages
+* `@egjs/conveyer` 1.7.1
+* `@egjs/react-conveyer` 1.7.1
+* `@egjs/svelte-conveyer` 1.7.1
+* `@egjs/vue-conveyer` 1.7.1
+* `@egjs/vue2-conveyer` 1.7.1
+* `@egjs/ngx-conveyer` 1.7.1
+
+
+### :bug: Bug Fix
+
+* `@egjs/conveyer`
+    * fix scroll methods moving to invalid position (#53) ([a8bbe20](https://github.com/naver/egjs-conveyer/commit/a8bbe201bf69081603cbdeb7b316e94aa746bee8))
+
+
+### :mega: Other
+
+* All
+    * update packages versions ([5214358](https://github.com/naver/egjs-conveyer/commit/52143582432efe67994a016525cba898d0e4aa6d))
+
+
+
 ## [1.7.0](https://github.com/naver/egjs-conveyer/compare/1.6.2...1.7.0) (2023-09-22)
 ### :sparkles: Packages
 * `@egjs/conveyer` 1.7.0
