@@ -46,9 +46,8 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _animateParam: {
     startTime: number;
     duration: number;
-    depaPos: number;
     destPos: number;
-    latestDiff: number;
+    expectedPos: number;
   } | null = null;
 
   private _resizeObserver: ResizeObserver | null = null;
@@ -453,21 +452,16 @@ class Conveyer extends Component<ConveyerEvents> {
           scrollAreaElement.scrollTop -= scroll;
         }
         if (!e.isTrusted && animateParam?.duration) {
-          const easing = this._axes!.options.easing!;
-          const diffTime = new Date().getTime() - animateParam.startTime;
-          const ratio = diffTime / animateParam.duration;
-          const delta = animateParam.destPos - animateParam.depaPos;
+          animateParam.expectedPos -= scroll;
           const scrollPos = options.horizontal ? scrollAreaElement.scrollLeft : scrollAreaElement.scrollTop;
-          const expectedPos = animateParam.depaPos + easing(ratio) * delta;
-          const diffPos = expectedPos - scrollPos;
-          if (Math.abs(diffPos) >= 1 && Math.abs(animateParam.latestDiff) >= 1) {
+          const diffPos = animateParam.expectedPos - scrollPos;
+          if (Math.abs(diffPos) >= 1) {
             if (options.horizontal) {
               scrollAreaElement.scrollLeft += diffPos;
             } else {
               scrollAreaElement.scrollTop += diffPos;
             }
           }
-          animateParam.latestDiff = diffPos;
         } else {
           this._animateParam = null;
         }
@@ -685,11 +679,10 @@ class Conveyer extends Component<ConveyerEvents> {
 
   private _createAnimationParam(depaPos: number, destPos: number, duration: number) {
     this._animateParam = {
-      depaPos,
       destPos,
       duration,
       startTime: new Date().getTime(),
-      latestDiff: 0,
+      expectedPos: depaPos,
     };
   }
 }
