@@ -43,7 +43,10 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _size = 0;
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
-  
+  protected _animateParam: {
+    expectedPos: number;
+  } | null = null;
+
   private _resizeObserver: ResizeObserver | null = null;
   private _scrollTimer = 0;
   private _isWheelScroll = false;
@@ -289,6 +292,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll by that position. <ko>해당 위치만큼 스크롤하는 시간</ko>
    */
   public scrollBy(pos: number, duration = 0) {
+    this._createAnimationParam();
     this._axes!.setBy({ scroll: -pos }, duration);
   }
   /**
@@ -298,6 +302,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
+    this._createAnimationParam();
     this._axes!.setBy({ scroll: this._pos - pos }, duration);
   }
   /**
@@ -317,13 +322,13 @@ class Conveyer extends Component<ConveyerEvents> {
     const itemSelector = this._options.itemSelector;
     const resizeObserver = this._resizeObserver;
     const prevItemElements = this._items.map(item => item.element!);
-    
+
     const itemElements = [].slice.call(
       itemSelector ? scrollAreaElement.querySelectorAll(itemSelector) : scrollAreaElement.children,
-      );
-      this.setItems(itemElements.map((el) => this._getItem(el)));
-      
-      if (resizeObserver){
+    );
+    this.setItems(itemElements.map((el) => this._getItem(el)));
+
+    if (resizeObserver){
       const changed = diff(prevItemElements, itemElements);
       const removed = changed.removed;
       const added = changed.added;
@@ -429,6 +434,7 @@ class Conveyer extends Component<ConveyerEvents> {
       },
       "change": e => {
         const nativeEvent = this._getNativeEvent(e);
+        const animateParam = this._animateParam;
         if (options.useSideWheel && this._isMixedWheel(nativeEvent)) {
           return;
         }
@@ -437,11 +443,20 @@ class Conveyer extends Component<ConveyerEvents> {
         this._isAnimationScroll = !this._isWheelScroll && !isHold;
         isDrag = true;
         const scroll = e.delta.scroll;
-
-        if (options.horizontal) {
-          scrollAreaElement.scrollLeft -= scroll;
+        if (!e.isTrusted && animateParam) {
+          animateParam.expectedPos -= scroll;
+          if (options.horizontal) {
+            scrollAreaElement.scrollLeft = animateParam.expectedPos;
+          } else {
+            scrollAreaElement.scrollTop = animateParam.expectedPos;
+          }
         } else {
-          scrollAreaElement.scrollTop -= scroll;
+          this._animateParam = null;
+          if (options.horizontal) {
+            scrollAreaElement.scrollLeft -= scroll;
+          } else {
+            scrollAreaElement.scrollTop -= scroll;
+          }
         }
         if (options.nested) {
           this._checkNestedMove(nativeEvent);
@@ -500,7 +515,6 @@ class Conveyer extends Component<ConveyerEvents> {
     this._resizeObserver?.observe(scrollAreaElement);
     scrollAreaElement.addEventListener("scroll", this._onScroll);
     window.addEventListener("resize", this.update);
-    
   }
   /**
    * Releases the instnace and events.
@@ -647,6 +661,12 @@ class Conveyer extends Component<ConveyerEvents> {
       this._isDragScroll = false;
       this._isAnimationScroll = false;
     }, this._options.scrollDebounce);
+  }
+
+  private _createAnimationParam() {
+    this._animateParam = {
+      expectedPos: this._pos,
+    };
   }
 }
 
