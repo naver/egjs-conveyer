@@ -44,9 +44,6 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _scrollSize = 0;
   protected _options: ConveyerOptions;
   protected _animateParam: {
-    startTime: number;
-    duration: number;
-    destPos: number;
     expectedPos: number;
   } | null = null;
 
@@ -295,7 +292,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll by that position. <ko>해당 위치만큼 스크롤하는 시간</ko>
    */
   public scrollBy(pos: number, duration = 0) {
-    this._createAnimationParam(this._pos, this._pos + pos, duration);
+    this._createAnimationParam();
     this._axes!.setBy({ scroll: -pos }, duration);
   }
   /**
@@ -305,7 +302,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
-    this._createAnimationParam(this._pos, pos, duration);
+    this._createAnimationParam();
     this._axes!.setBy({ scroll: this._pos - pos }, duration);
   }
   /**
@@ -446,34 +443,23 @@ class Conveyer extends Component<ConveyerEvents> {
         this._isAnimationScroll = !this._isWheelScroll && !isHold;
         isDrag = true;
         const scroll = e.delta.scroll;
-        if (options.horizontal) {
-          scrollAreaElement.scrollLeft -= scroll;
-        } else {
-          scrollAreaElement.scrollTop -= scroll;
-        }
         if (!e.isTrusted && animateParam) {
           animateParam.expectedPos -= scroll;
-          const scrollPos = options.horizontal ? scrollAreaElement.scrollLeft : scrollAreaElement.scrollTop;
-          const diffPos = animateParam.expectedPos - scrollPos;
-          if (Math.abs(diffPos) >= 1) {
-            if (options.horizontal) {
-              scrollAreaElement.scrollLeft += diffPos;
-            } else {
-              scrollAreaElement.scrollTop += diffPos;
-            }
+          if (options.horizontal) {
+            scrollAreaElement.scrollLeft = animateParam.expectedPos;
+          } else {
+            scrollAreaElement.scrollTop = animateParam.expectedPos;
           }
         } else {
           this._animateParam = null;
+          if (options.horizontal) {
+            scrollAreaElement.scrollLeft -= scroll;
+          } else {
+            scrollAreaElement.scrollTop -= scroll;
+          }
         }
         if (options.nested) {
           this._checkNestedMove(nativeEvent);
-        }
-      },
-      "animationEnd": e => {
-        const animateParam = this._animateParam;
-        const isCanceled = !(animateParam && new Date().getTime() - animateParam.duration >= animateParam.startTime);
-        if (!e.isTrusted && !isCanceled && this._pos !== animateParam.destPos) {
-          this.scrollTo(animateParam.destPos);
         }
       },
       "release": e => {
@@ -677,12 +663,9 @@ class Conveyer extends Component<ConveyerEvents> {
     }, this._options.scrollDebounce);
   }
 
-  private _createAnimationParam(depaPos: number, destPos: number, duration: number) {
+  private _createAnimationParam() {
     this._animateParam = {
-      destPos,
-      duration,
-      startTime: new Date().getTime(),
-      expectedPos: depaPos,
+      expectedPos: this._pos,
     };
   }
 }
