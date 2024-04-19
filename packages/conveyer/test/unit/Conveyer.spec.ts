@@ -451,6 +451,42 @@ describe("test Conveyer", () => {
       expect(end.innerHTML).to.be.equals("6");
       expect(next.innerHTML).to.be.equals("7");
     });
+    it("should check whether the scroll animate for given duration even if the target position is outside the scroll area (scrollBy)", async () => {
+      // Given
+      conveyer = new Conveyer(".items");
+      // 2 3 4
+      conveyer.scrollTo(200);
+      await waitFor(100);
+
+      // When
+      // to
+      // 1 2 3
+      conveyer.scrollBy(-500, 1000);
+      await waitFor(300);
+
+      // Then
+      const items = document.querySelector<HTMLElement>(".items")!;
+      expect(items.scrollLeft).to.be.not.equals(0);
+      expect(conveyer.scrollPos).to.be.not.equals(0);
+    });
+    it("should check whether the scroll animate for given duration even if the target position is outside the scroll area (scrollTo)", async () => {
+      // Given
+      conveyer = new Conveyer(".items");
+      // 2 3 4
+      conveyer.scrollTo(200);
+      await waitFor(100);
+
+      // When
+      // to
+      // 1 2 3
+      conveyer.scrollTo(-500, 1000);
+      await waitFor(300);
+
+      // Then
+      const items = document.querySelector<HTMLElement>(".items")!;
+      expect(items.scrollLeft).to.be.not.equals(0);
+      expect(conveyer.scrollPos).to.be.not.equals(0);
+    });
     describe("scrollIntoView", () => {
       it("should check it target moves start when align is start", async () => {
         // Given
@@ -660,7 +696,7 @@ describe("test Conveyer", () => {
         expect(items.scrollLeft).to.be.equals(400);
         expect(conveyer.scrollPos).to.be.equals(400);
       });
-      it("should check whether the scroll animate for given duration even if the target position is outside the scroll area", async () => {
+      it("should check whether the scroll animate for given duration even if the target position is outside the scroll area (scrollIntoView)", async () => {
         // Given
         conveyer = new Conveyer(".items");
         // 2 3 4

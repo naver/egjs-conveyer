@@ -293,17 +293,19 @@ class Conveyer extends Component<ConveyerEvents> {
    */
   public scrollBy(pos: number, duration = 0) {
     this._createAnimationParam();
-    this._axes!.setBy({ scroll: -pos }, duration);
+    const nextPos = this._clampScrollPos(this._pos + pos);
+    this._axes!.setBy({ scroll: this._pos - nextPos }, duration);
   }
   /**
    * Scroll to the given position.
    * @ko 주어진 위치로 스크롤한다.
-   * @param - Amount of position to scroll to. <ko>스크롤할 위치의 양.</ko>
+   * @param - Amount of position to scroll to. <ko>스크롤할 위치.</ko>
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
     this._createAnimationParam();
-    this._axes!.setBy({ scroll: this._pos - pos }, duration);
+    const nextPos = this._clampScrollPos(pos);
+    this._axes!.setBy({ scroll: this._pos - nextPos }, duration);
   }
   /**
    * Set the items directly to the Conveyer.
@@ -554,9 +556,13 @@ class Conveyer extends Component<ConveyerEvents> {
   private _getNativeEvent(e: OnHold | OnChange) {
     return e?.inputEvent?.srcEvent ? e.inputEvent?.srcEvent : e?.inputEvent;
   }
-  private _getNextScrollPos(item: ConveyerItem, options: ScrollIntoViewOptions) {
+  private _clampScrollPos(pos: number) {
     const size = this._size;
     const scrollSize = this._scrollSize;
+    return Math.max(0, Math.min(pos, scrollSize - size));
+  }
+  private _getNextScrollPos(item: ConveyerItem, options: ScrollIntoViewOptions) {
+    const size = this._size;
     const align = options.align || "start";
     const padding = options.offset || 0;
     const itemPos = item!.pos;
@@ -570,7 +576,6 @@ class Conveyer extends Component<ConveyerEvents> {
     } else if (align === "center") {
       scrollPos = itemPos + itemSize / 2 - size / 2 + padding;
     }
-    scrollPos = Math.max(0, Math.min(scrollPos, scrollSize - size));
     return scrollPos;
   }
   private _isMixedWheel(nativeEvent: any) {
