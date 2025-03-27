@@ -122,11 +122,13 @@ export interface FindItemOptions {
    */
   hitTest?: number;
   /**
-   * Whether to include items that intersect on the side
-   * <ko>사이드에 교차하는 아이템까지 포함할지 여부.</ko>
+   * A number indicating how much the items intersect on the side. (true is 1)
+   * * If 0, there is no intersect. The closer it is to 1, the greater the intersect distance.
+   * <ko>사이드에서 아이템이 얼마나 교차되는지 수치. (true의 경우 1)
+   * 0인 경우 교차를 하지 않는다. 1에 가까울수록 교차거리가 늘어난다.</ko>
    * @default 0
    */
-  intersection?: boolean;
+  intersection?: boolean | number;
   /**
    * The number of items next to the item's index to return.
    * <ko>해당 아이템의 index에서 얼마나 옆에 있는 아이템을 반환할지 개수.</ko>

@@ -2299,10 +2299,10 @@
     "@egjs/agent" "^2.2.1"
     "@egjs/component" "^3.0.1"
 
-"@egjs/axes@^3.9.0":
-  version "3.9.0"
-  resolved "https://registry.npmjs.org/@egjs/axes/-/axes-3.9.0.tgz#46932e449851414e7149826bee109b406d34b573"
-  integrity sha512-V+HxHxEGmlu/0yJ9kqlj2doiJt1yVeROTy/0Qf+IaJ9hMabjzUgfYffGR+3atcRpejjGbcpAIiBrGbAkDVaLjg==
+"@egjs/axes@^3.9.1":
+  version "3.9.1"
+  resolved "https://registry.npmjs.org/@egjs/axes/-/axes-3.9.1.tgz#d7fef01768b2d23c3163dc601f062f7d4feeeecd"
+  integrity sha512-vaqUe/boRDk/A4TjiPtMv+lf7c4Q2jTER/Hw4I61NiJUyPftlZjaP4cteBCQejFyZmzimmA2W0cLmYZHTjBY8A==
   dependencies:
     "@cfcs/core" "^0.1.0"
     "@egjs/agent" "^2.2.1"
@@ -4609,6 +4609,11 @@
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/resize-observer-browser@^0.1.7":
+  version "0.1.11"
+  resolved "https://registry.npmjs.org/@types/resize-observer-browser/-/resize-observer-browser-0.1.11.tgz#d3c98d788489d8376b7beac23863b1eebdd3c13c"
+  integrity sha512-cNw5iH8JkMkb3QkCoe7DaZiawbDQEUX8t7iuQaRTyLOyQCR2h+ibBD4GJt7p5yhUHrlOeL7ZtbxNHeipqNsBzQ==
 
 "@types/resolve@0.0.8":
   version "0.0.8"
