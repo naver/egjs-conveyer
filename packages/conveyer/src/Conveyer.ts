@@ -55,8 +55,8 @@ class Conveyer extends Component<ConveyerEvents> {
   private _isAnimationScroll = false;
   private _scrollArea: string | HTMLElement | Ref<HTMLElement>;
 
-  private _panInput: PanInput| null = null;
-  private _wheelInput: WheelInput| null = null;
+  private _panInput: PanInput | null = null;
+  private _wheelInput: WheelInput | null = null;
 
   /**
    * Whether the scroll has reached the start.
@@ -331,7 +331,7 @@ class Conveyer extends Component<ConveyerEvents> {
     );
     this.setItems(itemElements.map((el) => this._getItem(el)));
 
-    if (resizeObserver){
+    if (resizeObserver) {
       const changed = diff(prevItemElements, itemElements);
       const removed = changed.removed;
       const added = changed.added;
@@ -463,7 +463,7 @@ class Conveyer extends Component<ConveyerEvents> {
         isDrag = true;
         const scroll = e.delta.scroll;
         if (!e.isTrusted && animateParam) {
-          animateParam.expectedPos -= scroll ;
+          animateParam.expectedPos -= scroll;
           if (options.horizontal) {
             scrollAreaElement.scrollLeft = animateParam.expectedPos + animateParam.offset;
           } else {
