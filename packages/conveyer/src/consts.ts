@@ -14,6 +14,8 @@ export const CONVEYER_METHODS = [
   "updateContainer",
   "updateItems",
   "init",
+  "enableInput",
+  "disableInput",
 ] as const;
 
 export const CONVEYER_EVENTS = [

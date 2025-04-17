@@ -13,7 +13,7 @@ import {
   ConveyerOptions, FindItemOptions, ConveyerReactiveState,
   ScrollIntoViewOptions,
 } from "./types";
-import { instanceOfElement, isString } from "./utils";
+import { instanceOfElement, isIntersection, isString } from "./utils";
 
 
 /**
@@ -45,6 +45,7 @@ class Conveyer extends Component<ConveyerEvents> {
   protected _options: ConveyerOptions;
   protected _animateParam: {
     expectedPos: number;
+    offset: number;
   } | null = null;
 
   private _resizeObserver: ResizeObserver | null = null;
@@ -53,6 +54,9 @@ class Conveyer extends Component<ConveyerEvents> {
   private _isDragScroll = false;
   private _isAnimationScroll = false;
   private _scrollArea: string | HTMLElement | Ref<HTMLElement>;
+
+  private _panInput: PanInput | null = null;
+  private _wheelInput: WheelInput | null = null;
 
   /**
    * Whether the scroll has reached the start.
@@ -193,7 +197,7 @@ class Conveyer extends Component<ConveyerEvents> {
         const dist2 = dist + itemSize;
 
         return (dist >= 0)
-          || (dist2 > 0 && intersection)
+          || (dist2 > 0 && isIntersection(dist, dist2, "end", intersection))
           || (dist2 >= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
       });
 
@@ -208,7 +212,7 @@ class Conveyer extends Component<ConveyerEvents> {
         const dist2 = dist - itemSize;
 
         return dist <= 0
-          || (dist2 < 0 && intersection)
+          || (dist2 < 0 && isIntersection(dist2, dist, "start", intersection))
           || (dist2 <= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
       }).reverse();
 
@@ -220,9 +224,9 @@ class Conveyer extends Component<ConveyerEvents> {
         const dist2 = dist - itemSize;
 
         return dist <= 0
-          || (dist2 < 0 && intersection)
+          || (dist2 < 0 && isIntersection(dist2, dist, "start", intersection))
           || (dist2 <= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
-      }).reverse()[0];
+      }).reverse()[0] || startVirtualItem;
     } else if (target === "next") {
       selectedItem = items.filter(item => {
         const itemSize = item.size;
@@ -230,9 +234,9 @@ class Conveyer extends Component<ConveyerEvents> {
         const dist2 = dist + itemSize;
 
         return dist >= 0
-          || (dist2 > 0 && intersection)
+          || (dist2 > 0 && isIntersection(dist, dist2, "end", intersection))
           || (dist2 >= 0 && (!itemSize || Math.abs(dist2) / itemSize >= hitTest));
-      })[0];
+      })[0] || endVirtualItem;
     } else {
       return this._getItem(target);
     }
@@ -292,7 +296,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll by that position. <ko>해당 위치만큼 스크롤하는 시간</ko>
    */
   public scrollBy(pos: number, duration = 0) {
-    this._createAnimationParam();
+    this._createAnimationParam(pos);
     this._axes!.setBy({ scroll: -pos }, duration);
   }
   /**
@@ -302,8 +306,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @param - Duration to scroll to that position. <ko>해당 위치로 스크롤하는 시간</ko>
    */
   public scrollTo(pos: number, duration = 0) {
-    this._createAnimationParam();
-    this._axes!.setBy({ scroll: this._pos - pos }, duration);
+    this.scrollBy(pos - this._pos, duration);
   }
   /**
    * Set the items directly to the Conveyer.
@@ -328,7 +331,7 @@ class Conveyer extends Component<ConveyerEvents> {
     );
     this.setItems(itemElements.map((el) => this._getItem(el)));
 
-    if (resizeObserver){
+    if (resizeObserver) {
       const changed = diff(prevItemElements, itemElements);
       const removed = changed.removed;
       const added = changed.added;
@@ -377,6 +380,22 @@ class Conveyer extends Component<ConveyerEvents> {
   public update = () => {
     this.updateItems();
     this.updateContainer();
+  }
+  /**
+   * Enables PanInput and WheelInput operations in mouse case.
+   * @ko mouse 케이스에서 PanInput, WheelInput의 동작을 활성화한다.
+   */
+  public enableInput() {
+    this._panInput?.enable();
+    this._wheelInput?.enable();
+  }
+  /**
+   * Disables PanInput and WheelInput operations in mouse case.
+   * @ko mouse 케이스에서 PanInput, WheelInput의 동작을 비활성화한다.
+   */
+  public disableInput() {
+    this._panInput?.disable();
+    this._wheelInput?.disable();
   }
   /**
    * If you use the autoInit option as false, you can initialize it directly through the init method.
@@ -446,9 +465,9 @@ class Conveyer extends Component<ConveyerEvents> {
         if (!e.isTrusted && animateParam) {
           animateParam.expectedPos -= scroll;
           if (options.horizontal) {
-            scrollAreaElement.scrollLeft = animateParam.expectedPos;
+            scrollAreaElement.scrollLeft = animateParam.expectedPos + animateParam.offset;
           } else {
-            scrollAreaElement.scrollTop = animateParam.expectedPos;
+            scrollAreaElement.scrollTop = animateParam.expectedPos + animateParam.offset;
           }
         } else {
           this._animateParam = null;
@@ -473,17 +492,19 @@ class Conveyer extends Component<ConveyerEvents> {
 
     this._axes = axes;
     if (options.useDrag) {
-      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new PanInput(scrollAreaElement, {
+      this._panInput = new PanInput(scrollAreaElement, {
         preventClickOnDrag: options.preventClickOnDrag,
         preventDefaultOnDrag: options.preventDefaultOnDrag,
         inputType: ["mouse"],
         touchAction: "auto",
-      }));
+      });
+      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], this._panInput);
     }
     if (options.useSideWheel) {
-      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], new WheelInput(scrollAreaElement, {
+      this._wheelInput = new WheelInput(scrollAreaElement, {
         useNormalized: false,
-      }));
+      });
+      axes.connect(options.horizontal ? ["scroll", ""] : ["", "scroll"], this._wheelInput);
     }
     if (options.useResizeObserver && window.ResizeObserver) {
       this._resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
@@ -530,6 +551,8 @@ class Conveyer extends Component<ConveyerEvents> {
       window.removeEventListener("resize", this.update);
     }
     this.off();
+    this._panInput = null;
+    this._wheelInput = null;
     this._axes = null;
     this._resizeObserver = null;
   }
@@ -663,9 +686,12 @@ class Conveyer extends Component<ConveyerEvents> {
     }, this._options.scrollDebounce);
   }
 
-  private _createAnimationParam() {
+  private _createAnimationParam(pos: number) {
+    // Save a decimal point before starting the animation
+    // and in case of animation (isTrusted: false), add the offset and scroll.
     this._animateParam = {
       expectedPos: this._pos,
+      offset: pos % 1,
     };
   }
 }
