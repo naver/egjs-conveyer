@@ -28,6 +28,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-decorators": "^7.13.15",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@docusaurus/core": "2.0.0-beta.14",
     "@docusaurus/plugin-google-analytics": "2.0.0-beta.14",
     "@docusaurus/preset-classic": "2.0.0-beta.14",

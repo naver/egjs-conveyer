@@ -1,0 +1,25 @@
+---
+custom_edit_url: null
+---
+
+<div>
+
+</div>
+
+**Type**: TSInterface
+
+|PROPERTY|TYPE|DEFAULT|DESCRIPTION|
+|:---:|:---:|:---:|:---:|
+|horizontal|boolean|true|<p>scroll direction. (true: Horizontal Scroll, false: Vertical Scroll)<br /></p>|
+|itemSelector|string|""|<p>selector to find items inside.<br /></p>|
+|useDrag|boolean|true|<p>Whether to use drag.<br /></p>|
+|useSideWheel|boolean|false|<p>Whether to use the mouse wheel in a direction aside from the scroll direction.<br /></p>|
+|boundaryMargin|number|0|<p>The minimum margin space for [reachStart](Conveyer#event-reachStart), [leaveStart](Conveyer#event-leaveStart), [reachEnd](Conveyer#event-reachEnd), and [leaveEnd](Conveyer#event-leaveEnd) events to be triggered at the beginning and end of the scroll area.<br /></p>|
+|scrollDebounce|number|100|<p>The maximum amount of time the scroll event does not fire for the finishScroll event to be triggered.<br /></p>|
+|preventDefault|boolean|true|<p>Whether to prevent being selected.<br /></p>|
+|preventClickOnDrag|boolean|false|<p>Whether to prevent click event when dragging.<br /></p>|
+|preventDefaultOnDrag|boolean|false|<p>Whether to use the [preventDefault](https://developer.mozilla.org/ko/docs/Web/API/Event/preventDefault) when the user starts dragging.<br /></p>|
+|autoInit|boolean|true|<p>Whether to automatically initialize when an instance is created. If set to false, initialization is possible while calling the init method.<br /></p>|
+|nested|boolean|false|<p>If this option is enabled on a Conveyer placed inside an egjs component that has the same scroll direction including the Conveyer itself. The parent component moves in the same direction after the Conveyer reaches the first/last scroll position.<br /></p>|
+|useResizeObserver|boolean|false|<p>Whether to use the [ResizeObserver](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) when resizing the Conveyer element and ConveyerItem elements.<br /></p>|
+

@@ -1,0 +1,3 @@
+import Conveyer from "@egjs/conveyer";
+
+const conveyer = new Conveyer(".items");

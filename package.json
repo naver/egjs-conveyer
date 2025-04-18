@@ -11,8 +11,8 @@
     "changelog": "lerna-helper changelog --type all --base @egjs/conveyer",
     "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
     "docs:version": "node ./config/docs-version-up",
-    "demo:build": "npm run docs:build && npm run docs:version && npm run build --prefix packages/docs",
-    "demo:deploy": "lerna-helper deploy --base @egjs/conveyer --remote upstream",
+    "demo:build": "",
+    "demo:deploy": "",
     "release": "lerna-helper release --base @egjs/conveyer --remote upstream --branch main",
     "update:cfcs": "cfcs lerna update"
   },
