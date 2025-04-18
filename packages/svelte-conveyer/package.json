@@ -1,6 +1,6 @@
 {
   "name": "@egjs/svelte-conveyer",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "Svelte Conveyer adds Drag gestures to your Native Scroll.",
   "sideEffects": false,
   "types": "declaration/index.d.ts",
@@ -71,6 +71,6 @@
   },
   "dependencies": {
     "@cfcs/svelte": "^0.1.0",
-    "@egjs/conveyer": "~1.7.1"
+    "@egjs/conveyer": "~1.8.0"
   }
 }
