@@ -267,8 +267,13 @@ describe("test Conveyer", () => {
         { duration: 100, interval: 50 }
       );
 
+      const isScrolling1 = conveyer.isScrolling;
+
       await waitEvent(conveyer, "finishScroll");
-      expect(items.scrollLeft).to.be.at.least(100);
+
+      const isScrolling2 = conveyer.isScrolling;
+      expect(isScrolling1).to.be.true;
+      expect(isScrolling2).to.be.false;
     });
     it("should check if prevent click when drag", async () => {
       // Given
@@ -764,6 +769,7 @@ describe("test Conveyer", () => {
       const finishScrollHandler = sinon.spy((event) => {
         // Then
         expect(event.isTrusted).to.be.true;
+        expect(conveyer.isScrolling).to.be.false;
         done();
       });
 
@@ -784,6 +790,7 @@ describe("test Conveyer", () => {
       const finishScrollHandler = sinon.spy((event) => {
         // Then
         expect(event.isTrusted).to.be.false;
+        expect(conveyer.isScrolling).to.be.false;
         done();
       });
 

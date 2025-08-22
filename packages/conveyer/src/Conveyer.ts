@@ -59,8 +59,8 @@ class Conveyer extends Component<ConveyerEvents> {
   private _wheelInput: WheelInput | null = null;
 
   /**
-   * Whether the scroll has reached the start.
-   * @ko 스크롤이 시작에 닿았는지 여부.
+   * Whether the scroll has reached the start
+   * @ko 스크롤이 시작에 닿았는지 여부
    * @name Conveyer#isReachStart
    * @type {boolean}
    * @default true
@@ -76,8 +76,8 @@ class Conveyer extends Component<ConveyerEvents> {
    */
   @Reactive("isReachStart") private _isReachStart = true;
   /**
-   * Whether the scroll has reached the end.
-   * @ko 스크롤이 끝에 닿았는지 여부.
+   * Whether the scroll has reached the end
+   * @ko 스크롤이 끝에 닿았는지 여부
    * @name Conveyer#isReachEnd
    * @type {boolean}
    * @default false
@@ -109,6 +109,23 @@ class Conveyer extends Component<ConveyerEvents> {
    * ```
    */
   @Reactive("scrollPos") protected _pos = 0;
+  /**
+   * Status of whether scrolling is in progress
+   * @ko 스크롤이 진행되고 있는지 여부에 대한 상태
+   * @name Conveyer#isScrolling
+   * @type {number}
+   * @default 0
+   * @readonly
+   * @example
+   * ```js
+   * import { Conveyer } from "@egjs/conveyer";
+   *
+   * const conveyer = new Conveyer(".container");
+   *
+   * conveyer.isScrolling
+   * ```
+   */
+  @Reactive("isScrolling") protected _isScrolling = false;
   /**
    * @param - A base element for a module <ko>모듈을 적용할 기준 엘리먼트</ko>
    * @param - The option object of the InfiniteGrid module <ko>eg.InfiniteGrid 모듈의 옵션 객체</ko>
@@ -420,7 +437,7 @@ class Conveyer extends Component<ConveyerEvents> {
     if (!el) {
       return;
     }
-
+    this._isScrolling = false;
     this._scrollAreaElement = el;
     let isDrag = false;
     const scrollAreaElement = this._scrollAreaElement;
@@ -542,6 +559,7 @@ class Conveyer extends Component<ConveyerEvents> {
    * @ko 인스턴스와 이벤트를 해제한다.
    */
   public destroy() {
+    this._isScrolling = false;
     this._axes?.destroy();
     this.unsubscribe();
     this._scrollAreaElement?.removeEventListener("scroll", this._onScroll);
@@ -653,6 +671,7 @@ class Conveyer extends Component<ConveyerEvents> {
     }
   }
   private _debounceScroll() {
+    this._isScrolling = true;
     if (!this._scrollTimer) {
       /**
        * This event is fired when begin scroll.
@@ -667,6 +686,7 @@ class Conveyer extends Component<ConveyerEvents> {
       const isDragScroll = this._isDragScroll;
       const isAnimationScroll = this._isAnimationScroll;
       this._scrollTimer = 0;
+      this._isScrolling = false;
       /**
        * This event is fired when finish scroll.
        * @ko 스크롤이 끝나면 발생하는 이벤트이다.
