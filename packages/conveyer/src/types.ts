@@ -105,9 +105,26 @@ export interface ConveyerEvents {
 }
 
 export interface ConveyerReactiveState {
+  /**
+   * Whether the scroll has reached the start
+   * @ko 스크롤이 시작에 닿았는지 여부
+   */
   readonly isReachStart: boolean;
+  /**
+   * Whether the scroll has reached the end
+   * @ko 스크롤이 끝에 닿았는지 여부
+   */
   readonly isReachEnd: boolean;
+  /**
+   * the scroll position of the container
+   * @ko 컨테이너의 스크롤 위치
+   */
   readonly scrollPos: number;
+  /**
+   * Status of whether scrolling is in progress
+   * @ko 스크롤이 진행되고 있는지 여부에 대한 상태
+   */
+  readonly isScrolling: number;
 }
 
 
