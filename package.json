@@ -6,7 +6,7 @@
     "update-angular-consts": "npm run build --prefix packages/conveyer && node ./config/update-type-consts.js",
     "packages": "npm run packages:update && npm run packages:build && npm run packages:publish",
     "packages:update": "lerna-helper version && npm run update-angular-consts",
-    "packages:build": "npm run build --prefix packages/conveyer && lerna run build --ignore @egjs/conveyer --ignore @egjs/ngx-conveyer --ignore docs --stream",
+    "packages:build": "pnpm --filter=!@egjs/ngx-conveyer --filter=!docs -r run build",
     "packages:publish": "lerna-helper publish --ignore @egjs/ngx-conveyer --commit 'chore: update packages versions'",
     "changelog": "lerna-helper changelog --type all --base @egjs/conveyer",
     "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
@@ -52,31 +52,5 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "@cfcs/core": "~0.0.12"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "packages/ngx-conveyer/projects/ngx-conveyer"
-    ],
-    "nohoist": [
-      "**/@egjs/build-helper",
-      "**/@egjs/build-helper/**",
-      "**/rollup-plugin-vue",
-      "**/rollup-plugin-vue/**",
-      "**/karma",
-      "**/karma/**",
-      "**/karma-*",
-      "**/karma-*/**",
-      "**/@types/chai",
-      "**/@types/chai/**",
-      "**/@types/karma-chai",
-      "**/@types/karma-chai/**",
-      "**/@types/mocha",
-      "**/@types/mocha/**",
-      "**/@vue/*",
-      "**/@vue/*/**",
-      "**/vue",
-      "**/vue/**"
-    ]
   }
 }
