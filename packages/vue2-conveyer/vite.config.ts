@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import path from "path";
-import react from "@vitejs/plugin-react";
+import vue2 from "@vitejs/plugin-vue2";
 import dts from "vite-plugin-dts";
 
 const pkg = require("./package.json");
@@ -13,7 +13,7 @@ const banner = `/*!
 
 export default defineConfig({
   plugins: [
-    react(),
+    vue2(),
     dts({
       insertTypesEntry: true,
     }),
@@ -23,19 +23,23 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/react-conveyer/index.tsx"),
-      name: "ReactConveyer",
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "VueConveyer",
       formats: ["es", "cjs"],
       fileName: (format) => `conveyer.${format === "es" ? "esm" : "cjs"}.js`,
     },
     sourcemap: true,
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: [
+        "vue",
+        "@vue/composition-api",
+        "@egjs/conveyer"
+      ],
       output: {
         globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "jsxRuntime",
+          "vue": "Vue",
+          "@vue/composition-api": "VueCompositionAPI",
+          "@egjs/conveyer": "Conveyer",
         },
         banner,
         exports: "named",

@@ -1,7 +1,6 @@
 // vite.config.ts
 import { defineConfig } from "vite";
 import path from "path";
-import { visualizer } from "rollup-plugin-visualizer";
 
 const pkg = require("./package.json");
 
@@ -14,13 +13,6 @@ const banner = `/*!
 const format = process.env.VITE_BUILD_FORMAT;
 
 export default defineConfig({
-  plugins: [
-    visualizer({
-      sourcemap: true,
-      filename: "./statistics/index.html",
-      title: `${pkg.name} bundle stats`,
-    }),
-  ],
   define: {
     "#__VERSION__#": JSON.stringify(pkg.version),
     "#__FILETYPE__#": JSON.stringify(format || "unknown"),

@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import path from "path";
-import react from "@vitejs/plugin-react";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import sveltePreprocess from "svelte-preprocess";
 import dts from "vite-plugin-dts";
 
 const pkg = require("./package.json");
@@ -13,7 +14,9 @@ const banner = `/*!
 
 export default defineConfig({
   plugins: [
-    react(),
+    svelte({
+      preprocess: sveltePreprocess(),
+    }),
     dts({
       insertTypesEntry: true,
     }),
@@ -23,19 +26,17 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/react-conveyer/index.tsx"),
-      name: "ReactConveyer",
+      entry: path.resolve(__dirname, "src/svelte-conveyer/index.ts"),
+      name: "SvelteConveyer",
       formats: ["es", "cjs"],
       fileName: (format) => `conveyer.${format === "es" ? "esm" : "cjs"}.js`,
     },
     sourcemap: true,
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: [/^svelte/],
       output: {
         globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "jsxRuntime",
+          svelte: "Svelte",
         },
         banner,
         exports: "named",
