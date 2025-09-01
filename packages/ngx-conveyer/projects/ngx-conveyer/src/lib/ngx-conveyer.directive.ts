@@ -12,9 +12,10 @@ import { ANGULAR_CONVEYER_EVENTS } from './consts';
 import { NgxConveyerInterface } from './ngx-conveyer.interface';
 
 @Directive({
-  selector: '[ngxConveyer]',
-  exportAs: 'ngxConveyer',
-  outputs: ANGULAR_CONVEYER_EVENTS,
+    selector: '[ngxConveyer]',
+    exportAs: 'ngxConveyer',
+    outputs: ANGULAR_CONVEYER_EVENTS,
+    standalone: false
 })
 export class NgxConveyerDirective extends NgxConveyerInterface {
   @Input() ngxConveyer!: ConveyerOptions | '';
