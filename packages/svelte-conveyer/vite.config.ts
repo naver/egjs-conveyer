@@ -18,6 +18,7 @@ export default defineConfig({
       preprocess: sveltePreprocess(),
     }),
     dts({
+      outDir: "declaration",
       insertTypesEntry: true,
     }),
   ],
