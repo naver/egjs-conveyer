@@ -5,15 +5,15 @@
   "scripts": {
     "update-angular-consts": "npm run build --prefix packages/conveyer && node ./config/update-type-consts.js",
     "packages": "npm run packages:update && npm run packages:build && npm run packages:publish",
-    "packages:update": "lerna-helper version && npm run update-angular-consts",
+    "packages:update": "release-helper version",
     "packages:build": "pnpm --filter=!@egjs/ngx-conveyer --filter=!docs -r run build",
-    "packages:publish": "lerna-helper publish --ignore @egjs/ngx-conveyer --commit 'chore: update packages versions'",
+    "packages:publish": "release-helper publish --ignore @egjs/ngx-conveyer --commit 'chore: update packages versions'",
     "changelog": "lerna-helper changelog --type all --base @egjs/conveyer",
     "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
     "docs:version": "node ./config/docs-version-up",
-    "demo:build": "",
-    "demo:deploy": "",
-    "release": "lerna-helper release --base @egjs/conveyer --remote upstream --branch main",
+    "demo:build": "npm run docs:build && npm run docs:version && npm run build --prefix packages/docs",
+    "demo:deploy": "release-helper deploy --base @egjs/conveyer --remote upstream",
+    "release": "release-helper release --base @egjs/conveyer --remote upstream --branch main",
     "update:cfcs": "cfcs lerna update"
   },
   "repository": {
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@cfcs/cli": "^0.0.3",
     "@daybrush/jsdoc": "^0.3.12",
-    "@egjs/release-helper": "^0.2.8",
+    "@egjs/release-helper": "1.0.0-alpha.4",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.2",
     "egjs-jsdoc-template": "^1.4.4",
