@@ -11,8 +11,8 @@
     "changelog": "lerna-helper changelog --type all --base @egjs/conveyer",
     "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
     "docs:version": "node ./config/docs-version-up",
-    "demo:build": "npm run docs:build && npm run docs:version && npm run build --prefix packages/docs",
-    "demo:deploy": "release-helper deploy --base @egjs/conveyer --remote upstream",
+    "demo:build": "npm run docs:version && npm run build --prefix packages/docs",
+    "demo:deploy": "npm run demo:build && release-helper deploy --base @egjs/conveyer --dest demo --remote origin",
     "release": "release-helper release --base @egjs/conveyer --remote upstream --branch main",
     "update:cfcs": "cfcs lerna update"
   },
@@ -35,10 +35,11 @@
   "devDependencies": {
     "@cfcs/cli": "^0.0.3",
     "@daybrush/jsdoc": "^0.3.12",
-    "@egjs/release-helper": "1.0.0-alpha.6",
+    "@egjs/release-helper": "1.0.0-alpha.7",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.2",
     "egjs-jsdoc-template": "^1.4.4",
+    "fs-extra": "^11.3.2",
     "jsdoc-to-mdx": "^1.2.1",
     "lerna": "^4.0.0",
     "react": "^17.0.2",
@@ -52,5 +53,16 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "@cfcs/core": "~0.0.12"
+  },
+  "releaseHelperOptions": {
+    "deployFileMap": [
+      {
+        "basePath": "packages/conveyer/dist",
+        "dists": [
+          "demo/release/{{version}}/dist",
+          "demo/release/latest/dist"
+        ]
+      }
+    ]
   }
 }
