@@ -7,7 +7,11 @@
 	"types": "declaration/index.d.ts",
 	"scripts": {
 		"start": "rollup -c -w",
-		"build": "rm -rf ./dist ./declaration && rollup -c && npm run declaration",
+		"build": "rm -rf ./dist ./declaration && npm run build:esm && npm run build:cjs && npm run build:umd && npm run build:umd:min && npm run declaration",
+		"build:esm": "cross-env VITE_BUILD_FORMAT=es vite build",
+		"build:cjs": "cross-env VITE_BUILD_FORMAT=cjs vite build",
+		"build:umd": "cross-env VITE_BUILD_FORMAT=umd vite build",
+		"build:umd:min": "cross-env VITE_BUILD_FORMAT=umd VITE_BUILD_MINIFY=true vite build",
 		"declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json",
 		"lint": "eslint ./src/ --ext .ts",
 		"test": "karma start",
@@ -54,7 +58,9 @@
 		"@types/sinon": "^10.0.11",
 		"@typescript-eslint/eslint-plugin": "^3.9.1",
 		"@typescript-eslint/parser": "^3.9.1",
+		"@vitejs/plugin-legacy": "^7.2.1",
 		"chai": "^4.2.0",
+		"cross-env": "^10.0.0",
 		"eslint": "^7.7.0",
 		"eslint-plugin-import": "^2.22.1",
 		"eslint-plugin-react": "^7.22.0",
@@ -68,8 +74,10 @@
 		"mocha": "^6.0.2",
 		"print-coveralls": "^1.2.2",
 		"sinon": "^7.5.0",
+		"terser": "^5.43.1",
 		"ts-mock-imports": "^1.3.8",
 		"tslib": "^2.3.1",
-		"typescript": "^4.3.5"
+		"typescript": "^4.3.5",
+		"vite": "^7.1.3"
 	}
 }

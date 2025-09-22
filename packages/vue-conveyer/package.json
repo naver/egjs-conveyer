@@ -17,7 +17,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
-    "build": "rollup -c && npm run declaration && print-sizes ./dist ",
+    "build": "vite build && npm run declaration && print-sizes ./dist ",
     "declaration": "rm -rf declaration && tsc -p tsconfig.declaration.json"
   },
   "keywords": [
@@ -46,6 +46,7 @@
     "@egjs/build-helper": "^0.1.2",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
+    "@vitejs/plugin-vue": "^6.0.1",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-plugin-typescript": "^5.0.8",
@@ -57,6 +58,8 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "print-sizes": "^0.1.0",
     "typescript": "^4.5.2",
+    "vite": "^7.1.3",
+    "vite-plugin-dts": "^4.5.4",
     "vue": "^3.2.21"
   }
 }
