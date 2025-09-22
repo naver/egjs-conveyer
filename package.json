@@ -12,7 +12,7 @@
     "docs:build": "jsdoc-to-mdx -c ./jsdoc-to-mdx.json",
     "docs:version": "node ./config/docs-version-up",
     "demo:build": "npm run docs:version && npm run build --prefix packages/docs",
-    "demo:deploy": "npm run demo:build && release-helper deploy --base @egjs/conveyer --dest demo --remote origin",
+    "demo:deploy": "release-helper deploy --base @egjs/conveyer --dest demo --remote origin",
     "release": "release-helper release --base @egjs/conveyer --remote upstream --branch main",
     "update:cfcs": "cfcs lerna update"
   },
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@cfcs/cli": "^0.0.3",
     "@daybrush/jsdoc": "^0.3.12",
-    "@egjs/release-helper": "1.0.0-alpha.7",
+    "@egjs/release-helper": "1.0.0-alpha.12",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.2",
     "egjs-jsdoc-template": "^1.4.4",
