@@ -51,8 +51,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       '@egjs/axes':
-        specifier: ^3.9.0
-        version: 3.9.2
+        specifier: ^3.9.3
+        version: 3.9.3
       '@egjs/children-differ':
         specifier: ^1.0.1
         version: 1.0.1
@@ -1909,6 +1909,9 @@ packages:
 
   '@egjs/axes@3.9.2':
     resolution: {integrity: sha512-LEyJfhAdOrg672twCtH9KUloMTGCERm2tqxNLaXFjm/2rOcd4n5yrUofIjY0m/oG146XmSLeCR9+ri2kOA4BHg==}
+
+  '@egjs/axes@3.9.3':
+    resolution: {integrity: sha512-JMw2Ln4K26cCBF80yplgfWyeCjHyKL1i6bVzec1p8GGnVT6aM/RCzSHW5+B2jRdhunx3v9DmDzSngyGJLeytWw==}
 
   '@egjs/build-helper@0.0.5':
     resolution: {integrity: sha512-sMKDsNHFNBamwMnuQtQDO77J0l7z05kNuidHUjYQQTxT33Tl8h2dynZU5O9+ONS4zowFR4mE0UYEDQdAq58RGQ==}
@@ -17298,6 +17301,12 @@ snapshots:
   '@egjs/agent@2.4.4': {}
 
   '@egjs/axes@3.9.2':
+    dependencies:
+      '@cfcs/core': 0.1.0
+      '@egjs/agent': 2.4.4
+      '@egjs/component': 3.0.5
+
+  '@egjs/axes@3.9.3':
     dependencies:
       '@cfcs/core': 0.1.0
       '@egjs/agent': 2.4.4
